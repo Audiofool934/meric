@@ -75,49 +75,11 @@ h1 {
   line-height: 1.55;
 }
 
-.cta-row {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin: 18px auto 20px;
-}
-
-.cta {
-  font-family: -apple-system, 'Segoe UI', sans-serif;
-  font-size: 0.84em;
-  font-weight: 700;
-  color: var(--accent-dark);
-  background: var(--card);
-  border: 1.5px solid var(--ours-border);
-  border-radius: 8px;
-  padding: 8px 14px;
-  text-decoration: none;
-  transition: background 0.15s, border-color 0.15s, color 0.15s;
-}
-
-.cta:hover {
-  background: var(--accent-light);
-  border-color: var(--accent);
-}
-
-.cta-primary {
-  color: #fff;
-  background: var(--accent);
-  border-color: var(--accent);
-}
-
-.cta-primary:hover {
-  color: #fff;
-  background: var(--accent-dark);
-  border-color: var(--accent-dark);
-}
-
 .hero-claims {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 10px;
-  margin: 18px auto 0;
+  margin: 24px auto 0;
   max-width: 980px;
   text-align: left;
 }
@@ -794,6 +756,32 @@ section { margin-bottom: 48px; }
   line-height: 1.5;
 }
 
+.resource-links {
+  font-family: -apple-system, 'Segoe UI', sans-serif;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  color: var(--text-secondary);
+  font-size: 0.82em;
+}
+
+.resource-links span {
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.resource-links a {
+  color: var(--accent-dark);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.resource-links a:hover {
+  border-bottom-color: var(--accent-dark);
+}
+
 /* Results table */
 .table-subtitle {
   font-size: 1.05rem;
@@ -1079,7 +1067,6 @@ footer p {
   .retrieval-grid {
     grid-template-columns: 1fr;
   }
-  .cta-row { justify-content: flex-start; }
   .site-nav {
     margin: -12px -12px 24px;
     padding-left: 12px;
@@ -1115,13 +1102,6 @@ footer p {
     MERIC maps images, text, and video into a MuQ music semantic anchor, then uses that same anchor
     for both music generation and music retrieval.
   </p>
-  <div class="cta-row" aria-label="Project links">
-    <a class="cta cta-primary" href="https://github.com/Audiofool934/meric">GitHub</a>
-    <a class="cta" href="https://github.com/Audiofool934/meric/tree/main/docs">Docs</a>
-    <a class="cta" href="https://github.com/Audiofool934/meric/blob/main/docs/MODELS.md">Models</a>
-    <a class="cta" href="#citation">Citation</a>
-    <a class="cta" href="https://github.com/Audiofool934/meric/blob/main/NOTICE">License Notes</a>
-  </div>
   <div class="hero-claims" aria-label="Paper contributions">
     <div class="hero-claim">
       <span class="claim-label">Anchor</span>
@@ -2068,6 +2048,14 @@ footer p {
   year      = {2026},
   note      = {Accepted to ECCV 2026; final author list, pages, and DOI to be added}
 }</code></pre>
+  <div class="resource-links" aria-label="Project resources">
+    <span>Resources</span>
+    <a href="https://github.com/Audiofool934/meric">GitHub</a>
+    <a href="https://github.com/Audiofool934/meric/tree/main/docs">Docs</a>
+    <a href="https://huggingface.co/Audiofool/meric">Model Weights</a>
+    <a href="https://github.com/Audiofool934/meric/blob/main/docs/MODELS.md">Model Docs</a>
+    <a href="https://github.com/Audiofool934/meric/blob/main/NOTICE">License Notes</a>
+  </div>
 </section>
 
 <footer>
