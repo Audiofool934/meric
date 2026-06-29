@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meric: A Unified Framework for Multimodal Music Generation and Retrieval via Representation Space Anchoring</title>
+<title>MERIC: Unified Multimodal Music Generation and Retrieval via a Music Semantic Anchor</title>
 <style>
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -38,25 +38,112 @@ body {
 html { scroll-padding-top: 56px; scroll-behavior: smooth; }
 
 /* Header */
-header {
+.site-header {
   text-align: center;
-  padding: 48px 0 24px;
-  margin-bottom: 36px;
+  padding: 44px 0 24px;
+  margin-bottom: 28px;
+}
+
+.eyebrow {
+  font-family: -apple-system, 'Segoe UI', sans-serif;
+  display: inline-block;
+  font-size: 0.78em;
+  font-weight: 700;
+  color: #166534;
+  background: #dcfce7;
+  border: 1px solid #86efac;
+  border-radius: 999px;
+  padding: 4px 10px;
+  margin-bottom: 12px;
 }
 
 h1 {
   font-size: 2em;
   font-weight: 700;
   color: var(--text);
-  margin-bottom: 8px;
-  letter-spacing: -0.02em;
+  max-width: 980px;
+  margin: 0 auto 10px;
+  letter-spacing: 0;
 }
 
 .subtitle {
   font-family: -apple-system, 'Segoe UI', sans-serif;
+  color: var(--text-secondary);
+  font-size: 1em;
+  max-width: 760px;
+  margin: 0 auto;
+  line-height: 1.55;
+}
+
+.cta-row {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 18px auto 20px;
+}
+
+.cta {
+  font-family: -apple-system, 'Segoe UI', sans-serif;
+  font-size: 0.84em;
+  font-weight: 700;
+  color: var(--accent-dark);
+  background: var(--card);
+  border: 1.5px solid var(--ours-border);
+  border-radius: 8px;
+  padding: 8px 14px;
+  text-decoration: none;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.cta:hover {
+  background: var(--accent-light);
+  border-color: var(--accent);
+}
+
+.cta-primary {
+  color: #fff;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.cta-primary:hover {
+  color: #fff;
+  background: var(--accent-dark);
+  border-color: var(--accent-dark);
+}
+
+.hero-claims {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin: 18px auto 0;
+  max-width: 980px;
+  text-align: left;
+}
+
+.hero-claim {
+  font-family: -apple-system, 'Segoe UI', sans-serif;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+
+.claim-label {
+  display: block;
+  font-size: 0.7em;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
   color: var(--text-muted);
-  font-size: 0.95em;
-  font-style: italic;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.hero-claim strong {
+  display: block;
+  font-size: 0.88em;
+  line-height: 1.35;
 }
 
 h2 {
@@ -65,7 +152,7 @@ h2 {
   font-weight: 700;
   color: var(--text);
   margin-bottom: 8px;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
 }
 
 .section-desc {
@@ -204,7 +291,7 @@ section { margin-bottom: 48px; }
 .sample-viewer {
   background: var(--card);
   border: 1.5px solid var(--border);
-  border-radius: 12px;
+  border-radius: 8px;
   overflow: hidden;
 }
 
@@ -347,7 +434,7 @@ section { margin-bottom: 48px; }
 .panel {
   background: var(--card);
   border: 1.5px solid var(--border);
-  border-radius: 12px;
+  border-radius: 8px;
   overflow: hidden;
 }
 
@@ -450,7 +537,7 @@ section { margin-bottom: 48px; }
 .gallery-card {
   background: var(--card);
   border: 1.5px solid var(--border);
-  border-radius: 10px;
+  border-radius: 8px;
   overflow: hidden;
   transition: box-shadow 0.15s, border-color 0.15s;
 }
@@ -535,7 +622,7 @@ section { margin-bottom: 48px; }
 .t2m-card {
   background: var(--card);
   border: 1.5px solid var(--border);
-  border-radius: 10px;
+  border-radius: 8px;
   padding: 16px 20px;
   display: grid;
   grid-template-columns: 1fr auto;
@@ -600,6 +687,111 @@ section { margin-bottom: 48px; }
   width: 280px;
   height: 36px;
   flex-shrink: 0;
+}
+
+/* Results and retrieval */
+.results, .retrieval, .citation {
+  margin-bottom: 48px;
+}
+
+.result-highlights {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 18px 0 20px;
+}
+
+.result-highlight,
+.retrieval-panel {
+  font-family: -apple-system, 'Segoe UI', sans-serif;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+
+.result-highlight span {
+  display: block;
+  font-size: 0.72em;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.result-highlight strong {
+  display: block;
+  color: var(--accent-dark);
+  font-size: 1.05em;
+  margin-bottom: 4px;
+}
+
+.result-highlight p,
+.retrieval-panel p {
+  font-size: 0.84em;
+  line-height: 1.45;
+  color: var(--text-secondary);
+}
+
+.anchor-flow {
+  display: grid;
+  grid-template-columns: minmax(150px, 1fr) auto minmax(150px, 1fr) auto minmax(150px, 1fr) auto minmax(150px, 1fr);
+  align-items: center;
+  gap: 8px;
+  margin: 18px 0;
+}
+
+.flow-step {
+  font-family: -apple-system, 'Segoe UI', sans-serif;
+  font-size: 0.84em;
+  font-weight: 700;
+  text-align: center;
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 10px;
+}
+
+.flow-anchor {
+  color: #0f766e;
+  background: #ccfbf1;
+  border-color: #5eead4;
+}
+
+.flow-arrow {
+  font-family: -apple-system, 'Segoe UI', sans-serif;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.retrieval-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.retrieval-panel h3 {
+  font-size: 0.98em;
+  margin-bottom: 6px;
+}
+
+.metric-line {
+  margin-top: 10px;
+  color: var(--text) !important;
+}
+
+.metric-line strong { color: var(--accent-dark); }
+
+.bibtex {
+  overflow-x: auto;
+  background: #0f172a;
+  color: #e2e8f0;
+  border-radius: 8px;
+  padding: 16px;
+  font-size: 0.82em;
+  line-height: 1.5;
 }
 
 /* Results table */
@@ -795,7 +987,7 @@ footer p {
   align-items: flex-start;
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 8px;
   padding: 12px 16px;
 }
 
@@ -868,9 +1060,26 @@ footer p {
 .abl-grid { margin: 0; }
 
 /* Responsive */
+@media (max-width: 900px) {
+  .hero-claims { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .anchor-flow {
+    grid-template-columns: 1fr;
+  }
+  .flow-arrow {
+    display: none;
+  }
+}
+
 @media (max-width: 768px) {
   body { padding: 12px; }
   h1 { font-size: 1.4em; }
+  .site-header { padding-top: 28px; }
+  .hero-claims,
+  .result-highlights,
+  .retrieval-grid {
+    grid-template-columns: 1fr;
+  }
+  .cta-row { justify-content: flex-start; }
   .sample-header { flex-direction: column; padding: 16px; }
   .sample-image { width: 100%; max-width: 320px; }
   .audio-row { grid-template-columns: 90px 1fr; gap: 8px; padding: 8px 12px; }
@@ -893,19 +1102,53 @@ footer p {
 </head>
 <body>
 
-<header>
-  <h1>Meric: A Unified Framework for Multimodal Music Generation and Retrieval via Representation Space Anchoring</h1>
-  <p class="subtitle">Anonymous submission to ECCV 2026</p>
+
+<header class="site-header">
+  <p class="eyebrow">Accepted to ECCV 2026</p>
+  <h1>MERIC: Unified Multimodal Music Generation and Retrieval via a Music Semantic Anchor</h1>
+  <p class="subtitle">
+    MERIC maps images, text, and video into a MuQ music semantic anchor, then uses that same anchor
+    for both music generation and music retrieval.
+  </p>
+  <div class="cta-row" aria-label="Project links">
+    <a class="cta cta-primary" href="https://github.com/Audiofool934/meric">GitHub</a>
+    <a class="cta" href="https://github.com/Audiofool934/meric/tree/main/docs">Docs</a>
+    <a class="cta" href="https://github.com/Audiofool934/meric/blob/main/docs/MODELS.md">Models</a>
+    <a class="cta" href="#citation">Citation</a>
+    <a class="cta" href="https://github.com/Audiofool934/meric/blob/main/NOTICE">License Notes</a>
+  </div>
+  <div class="hero-claims" aria-label="Paper contributions">
+    <div class="hero-claim">
+      <span class="claim-label">Anchor</span>
+      <strong>MuQ as the shared music semantic space</strong>
+    </div>
+    <div class="hero-claim">
+      <span class="claim-label">Training</span>
+      <strong>Stage 2 learns from 630K unpaired music tracks</strong>
+    </div>
+    <div class="hero-claim">
+      <span class="claim-label">Sampling</span>
+      <strong>One input can yield many faithful compositions</strong>
+    </div>
+    <div class="hero-claim">
+      <span class="claim-label">Unification</span>
+      <strong>The predicted anchor serves generation and retrieval</strong>
+    </div>
+  </div>
 </header>
 
+
 <nav class="site-nav" id="site-nav">
-  <a href="#overview" class="nav-link active">Overview</a>
+  <a href="#overview" class="nav-link active" aria-current="true">Overview</a>
+  <a href="#results" class="nav-link">Results</a>
+  <a href="#retrieval" class="nav-link">Retrieval</a>
   <a href="#i2m-gallery" class="nav-link">I2M Gallery</a>
   <a href="#one-to-many" class="nav-link">One-to-Many</a>
   <a href="#t2m-gallery" class="nav-link">T2M Gallery</a>
   <a href="#comparison" class="nav-link">I2M Comparison</a>
   <a href="#t2m-comparison" class="nav-link">T2M Comparison</a>
   <a href="#ablations" class="nav-link">Ablations</a>
+  <a href="#citation" class="nav-link">Citation</a>
 </nav>
 
 <section class="overview" id="overview">
@@ -916,29 +1159,125 @@ footer p {
     lack explicit <strong>one-to-many modeling</strong>, and <strong>isolate generation from retrieval</strong>.
   </p>
   <p>
-    We propose a unified framework for multimodal music generation and retrieval.
-    Our core innovation is a <strong>music semantic anchor</strong>&mdash;a semantic embedding space defined by a dedicated
-    music encoder (MuQ)&mdash;that decouples multimodal understanding from acoustic synthesis.
-    We employ a two-stage training pipeline:
+    MERIC proposes a unified framework for multimodal music generation and retrieval.
+    Its core idea is a <strong>music semantic anchor</strong>&mdash;the MuQ embedding space&mdash;that decouples
+    multimodal understanding from acoustic synthesis. The paper uses a two-stage training pipeline:
   </p>
   <ol class="pipeline-steps">
-    <li><strong>Flow-DiT Decoder</strong> learns to synthesize audio from anchor embeddings using large, unpaired music corpora (630K tracks).</li>
-    <li>A lightweight <strong>Music Head</strong> (diffusion module) maps multimodal embeddings extracted by Qwen3-VL-Embedding into this continuous anchor space using limited paired data (369K pairs + 4K ARIA fine-tuning).</li>
+    <li><strong>Stage 1:</strong> Qwen3-VL embeddings are mapped into MuQ space by the diffusion-based Music Head.</li>
+    <li><strong>Stage 2:</strong> a Flow-DiT decoder synthesizes audio from MuQ anchors using large unpaired music corpora.</li>
   </ol>
   <p>
-    During inference, the predicted anchor embedding simultaneously acts as a condition for acoustic synthesis
-    and as a query for music retrieval&mdash;unifying generation and retrieval within a single forward pass, without
-    requiring text as an intermediate representation.
+    At inference time, the predicted anchor embedding is both a condition for acoustic synthesis and a query
+    for music retrieval. This is the central reason generation, retrieval, one-to-many sampling, and the
+    ablations below belong on one project page rather than separate demos.
   </p>
   <div class="method-figure">
     <img src="images/method.png" alt="Framework overview: multimodal queries (image, video, text) are encoded by a frozen Qwen3-VL-Embedding model. The Music Head maps query embeddings to a music semantic anchor, which serves as the interface for both generation (Flow-DiT Decoder) and retrieval (cosine similarity against pre-indexed music embeddings).">
   </div>
 </section>
 
+
+<section class="results" id="results">
+  <h2>Paper Results</h2>
+  <p class="section-desc">
+    The demo samples below are meant to be heard next to the paper numbers, so the main generation
+    and retrieval tables are surfaced here before the galleries. Lower FAD/KL is better; higher Sem
+    and retrieval recall are better.
+  </p>
+  <div class="result-highlights" aria-label="Selected paper results">
+    <div class="result-highlight">
+      <span>Vision Generation</span>
+      <strong>0.127 FAD<sub>C</sub></strong>
+      <p>MERIC on MelBench, below all listed generation baselines.</p>
+    </div>
+    <div class="result-highlight">
+      <span>Text Generation</span>
+      <strong>0.110 FAD<sub>C</sub></strong>
+      <p>MERIC on MusicCaps, using the same anchor pipeline.</p>
+    </div>
+    <div class="result-highlight">
+      <span>Retrieval</span>
+      <strong>One anchor, two tasks</strong>
+      <p>The predicted MuQ embedding is both a synthesis condition and a retrieval query.</p>
+    </div>
+  </div>
+  
+  <h3 class="table-subtitle">Vision-to-Music Generation</h3>
+  <div class="table-wrapper">
+  <table class="results-table">
+    <thead><tr><th rowspan="2" class="th-method">Method</th><th colspan="5">MelBench</th><th colspan="5">MuImage</th><th colspan="5">EmoMV</th><th colspan="5">ARIA</th></tr><tr><th>FAD<sub>M</sub></th><th>FAD<sub>C</sub></th><th>FAD<sub>V</sub></th><th>KL</th><th>Sem</th><th>FAD<sub>M</sub></th><th>FAD<sub>C</sub></th><th>FAD<sub>V</sub></th><th>KL</th><th>Sem</th><th>FAD<sub>M</sub></th><th>FAD<sub>C</sub></th><th>FAD<sub>V</sub></th><th>KL</th><th>Sem</th><th>FAD<sub>M</sub></th><th>FAD<sub>C</sub></th><th>FAD<sub>V</sub></th><th>KL</th><th>Sem</th></tr></thead>
+    <tbody><tr><td class="td-method">Art2Mus</td><td>31.6</td><td>0.945</td><td>13.7</td><td>0.0145</td><td>39.1</td><td>30.8</td><td>0.902</td><td>15.3</td><td>0.0151</td><td>45.3</td><td>33.9</td><td>1.109</td><td>14.6</td><td>0.0147</td><td>44.3</td><td>15.1</td><td>0.560</td><td>7.02</td><td>0.0077</td><td>45.3</td></tr><tr><td class="td-method">GVMGen</td><td>3.55</td><td>0.483</td><td>5.78</td><td>0.0072</td><td>52.9</td><td>3.78</td><td>0.549</td><td>8.73</td><td>0.0086</td><td>49.6</td><td>3.96</td><td>0.617</td><td>7.20</td><td><strong>0.0057</strong></td><td>63.6</td><td>4.18</td><td>0.337</td><td>5.83</td><td><strong>0.0052</strong></td><td>60.0</td></tr><tr><td class="td-method">AudioX</td><td>16.5</td><td>0.723</td><td>13.7</td><td>0.0127</td><td>53.8</td><td>13.9</td><td>0.623</td><td>14.4</td><td>0.0130</td><td>51.8</td><td>4.75</td><td>0.487</td><td>5.45</td><td>0.0071</td><td>79.0</td><td>20.1</td><td>0.766</td><td>11.7</td><td>0.0120</td><td>38.5</td></tr><tr><td class="td-method">M2UGen</td><td>7.53</td><td>0.558</td><td>7.14</td><td>0.0090</td><td>55.3</td><td>5.19</td><td>0.421</td><td>8.66</td><td>0.0098</td><td>57.8</td><td>9.51</td><td>0.794</td><td>10.1</td><td>0.0087</td><td>54.6</td><td>24.0</td><td>0.744</td><td>4.89</td><td>0.0070</td><td>57.1</td></tr><tr><td class="td-method">Qwen3VL + MusicGen</td><td>4.42</td><td>0.497</td><td>6.56</td><td>0.0076</td><td><strong>80.6</strong></td><td>2.99</td><td>0.418</td><td>8.93</td><td>0.0079</td><td>85.6</td><td>7.08</td><td>0.736</td><td>7.65</td><td>0.0083</td><td>80.3</td><td>5.09</td><td>0.283</td><td><strong>2.04</strong></td><td>0.0059</td><td>76.6</td></tr><tr><td class="td-method">Qwen3VL + AudioLDM2-L</td><td>6.57</td><td>0.408</td><td>5.92</td><td>0.0078</td><td>77.6</td><td>4.59</td><td>0.274</td><td>6.08</td><td>0.0079</td><td><strong>87.2</strong></td><td>8.61</td><td>0.609</td><td>7.41</td><td>0.0086</td><td>78.7</td><td>9.95</td><td>0.262</td><td>3.66</td><td>0.0069</td><td>77.6</td></tr><tr class="row-ours"><td class="td-method"><strong>Ours</strong></td><td><strong>1.55</strong></td><td><strong>0.127</strong></td><td><strong>1.27</strong></td><td><strong>0.0059</strong></td><td>74.7</td><td><strong>1.79</strong></td><td><strong>0.169</strong></td><td><strong>3.20</strong></td><td><strong>0.0078</strong></td><td>87.1</td><td><strong>3.06</strong></td><td><strong>0.253</strong></td><td><strong>2.45</strong></td><td>0.0060</td><td><strong>81.0</strong></td><td><strong>3.30</strong></td><td><strong>0.247</strong></td><td>2.08</td><td>0.0055</td><td><strong>79.6</strong></td></tr></tbody>
+  </table>
+  </div>
+  <h3 class="table-subtitle">Text-to-Music Generation</h3>
+  <div class="table-wrapper">
+  <table class="results-table t2m-results">
+    <thead><tr><th rowspan="2" class="th-method">Method</th><th colspan="3">MusicCaps</th><th colspan="3">ARIA</th></tr><tr><th>FAD<sub>M</sub></th><th>FAD<sub>C</sub></th><th>Sem</th><th>FAD<sub>M</sub></th><th>FAD<sub>C</sub></th><th>Sem</th></tr></thead>
+    <tbody><tr><td class="td-method">MusicGen-Medium</td><td>3.80</td><td>0.421</td><td>65.1</td><td>3.00</td><td>0.272</td><td>71.1</td></tr><tr><td class="td-method">MusicGen-Large</td><td>3.51</td><td>0.409</td><td>67.1</td><td>2.55</td><td>0.248</td><td>72.4</td></tr><tr><td class="td-method">AudioLDM2-Music</td><td>4.60</td><td>0.260</td><td>68.0</td><td>4.63</td><td>0.251</td><td>68.6</td></tr><tr><td class="td-method">AudioLDM2-Large</td><td>4.17</td><td>0.178</td><td><strong>76.7</strong></td><td>3.93</td><td>0.211</td><td><strong>77.5</strong></td></tr><tr><td class="td-method">Stable-Audio-Open</td><td>3.85</td><td>0.268</td><td>68.3</td><td>3.50</td><td>0.324</td><td>57.8</td></tr><tr class="row-ours"><td class="td-method"><strong>Ours</strong></td><td><strong>1.87</strong></td><td><strong>0.110</strong></td><td>74.2</td><td><strong>2.14</strong></td><td><strong>0.155</strong></td><td>74.5</td></tr></tbody>
+  </table>
+  </div>
+  <h3 class="table-subtitle">Vision-Music Retrieval (%)</h3>
+  <p class="table-note">MelBench: 5,000 one-to-one pairs. ARIA: 1,000 queries → ~9,000 audio candidates (one-to-many). Higher is better.</p>
+  <div class="table-wrapper">
+  <table class="results-table ret-results">
+    <thead><tr><th rowspan="3" class="th-method">Method</th><th colspan="4">MelBench</th><th colspan="4">ARIA</th></tr><tr><th colspan="2">I→M</th><th colspan="2">M→I</th><th colspan="2">I→M</th><th colspan="2">M→I</th></tr><tr><th>R@1</th><th>R@10</th><th>R@1</th><th>R@10</th><th>R@1</th><th>R@10</th><th>R@1</th><th>R@10</th></tr></thead>
+    <tbody><tr><td class="td-method">ImageBind</td><td><strong>4.38</strong></td><td><strong>18.00</strong></td><td><strong>3.66</strong></td><td><strong>17.00</strong></td><td>0.30</td><td>2.30</td><td>0.13</td><td>1.77</td></tr><tr class="row-ours"><td class="td-method"><strong>Ours</strong></td><td>1.34</td><td>8.62</td><td>1.12</td><td>9.54</td><td><strong>0.40</strong></td><td><strong>2.80</strong></td><td><strong>0.39</strong></td><td><strong>2.40</strong></td></tr></tbody>
+  </table>
+  </div>
+  <h3 class="table-subtitle">Text-Music Retrieval (%)</h3>
+  <p class="table-note">CLAP is trained on 630K text-audio pairs. Ours routes text through Qwen3VLE → Music Head → anchor space without any text-audio training. Higher is better.</p>
+  <div class="table-wrapper">
+  <table class="results-table ret-results">
+    <thead><tr><th rowspan="3" class="th-method">Method</th><th colspan="4">MusicCaps</th><th colspan="4">ARIA</th></tr><tr><th colspan="2">T→M</th><th colspan="2">M→T</th><th colspan="2">T→M</th><th colspan="2">M→T</th></tr><tr><th>R@1</th><th>R@10</th><th>R@1</th><th>R@10</th><th>R@1</th><th>R@10</th><th>R@1</th><th>R@10</th></tr></thead>
+    <tbody><tr><td class="td-method">CLAP</td><td><strong>4.31</strong></td><td><strong>19.48</strong></td><td><strong>5.54</strong></td><td><strong>23.53</strong></td><td>0.17</td><td>2.30</td><td>0.63</td><td>3.73</td></tr><tr class="row-ours"><td class="td-method"><strong>Ours</strong></td><td>3.27</td><td>18.80</td><td>2.82</td><td>16.42</td><td><strong>0.83</strong></td><td><strong>5.47</strong></td><td><strong>0.73</strong></td><td><strong>6.40</strong></td></tr></tbody>
+  </table>
+  </div>
+</section>
+
+
+<section class="retrieval" id="retrieval">
+  <h2>Unified Retrieval</h2>
+  <p class="section-desc">
+    MERIC does not add a separate retrieval model. The Music Head predicts a MuQ-space anchor from
+    a visual or text query; generation conditions the Flow-DiT decoder on that anchor, while retrieval
+    ranks pre-indexed music embeddings by cosine similarity to the same anchor.
+  </p>
+  <div class="anchor-flow" aria-label="MERIC anchor pipeline">
+    <div class="flow-step">Image / Text / Video</div>
+    <div class="flow-arrow" aria-hidden="true">→</div>
+    <div class="flow-step">Qwen3-VL Embedding</div>
+    <div class="flow-arrow" aria-hidden="true">→</div>
+    <div class="flow-step flow-anchor">MuQ Anchor</div>
+    <div class="flow-arrow" aria-hidden="true">→</div>
+    <div class="flow-step">Generate or Retrieve</div>
+  </div>
+  <div class="retrieval-grid">
+    <article class="retrieval-panel">
+      <h3>Vision-to-Music Retrieval</h3>
+      <p>
+        For images and video frames, the same anchor used to drive synthesis can query an indexed
+        music collection. This is why the demo keeps generation and comparison examples close to the
+        retrieval table instead of treating them as separate systems.
+      </p>
+      <p class="metric-line">ARIA I→M R@10: <strong>2.80</strong> vs ImageBind <strong>2.30</strong>.</p>
+    </article>
+    <article class="retrieval-panel">
+      <h3>Text-to-Music Retrieval</h3>
+      <p>
+        Text follows the same route: text → Qwen3-VL → Music Head → MuQ anchor. The paper result is
+        notable because MERIC does this without direct text-audio training, unlike CLAP.
+      </p>
+      <p class="metric-line">ARIA T→M R@10: <strong>5.47</strong> vs CLAP <strong>2.30</strong>.</p>
+    </article>
+  </div>
+</section>
+
 <section class="gallery" id="i2m-gallery">
   <h2>Image-to-Music Gallery</h2>
   <p class="section-desc">
-    Samples from test sets. Each card shows an input image and the music generated by Meric. Click to play.
+    Curated visual inputs paired with music generated by MERIC. These examples make the anchor-based
+    image-to-music behavior listenable before the controlled baseline comparisons.
   </p>
 
   <div class="panel">
@@ -973,7 +1312,8 @@ footer p {
 <section class="t2m-gallery" id="t2m-gallery">
   <h2>Text-to-Music Gallery</h2>
   <p class="section-desc">
-    Samples from test sets. Each card shows a text prompt and the music generated by Meric. Click to play.
+    Text prompts are routed through the same Qwen3-VL → Music Head → MuQ anchor path used by visual inputs.
+    MERIC is not trained as a separate direct text-audio model.
   </p>
 
   <div class="panel">
@@ -1007,7 +1347,8 @@ footer p {
 <section class="samples" id="t2m-comparison">
   <h2>Text-to-Music Comparison</h2>
   <p class="section-desc">
-    Compare text-to-music generation against dedicated T2M baselines on MusicCaps.
+    Compare MERIC against dedicated text-to-music baselines on MusicCaps. MERIC reaches these samples
+    through the shared semantic-anchor route rather than direct text-audio training.
     Click any play button to listen; only one track plays at a time.
     Use <strong>Play All</strong> to hear each method sequentially.
   </p>
@@ -1050,76 +1391,7 @@ footer p {
       <div class="abl-grid">
 <div class="abl-row">
         <div class="abl-image">
-          <img src="images/ablation_steps/1veO5dqubZ8.jpg" alt="Input" loading="lazy">
-          <span class="abl-ds-tag"></span>
-        </div>
-        <div class="abl-audios">
-          <div class="abl-audio-cell">
-            <div class="abl-label">s=1</div>
-            <audio controls preload="none" src="audio/ablation_steps/1veO5dqubZ8/s1.mp3"></audio>
-          </div>
-          <div class="abl-audio-cell">
-            <div class="abl-label">s=5</div>
-            <audio controls preload="none" src="audio/ablation_steps/1veO5dqubZ8/s5.mp3"></audio>
-          </div>
-          <div class="abl-audio-cell">
-            <div class="abl-label">s=10</div>
-            <audio controls preload="none" src="audio/ablation_steps/1veO5dqubZ8/s10.mp3"></audio>
-          </div>
-          <div class="abl-audio-cell">
-            <div class="abl-label">s=20</div>
-            <audio controls preload="none" src="audio/ablation_steps/1veO5dqubZ8/s20.mp3"></audio>
-          </div>
-        </div>
-      </div><div class="abl-row">
-        <div class="abl-image">
-          <img src="images/ablation_steps/9GxkHE6U0aw.jpg" alt="Input" loading="lazy">
-          <span class="abl-ds-tag"></span>
-        </div>
-        <div class="abl-audios">
-          <div class="abl-audio-cell">
-            <div class="abl-label">s=1</div>
-            <audio controls preload="none" src="audio/ablation_steps/9GxkHE6U0aw/s1.mp3"></audio>
-          </div>
-          <div class="abl-audio-cell">
-            <div class="abl-label">s=5</div>
-            <audio controls preload="none" src="audio/ablation_steps/9GxkHE6U0aw/s5.mp3"></audio>
-          </div>
-          <div class="abl-audio-cell">
-            <div class="abl-label">s=10</div>
-            <audio controls preload="none" src="audio/ablation_steps/9GxkHE6U0aw/s10.mp3"></audio>
-          </div>
-          <div class="abl-audio-cell">
-            <div class="abl-label">s=20</div>
-            <audio controls preload="none" src="audio/ablation_steps/9GxkHE6U0aw/s20.mp3"></audio>
-          </div>
-        </div>
-      </div><div class="abl-row">
-        <div class="abl-image">
-          <img src="images/ablation_steps/AUYC4qxGiLc.jpg" alt="Input" loading="lazy">
-          <span class="abl-ds-tag"></span>
-        </div>
-        <div class="abl-audios">
-          <div class="abl-audio-cell">
-            <div class="abl-label">s=1</div>
-            <audio controls preload="none" src="audio/ablation_steps/AUYC4qxGiLc/s1.mp3"></audio>
-          </div>
-          <div class="abl-audio-cell">
-            <div class="abl-label">s=5</div>
-            <audio controls preload="none" src="audio/ablation_steps/AUYC4qxGiLc/s5.mp3"></audio>
-          </div>
-          <div class="abl-audio-cell">
-            <div class="abl-label">s=10</div>
-            <audio controls preload="none" src="audio/ablation_steps/AUYC4qxGiLc/s10.mp3"></audio>
-          </div>
-          <div class="abl-audio-cell">
-            <div class="abl-label">s=20</div>
-            <audio controls preload="none" src="audio/ablation_steps/AUYC4qxGiLc/s20.mp3"></audio>
-          </div>
-        </div>
-      </div><div class="abl-row">
-        <div class="abl-image">
-          <img src="images/ablation_steps/1YEM-VJMKTs.jpg" alt="Input" loading="lazy">
+          <img src="images/ablation_steps/1YEM-VJMKTs.jpg" alt="Input image for MERIC sampling-steps ablation" loading="lazy">
           <span class="abl-ds-tag"></span>
         </div>
         <div class="abl-audios">
@@ -1142,30 +1414,7 @@ footer p {
         </div>
       </div><div class="abl-row">
         <div class="abl-image">
-          <img src="images/ablation_steps/1lyu1KKwC74.jpg" alt="Input" loading="lazy">
-          <span class="abl-ds-tag"></span>
-        </div>
-        <div class="abl-audios">
-          <div class="abl-audio-cell">
-            <div class="abl-label">s=1</div>
-            <audio controls preload="none" src="audio/ablation_steps/1lyu1KKwC74/s1.mp3"></audio>
-          </div>
-          <div class="abl-audio-cell">
-            <div class="abl-label">s=5</div>
-            <audio controls preload="none" src="audio/ablation_steps/1lyu1KKwC74/s5.mp3"></audio>
-          </div>
-          <div class="abl-audio-cell">
-            <div class="abl-label">s=10</div>
-            <audio controls preload="none" src="audio/ablation_steps/1lyu1KKwC74/s10.mp3"></audio>
-          </div>
-          <div class="abl-audio-cell">
-            <div class="abl-label">s=20</div>
-            <audio controls preload="none" src="audio/ablation_steps/1lyu1KKwC74/s20.mp3"></audio>
-          </div>
-        </div>
-      </div><div class="abl-row">
-        <div class="abl-image">
-          <img src="images/ablation_steps/1YndEcoWpjY.jpg" alt="Input" loading="lazy">
+          <img src="images/ablation_steps/1YndEcoWpjY.jpg" alt="Input image for MERIC sampling-steps ablation" loading="lazy">
           <span class="abl-ds-tag"></span>
         </div>
         <div class="abl-audios">
@@ -1188,122 +1437,76 @@ footer p {
         </div>
       </div><div class="abl-row">
         <div class="abl-image">
-          <img src="images/ablation_steps/P10_hH4r5SA.jpg" alt="Input" loading="lazy">
+          <img src="images/ablation_steps/1lyu1KKwC74.jpg" alt="Input image for MERIC sampling-steps ablation" loading="lazy">
           <span class="abl-ds-tag"></span>
         </div>
         <div class="abl-audios">
           <div class="abl-audio-cell">
             <div class="abl-label">s=1</div>
-            <audio controls preload="none" src="audio/ablation_steps/P10_hH4r5SA/s1.mp3"></audio>
+            <audio controls preload="none" src="audio/ablation_steps/1lyu1KKwC74/s1.mp3"></audio>
           </div>
           <div class="abl-audio-cell">
             <div class="abl-label">s=5</div>
-            <audio controls preload="none" src="audio/ablation_steps/P10_hH4r5SA/s5.mp3"></audio>
+            <audio controls preload="none" src="audio/ablation_steps/1lyu1KKwC74/s5.mp3"></audio>
           </div>
           <div class="abl-audio-cell">
             <div class="abl-label">s=10</div>
-            <audio controls preload="none" src="audio/ablation_steps/P10_hH4r5SA/s10.mp3"></audio>
+            <audio controls preload="none" src="audio/ablation_steps/1lyu1KKwC74/s10.mp3"></audio>
           </div>
           <div class="abl-audio-cell">
             <div class="abl-label">s=20</div>
-            <audio controls preload="none" src="audio/ablation_steps/P10_hH4r5SA/s20.mp3"></audio>
+            <audio controls preload="none" src="audio/ablation_steps/1lyu1KKwC74/s20.mp3"></audio>
           </div>
         </div>
       </div><div class="abl-row">
         <div class="abl-image">
-          <img src="images/ablation_steps/545NbID6n4I.jpg" alt="Input" loading="lazy">
+          <img src="images/ablation_steps/1veO5dqubZ8.jpg" alt="Input image for MERIC sampling-steps ablation" loading="lazy">
           <span class="abl-ds-tag"></span>
         </div>
         <div class="abl-audios">
           <div class="abl-audio-cell">
             <div class="abl-label">s=1</div>
-            <audio controls preload="none" src="audio/ablation_steps/545NbID6n4I/s1.mp3"></audio>
+            <audio controls preload="none" src="audio/ablation_steps/1veO5dqubZ8/s1.mp3"></audio>
           </div>
           <div class="abl-audio-cell">
             <div class="abl-label">s=5</div>
-            <audio controls preload="none" src="audio/ablation_steps/545NbID6n4I/s5.mp3"></audio>
+            <audio controls preload="none" src="audio/ablation_steps/1veO5dqubZ8/s5.mp3"></audio>
           </div>
           <div class="abl-audio-cell">
             <div class="abl-label">s=10</div>
-            <audio controls preload="none" src="audio/ablation_steps/545NbID6n4I/s10.mp3"></audio>
+            <audio controls preload="none" src="audio/ablation_steps/1veO5dqubZ8/s10.mp3"></audio>
           </div>
           <div class="abl-audio-cell">
             <div class="abl-label">s=20</div>
-            <audio controls preload="none" src="audio/ablation_steps/545NbID6n4I/s20.mp3"></audio>
+            <audio controls preload="none" src="audio/ablation_steps/1veO5dqubZ8/s20.mp3"></audio>
           </div>
         </div>
       </div><div class="abl-row">
         <div class="abl-image">
-          <img src="images/ablation_steps/quo97zeRfGI.jpg" alt="Input" loading="lazy">
+          <img src="images/ablation_steps/1wkjhMk8G9k.jpg" alt="Input image for MERIC sampling-steps ablation" loading="lazy">
           <span class="abl-ds-tag"></span>
         </div>
         <div class="abl-audios">
           <div class="abl-audio-cell">
             <div class="abl-label">s=1</div>
-            <audio controls preload="none" src="audio/ablation_steps/quo97zeRfGI/s1.mp3"></audio>
+            <audio controls preload="none" src="audio/ablation_steps/1wkjhMk8G9k/s1.mp3"></audio>
           </div>
           <div class="abl-audio-cell">
             <div class="abl-label">s=5</div>
-            <audio controls preload="none" src="audio/ablation_steps/quo97zeRfGI/s5.mp3"></audio>
+            <audio controls preload="none" src="audio/ablation_steps/1wkjhMk8G9k/s5.mp3"></audio>
           </div>
           <div class="abl-audio-cell">
             <div class="abl-label">s=10</div>
-            <audio controls preload="none" src="audio/ablation_steps/quo97zeRfGI/s10.mp3"></audio>
+            <audio controls preload="none" src="audio/ablation_steps/1wkjhMk8G9k/s10.mp3"></audio>
           </div>
           <div class="abl-audio-cell">
             <div class="abl-label">s=20</div>
-            <audio controls preload="none" src="audio/ablation_steps/quo97zeRfGI/s20.mp3"></audio>
+            <audio controls preload="none" src="audio/ablation_steps/1wkjhMk8G9k/s20.mp3"></audio>
           </div>
         </div>
       </div><div class="abl-row">
         <div class="abl-image">
-          <img src="images/ablation_steps/2h2vGOp3CSI.jpg" alt="Input" loading="lazy">
-          <span class="abl-ds-tag"></span>
-        </div>
-        <div class="abl-audios">
-          <div class="abl-audio-cell">
-            <div class="abl-label">s=1</div>
-            <audio controls preload="none" src="audio/ablation_steps/2h2vGOp3CSI/s1.mp3"></audio>
-          </div>
-          <div class="abl-audio-cell">
-            <div class="abl-label">s=5</div>
-            <audio controls preload="none" src="audio/ablation_steps/2h2vGOp3CSI/s5.mp3"></audio>
-          </div>
-          <div class="abl-audio-cell">
-            <div class="abl-label">s=10</div>
-            <audio controls preload="none" src="audio/ablation_steps/2h2vGOp3CSI/s10.mp3"></audio>
-          </div>
-          <div class="abl-audio-cell">
-            <div class="abl-label">s=20</div>
-            <audio controls preload="none" src="audio/ablation_steps/2h2vGOp3CSI/s20.mp3"></audio>
-          </div>
-        </div>
-      </div><div class="abl-row">
-        <div class="abl-image">
-          <img src="images/ablation_steps/2jN_omK5eLk.jpg" alt="Input" loading="lazy">
-          <span class="abl-ds-tag"></span>
-        </div>
-        <div class="abl-audios">
-          <div class="abl-audio-cell">
-            <div class="abl-label">s=1</div>
-            <audio controls preload="none" src="audio/ablation_steps/2jN_omK5eLk/s1.mp3"></audio>
-          </div>
-          <div class="abl-audio-cell">
-            <div class="abl-label">s=5</div>
-            <audio controls preload="none" src="audio/ablation_steps/2jN_omK5eLk/s5.mp3"></audio>
-          </div>
-          <div class="abl-audio-cell">
-            <div class="abl-label">s=10</div>
-            <audio controls preload="none" src="audio/ablation_steps/2jN_omK5eLk/s10.mp3"></audio>
-          </div>
-          <div class="abl-audio-cell">
-            <div class="abl-label">s=20</div>
-            <audio controls preload="none" src="audio/ablation_steps/2jN_omK5eLk/s20.mp3"></audio>
-          </div>
-        </div>
-      </div><div class="abl-row">
-        <div class="abl-image">
-          <img src="images/ablation_steps/1zwBrbdYRcw.jpg" alt="Input" loading="lazy">
+          <img src="images/ablation_steps/1zwBrbdYRcw.jpg" alt="Input image for MERIC sampling-steps ablation" loading="lazy">
           <span class="abl-ds-tag"></span>
         </div>
         <div class="abl-audios">
@@ -1326,7 +1529,30 @@ footer p {
         </div>
       </div><div class="abl-row">
         <div class="abl-image">
-          <img src="images/ablation_steps/2ibdN9WkNuw.jpg" alt="Input" loading="lazy">
+          <img src="images/ablation_steps/2h2vGOp3CSI.jpg" alt="Input image for MERIC sampling-steps ablation" loading="lazy">
+          <span class="abl-ds-tag"></span>
+        </div>
+        <div class="abl-audios">
+          <div class="abl-audio-cell">
+            <div class="abl-label">s=1</div>
+            <audio controls preload="none" src="audio/ablation_steps/2h2vGOp3CSI/s1.mp3"></audio>
+          </div>
+          <div class="abl-audio-cell">
+            <div class="abl-label">s=5</div>
+            <audio controls preload="none" src="audio/ablation_steps/2h2vGOp3CSI/s5.mp3"></audio>
+          </div>
+          <div class="abl-audio-cell">
+            <div class="abl-label">s=10</div>
+            <audio controls preload="none" src="audio/ablation_steps/2h2vGOp3CSI/s10.mp3"></audio>
+          </div>
+          <div class="abl-audio-cell">
+            <div class="abl-label">s=20</div>
+            <audio controls preload="none" src="audio/ablation_steps/2h2vGOp3CSI/s20.mp3"></audio>
+          </div>
+        </div>
+      </div><div class="abl-row">
+        <div class="abl-image">
+          <img src="images/ablation_steps/2ibdN9WkNuw.jpg" alt="Input image for MERIC sampling-steps ablation" loading="lazy">
           <span class="abl-ds-tag"></span>
         </div>
         <div class="abl-audios">
@@ -1349,25 +1575,140 @@ footer p {
         </div>
       </div><div class="abl-row">
         <div class="abl-image">
-          <img src="images/ablation_steps/1wkjhMk8G9k.jpg" alt="Input" loading="lazy">
+          <img src="images/ablation_steps/2jN_omK5eLk.jpg" alt="Input image for MERIC sampling-steps ablation" loading="lazy">
           <span class="abl-ds-tag"></span>
         </div>
         <div class="abl-audios">
           <div class="abl-audio-cell">
             <div class="abl-label">s=1</div>
-            <audio controls preload="none" src="audio/ablation_steps/1wkjhMk8G9k/s1.mp3"></audio>
+            <audio controls preload="none" src="audio/ablation_steps/2jN_omK5eLk/s1.mp3"></audio>
           </div>
           <div class="abl-audio-cell">
             <div class="abl-label">s=5</div>
-            <audio controls preload="none" src="audio/ablation_steps/1wkjhMk8G9k/s5.mp3"></audio>
+            <audio controls preload="none" src="audio/ablation_steps/2jN_omK5eLk/s5.mp3"></audio>
           </div>
           <div class="abl-audio-cell">
             <div class="abl-label">s=10</div>
-            <audio controls preload="none" src="audio/ablation_steps/1wkjhMk8G9k/s10.mp3"></audio>
+            <audio controls preload="none" src="audio/ablation_steps/2jN_omK5eLk/s10.mp3"></audio>
           </div>
           <div class="abl-audio-cell">
             <div class="abl-label">s=20</div>
-            <audio controls preload="none" src="audio/ablation_steps/1wkjhMk8G9k/s20.mp3"></audio>
+            <audio controls preload="none" src="audio/ablation_steps/2jN_omK5eLk/s20.mp3"></audio>
+          </div>
+        </div>
+      </div><div class="abl-row">
+        <div class="abl-image">
+          <img src="images/ablation_steps/545NbID6n4I.jpg" alt="Input image for MERIC sampling-steps ablation" loading="lazy">
+          <span class="abl-ds-tag"></span>
+        </div>
+        <div class="abl-audios">
+          <div class="abl-audio-cell">
+            <div class="abl-label">s=1</div>
+            <audio controls preload="none" src="audio/ablation_steps/545NbID6n4I/s1.mp3"></audio>
+          </div>
+          <div class="abl-audio-cell">
+            <div class="abl-label">s=5</div>
+            <audio controls preload="none" src="audio/ablation_steps/545NbID6n4I/s5.mp3"></audio>
+          </div>
+          <div class="abl-audio-cell">
+            <div class="abl-label">s=10</div>
+            <audio controls preload="none" src="audio/ablation_steps/545NbID6n4I/s10.mp3"></audio>
+          </div>
+          <div class="abl-audio-cell">
+            <div class="abl-label">s=20</div>
+            <audio controls preload="none" src="audio/ablation_steps/545NbID6n4I/s20.mp3"></audio>
+          </div>
+        </div>
+      </div><div class="abl-row">
+        <div class="abl-image">
+          <img src="images/ablation_steps/9GxkHE6U0aw.jpg" alt="Input image for MERIC sampling-steps ablation" loading="lazy">
+          <span class="abl-ds-tag"></span>
+        </div>
+        <div class="abl-audios">
+          <div class="abl-audio-cell">
+            <div class="abl-label">s=1</div>
+            <audio controls preload="none" src="audio/ablation_steps/9GxkHE6U0aw/s1.mp3"></audio>
+          </div>
+          <div class="abl-audio-cell">
+            <div class="abl-label">s=5</div>
+            <audio controls preload="none" src="audio/ablation_steps/9GxkHE6U0aw/s5.mp3"></audio>
+          </div>
+          <div class="abl-audio-cell">
+            <div class="abl-label">s=10</div>
+            <audio controls preload="none" src="audio/ablation_steps/9GxkHE6U0aw/s10.mp3"></audio>
+          </div>
+          <div class="abl-audio-cell">
+            <div class="abl-label">s=20</div>
+            <audio controls preload="none" src="audio/ablation_steps/9GxkHE6U0aw/s20.mp3"></audio>
+          </div>
+        </div>
+      </div><div class="abl-row">
+        <div class="abl-image">
+          <img src="images/ablation_steps/AUYC4qxGiLc.jpg" alt="Input image for MERIC sampling-steps ablation" loading="lazy">
+          <span class="abl-ds-tag"></span>
+        </div>
+        <div class="abl-audios">
+          <div class="abl-audio-cell">
+            <div class="abl-label">s=1</div>
+            <audio controls preload="none" src="audio/ablation_steps/AUYC4qxGiLc/s1.mp3"></audio>
+          </div>
+          <div class="abl-audio-cell">
+            <div class="abl-label">s=5</div>
+            <audio controls preload="none" src="audio/ablation_steps/AUYC4qxGiLc/s5.mp3"></audio>
+          </div>
+          <div class="abl-audio-cell">
+            <div class="abl-label">s=10</div>
+            <audio controls preload="none" src="audio/ablation_steps/AUYC4qxGiLc/s10.mp3"></audio>
+          </div>
+          <div class="abl-audio-cell">
+            <div class="abl-label">s=20</div>
+            <audio controls preload="none" src="audio/ablation_steps/AUYC4qxGiLc/s20.mp3"></audio>
+          </div>
+        </div>
+      </div><div class="abl-row">
+        <div class="abl-image">
+          <img src="images/ablation_steps/P10_hH4r5SA.jpg" alt="Input image for MERIC sampling-steps ablation" loading="lazy">
+          <span class="abl-ds-tag"></span>
+        </div>
+        <div class="abl-audios">
+          <div class="abl-audio-cell">
+            <div class="abl-label">s=1</div>
+            <audio controls preload="none" src="audio/ablation_steps/P10_hH4r5SA/s1.mp3"></audio>
+          </div>
+          <div class="abl-audio-cell">
+            <div class="abl-label">s=5</div>
+            <audio controls preload="none" src="audio/ablation_steps/P10_hH4r5SA/s5.mp3"></audio>
+          </div>
+          <div class="abl-audio-cell">
+            <div class="abl-label">s=10</div>
+            <audio controls preload="none" src="audio/ablation_steps/P10_hH4r5SA/s10.mp3"></audio>
+          </div>
+          <div class="abl-audio-cell">
+            <div class="abl-label">s=20</div>
+            <audio controls preload="none" src="audio/ablation_steps/P10_hH4r5SA/s20.mp3"></audio>
+          </div>
+        </div>
+      </div><div class="abl-row">
+        <div class="abl-image">
+          <img src="images/ablation_steps/quo97zeRfGI.jpg" alt="Input image for MERIC sampling-steps ablation" loading="lazy">
+          <span class="abl-ds-tag"></span>
+        </div>
+        <div class="abl-audios">
+          <div class="abl-audio-cell">
+            <div class="abl-label">s=1</div>
+            <audio controls preload="none" src="audio/ablation_steps/quo97zeRfGI/s1.mp3"></audio>
+          </div>
+          <div class="abl-audio-cell">
+            <div class="abl-label">s=5</div>
+            <audio controls preload="none" src="audio/ablation_steps/quo97zeRfGI/s5.mp3"></audio>
+          </div>
+          <div class="abl-audio-cell">
+            <div class="abl-label">s=10</div>
+            <audio controls preload="none" src="audio/ablation_steps/quo97zeRfGI/s10.mp3"></audio>
+          </div>
+          <div class="abl-audio-cell">
+            <div class="abl-label">s=20</div>
+            <audio controls preload="none" src="audio/ablation_steps/quo97zeRfGI/s20.mp3"></audio>
           </div>
         </div>
       </div>
@@ -1385,7 +1726,7 @@ footer p {
     predictions that are individually accurate yet collectively diverse.
   </p>
   <figure class="abl-figure abl-figure-center">
-    <img src="images/figures/stochasticity.png" alt="PairCos vs FAD trade-off" style="max-height: 320px; width: auto;">
+    <img src="images/figures/stochasticity.png" alt="PairCos vs FAD trade-off">
     <figcaption>Projectors in PairCos&ndash;FAD space: only the Music Head achieves both GT-level diversity and low FAD.</figcaption>
   </figure>
   
@@ -1394,7 +1735,7 @@ footer p {
       <div class="abl-grid">
 <div class="abl-row abl-row-wide">
         <div class="abl-image">
-          <img src="images/ablation_proj/--wy8QmLlM8.jpg" alt="Input" loading="lazy">
+          <img src="images/ablation_proj/--wy8QmLlM8.jpg" alt="Input image for MERIC projector-architecture ablation" loading="lazy">
         </div>
         <div class="abl-audios">
           <div class="abl-audio-cell abl-gt">
@@ -1424,7 +1765,7 @@ footer p {
         </div>
       </div><div class="abl-row abl-row-wide">
         <div class="abl-image">
-          <img src="images/ablation_proj/-488UORrfJ0.jpg" alt="Input" loading="lazy">
+          <img src="images/ablation_proj/-488UORrfJ0.jpg" alt="Input image for MERIC projector-architecture ablation" loading="lazy">
         </div>
         <div class="abl-audios">
           <div class="abl-audio-cell abl-gt">
@@ -1454,7 +1795,37 @@ footer p {
         </div>
       </div><div class="abl-row abl-row-wide">
         <div class="abl-image">
-          <img src="images/ablation_proj/07T3h0b93Rg.jpg" alt="Input" loading="lazy">
+          <img src="images/ablation_proj/-hjWv-GLR0g.jpg" alt="Input image for MERIC projector-architecture ablation" loading="lazy">
+        </div>
+        <div class="abl-audios">
+          <div class="abl-audio-cell abl-gt">
+            <div class="abl-label">Ground Truth</div>
+            <audio controls preload="none" src="audio/ablation_proj/-hjWv-GLR0g/gt_audio.mp3"></audio>
+          </div>
+          <div class="abl-audio-cell abl-ours">
+            <div class="abl-label">Music Head</div>
+            <audio controls preload="none" src="audio/ablation_proj/-hjWv-GLR0g/rdm_v1.mp3"></audio>
+          </div>
+          <div class="abl-audio-cell">
+            <div class="abl-label">Linear (MSE)</div>
+            <audio controls preload="none" src="audio/ablation_proj/-hjWv-GLR0g/linear_mse.mp3"></audio>
+          </div>
+          <div class="abl-audio-cell">
+            <div class="abl-label">Linear (Contrastive)</div>
+            <audio controls preload="none" src="audio/ablation_proj/-hjWv-GLR0g/linear_contrastive.mp3"></audio>
+          </div>
+          <div class="abl-audio-cell">
+            <div class="abl-label">Bridge VAE</div>
+            <audio controls preload="none" src="audio/ablation_proj/-hjWv-GLR0g/bridge_vae.mp3"></audio>
+          </div>
+          <div class="abl-audio-cell">
+            <div class="abl-label">Cross VAE</div>
+            <audio controls preload="none" src="audio/ablation_proj/-hjWv-GLR0g/cross_vae.mp3"></audio>
+          </div>
+        </div>
+      </div><div class="abl-row abl-row-wide">
+        <div class="abl-image">
+          <img src="images/ablation_proj/07T3h0b93Rg.jpg" alt="Input image for MERIC projector-architecture ablation" loading="lazy">
         </div>
         <div class="abl-audios">
           <div class="abl-audio-cell abl-gt">
@@ -1484,7 +1855,7 @@ footer p {
         </div>
       </div><div class="abl-row abl-row-wide">
         <div class="abl-image">
-          <img src="images/ablation_proj/0hdl1tmy8Y4.jpg" alt="Input" loading="lazy">
+          <img src="images/ablation_proj/0hdl1tmy8Y4.jpg" alt="Input image for MERIC projector-architecture ablation" loading="lazy">
         </div>
         <div class="abl-audios">
           <div class="abl-audio-cell abl-gt">
@@ -1514,7 +1885,7 @@ footer p {
         </div>
       </div><div class="abl-row abl-row-wide">
         <div class="abl-image">
-          <img src="images/ablation_proj/1LCG8tL1Hxc.jpg" alt="Input" loading="lazy">
+          <img src="images/ablation_proj/1LCG8tL1Hxc.jpg" alt="Input image for MERIC projector-architecture ablation" loading="lazy">
         </div>
         <div class="abl-audios">
           <div class="abl-audio-cell abl-gt">
@@ -1544,7 +1915,7 @@ footer p {
         </div>
       </div><div class="abl-row abl-row-wide">
         <div class="abl-image">
-          <img src="images/ablation_proj/1Wexfkum0-A.jpg" alt="Input" loading="lazy">
+          <img src="images/ablation_proj/1Wexfkum0-A.jpg" alt="Input image for MERIC projector-architecture ablation" loading="lazy">
         </div>
         <div class="abl-audios">
           <div class="abl-audio-cell abl-gt">
@@ -1572,36 +1943,6 @@ footer p {
             <audio controls preload="none" src="audio/ablation_proj/1Wexfkum0-A/cross_vae.mp3"></audio>
           </div>
         </div>
-      </div><div class="abl-row abl-row-wide">
-        <div class="abl-image">
-          <img src="images/ablation_proj/-hjWv-GLR0g.jpg" alt="Input" loading="lazy">
-        </div>
-        <div class="abl-audios">
-          <div class="abl-audio-cell abl-gt">
-            <div class="abl-label">Ground Truth</div>
-            <audio controls preload="none" src="audio/ablation_proj/-hjWv-GLR0g/gt_audio.mp3"></audio>
-          </div>
-          <div class="abl-audio-cell abl-ours">
-            <div class="abl-label">Music Head</div>
-            <audio controls preload="none" src="audio/ablation_proj/-hjWv-GLR0g/rdm_v1.mp3"></audio>
-          </div>
-          <div class="abl-audio-cell">
-            <div class="abl-label">Linear (MSE)</div>
-            <audio controls preload="none" src="audio/ablation_proj/-hjWv-GLR0g/linear_mse.mp3"></audio>
-          </div>
-          <div class="abl-audio-cell">
-            <div class="abl-label">Linear (Contrastive)</div>
-            <audio controls preload="none" src="audio/ablation_proj/-hjWv-GLR0g/linear_contrastive.mp3"></audio>
-          </div>
-          <div class="abl-audio-cell">
-            <div class="abl-label">Bridge VAE</div>
-            <audio controls preload="none" src="audio/ablation_proj/-hjWv-GLR0g/bridge_vae.mp3"></audio>
-          </div>
-          <div class="abl-audio-cell">
-            <div class="abl-label">Cross VAE</div>
-            <audio controls preload="none" src="audio/ablation_proj/-hjWv-GLR0g/cross_vae.mp3"></audio>
-          </div>
-        </div>
       </div>
       </div>
     </div>
@@ -1619,35 +1960,7 @@ footer p {
       <div class="abl-grid">
 <div class="abl-row">
         <div class="abl-image">
-          <img src="images/ablation_backbone/tl0e_9abIn8.jpg" alt="Input" loading="lazy">
-        </div>
-        <div class="abl-audios">
-          <div class="abl-audio-cell">
-            <div class="abl-label">CLIP ViT-H-14</div>
-            <audio controls preload="none" src="audio/ablation_backbone/tl0e_9abIn8/clip.mp3"></audio>
-          </div>
-          <div class="abl-audio-cell abl-ours">
-            <div class="abl-label">Qwen3VL-Embedding</div>
-            <audio controls preload="none" src="audio/ablation_backbone/tl0e_9abIn8/qwen3vl.mp3"></audio>
-          </div>
-        </div>
-      </div><div class="abl-row">
-        <div class="abl-image">
-          <img src="images/ablation_backbone/b4Bj7Zb-YD4.jpg" alt="Input" loading="lazy">
-        </div>
-        <div class="abl-audios">
-          <div class="abl-audio-cell">
-            <div class="abl-label">CLIP ViT-H-14</div>
-            <audio controls preload="none" src="audio/ablation_backbone/b4Bj7Zb-YD4/clip.mp3"></audio>
-          </div>
-          <div class="abl-audio-cell abl-ours">
-            <div class="abl-label">Qwen3VL-Embedding</div>
-            <audio controls preload="none" src="audio/ablation_backbone/b4Bj7Zb-YD4/qwen3vl.mp3"></audio>
-          </div>
-        </div>
-      </div><div class="abl-row">
-        <div class="abl-image">
-          <img src="images/ablation_backbone/6vff-CCarBE.jpg" alt="Input" loading="lazy">
+          <img src="images/ablation_backbone/6vff-CCarBE.jpg" alt="Input image for MERIC vision-encoder ablation" loading="lazy">
         </div>
         <div class="abl-audios">
           <div class="abl-audio-cell">
@@ -1661,7 +1974,7 @@ footer p {
         </div>
       </div><div class="abl-row">
         <div class="abl-image">
-          <img src="images/ablation_backbone/8aar44FjxM0.jpg" alt="Input" loading="lazy">
+          <img src="images/ablation_backbone/8aar44FjxM0.jpg" alt="Input image for MERIC vision-encoder ablation" loading="lazy">
         </div>
         <div class="abl-audios">
           <div class="abl-audio-cell">
@@ -1675,7 +1988,7 @@ footer p {
         </div>
       </div><div class="abl-row">
         <div class="abl-image">
-          <img src="images/ablation_backbone/YQqnAiIQTQQ.jpg" alt="Input" loading="lazy">
+          <img src="images/ablation_backbone/YQqnAiIQTQQ.jpg" alt="Input image for MERIC vision-encoder ablation" loading="lazy">
         </div>
         <div class="abl-audios">
           <div class="abl-audio-cell">
@@ -1689,7 +2002,7 @@ footer p {
         </div>
       </div><div class="abl-row">
         <div class="abl-image">
-          <img src="images/ablation_backbone/_52Kysrg5uc.jpg" alt="Input" loading="lazy">
+          <img src="images/ablation_backbone/_52Kysrg5uc.jpg" alt="Input image for MERIC vision-encoder ablation" loading="lazy">
         </div>
         <div class="abl-audios">
           <div class="abl-audio-cell">
@@ -1701,14 +2014,59 @@ footer p {
             <audio controls preload="none" src="audio/ablation_backbone/_52Kysrg5uc/qwen3vl.mp3"></audio>
           </div>
         </div>
+      </div><div class="abl-row">
+        <div class="abl-image">
+          <img src="images/ablation_backbone/b4Bj7Zb-YD4.jpg" alt="Input image for MERIC vision-encoder ablation" loading="lazy">
+        </div>
+        <div class="abl-audios">
+          <div class="abl-audio-cell">
+            <div class="abl-label">CLIP ViT-H-14</div>
+            <audio controls preload="none" src="audio/ablation_backbone/b4Bj7Zb-YD4/clip.mp3"></audio>
+          </div>
+          <div class="abl-audio-cell abl-ours">
+            <div class="abl-label">Qwen3VL-Embedding</div>
+            <audio controls preload="none" src="audio/ablation_backbone/b4Bj7Zb-YD4/qwen3vl.mp3"></audio>
+          </div>
+        </div>
+      </div><div class="abl-row">
+        <div class="abl-image">
+          <img src="images/ablation_backbone/tl0e_9abIn8.jpg" alt="Input image for MERIC vision-encoder ablation" loading="lazy">
+        </div>
+        <div class="abl-audios">
+          <div class="abl-audio-cell">
+            <div class="abl-label">CLIP ViT-H-14</div>
+            <audio controls preload="none" src="audio/ablation_backbone/tl0e_9abIn8/clip.mp3"></audio>
+          </div>
+          <div class="abl-audio-cell abl-ours">
+            <div class="abl-label">Qwen3VL-Embedding</div>
+            <audio controls preload="none" src="audio/ablation_backbone/tl0e_9abIn8/qwen3vl.mp3"></audio>
+          </div>
+        </div>
       </div>
       </div>
     </div>
   </div>
 </section>
 
+
+<section class="citation" id="citation">
+  <h2>Citation</h2>
+  <p class="section-desc">
+    MERIC is accepted to ECCV 2026. Final proceedings metadata will be added when available.
+    Source code is Apache-2.0; checkpoints, pretrained components, and datasets follow their
+    own upstream terms.
+  </p>
+  <pre class="bibtex"><code>@inproceedings{meric2026,
+  title     = {MERIC: Unified Multimodal Music Generation and Retrieval via a Music Semantic Anchor},
+  author    = {MERIC authors},
+  booktitle = {European Conference on Computer Vision (ECCV)},
+  year      = {2026},
+  note      = {Accepted to ECCV 2026; final author list, pages, and DOI to be added}
+}</code></pre>
+</section>
+
 <footer>
-  <p>Anonymous submission to ECCV 2026</p>
+  <p>MERIC project page for ECCV 2026. Source code is Apache-2.0; model weights and datasets follow their upstream terms.</p>
 </footer>
 
 <script>
@@ -1717,11 +2075,12 @@ const METHODS_ORDER = ["gt", "ours", "art2mus", "gvmgen", "audiox", "mumu_llama"
 const METHODS_NAMES = {"gt": "Ground Truth", "ours": "Ours", "art2mus": "Art2Mus", "gvmgen": "GVMGen", "audiox": "AudioX", "mumu_llama": "M2UGen", "cascade": "Qwen3VL + MusicGen", "cascade_audioldm2": "Qwen3VL + AudioLDM2-L"};
 const CURATED = [{"id": "he_-huBnxz7wiQ", "image": "images/curated/he_-huBnxz7wiQ.jpg", "audio": "audio/curated/he_-huBnxz7wiQ.mp3", "category": "Musical Objects", "dataset": "MelBench", "step_count": 20}, {"id": "star_e91e85a34cf8", "image": "images/curated/star_e91e85a34cf8.jpg", "audio": "audio/curated/star_e91e85a34cf8.mp3", "category": "Musical Objects", "dataset": "MelBench"}, {"id": "star_e0a91f51796e", "image": "images/curated/star_e0a91f51796e.jpg", "audio": "audio/curated/star_e0a91f51796e.mp3", "category": "Musical Objects", "dataset": "AudioSet"}, {"id": "star_1538a6ece5ac", "image": "images/curated/star_1538a6ece5ac.jpg", "audio": "audio/curated/star_1538a6ece5ac.mp3", "category": "Musical Objects", "dataset": "MelBench"}, {"id": "he_545NbID6n4I", "image": "images/curated/he_545NbID6n4I.jpg", "audio": "audio/curated/he_545NbID6n4I.mp3", "category": "Musical Objects", "dataset": "MuImage", "step_count": 10}, {"id": "he_1RdovFMnUwc", "image": "images/curated/he_1RdovFMnUwc.jpg", "audio": "audio/curated/he_1RdovFMnUwc.mp3", "category": "Musical Objects", "dataset": "MuImage", "step_count": 20}, {"id": "he_1tauzMyZHZg", "image": "images/curated/he_1tauzMyZHZg.jpg", "audio": "audio/curated/he_1tauzMyZHZg.mp3", "category": "Musical Objects", "dataset": "MuImage", "step_count": 10}, {"id": "he_9BWumXSbRlA", "image": "images/curated/he_9BWumXSbRlA.jpg", "audio": "audio/curated/he_9BWumXSbRlA.mp3", "category": "Musical Objects", "dataset": "MelBench", "step_count": 20}, {"id": "he_1xyMIvYaxvk", "image": "images/curated/he_1xyMIvYaxvk.jpg", "audio": "audio/curated/he_1xyMIvYaxvk.mp3", "category": "Musical Objects", "dataset": "MuImage", "step_count": 5}, {"id": "he_fha6aQubRrE", "image": "images/curated/he_fha6aQubRrE.jpg", "audio": "audio/curated/he_fha6aQubRrE.mp3", "category": "Musical Objects", "dataset": "MelBench", "step_count": 20}, {"id": "star_b62a62c1e531", "image": "images/curated/star_b62a62c1e531.jpg", "audio": "audio/curated/star_b62a62c1e531.mp3", "category": "Musical Objects", "dataset": "AudioSet"}, {"id": "he_YQqnAiIQTQQ", "image": "images/curated/he_YQqnAiIQTQQ.jpg", "audio": "audio/curated/he_YQqnAiIQTQQ.mp3", "category": "Musical Objects", "dataset": "MelBench", "step_count": 10}, {"id": "star_3aee052ba558", "image": "images/curated/star_3aee052ba558.jpg", "audio": "audio/curated/star_3aee052ba558.mp3", "category": "Musical Objects", "dataset": "MelBench"}, {"id": "he_1zxdjqfONpM", "image": "images/curated/he_1zxdjqfONpM.jpg", "audio": "audio/curated/he_1zxdjqfONpM.mp3", "category": "Musical Objects", "dataset": "MuImage", "step_count": 2}, {"id": "he_z2CIiES_xxk", "image": "images/curated/he_z2CIiES_xxk.jpg", "audio": "audio/curated/he_z2CIiES_xxk.mp3", "category": "Musical Objects", "dataset": "MelBench", "step_count": 5}, {"id": "star_f9a674a409ea", "image": "images/curated/star_f9a674a409ea.jpg", "audio": "audio/curated/star_f9a674a409ea.mp3", "category": "Musical Objects", "dataset": "EmoMV"}, {"id": "he_D0wec2f48G4", "image": "images/curated/he_D0wec2f48G4.jpg", "audio": "audio/curated/he_D0wec2f48G4.mp3", "category": "Musical Objects", "dataset": "MelBench", "step_count": 5}, {"id": "he_2EdBiLQzMb0", "image": "images/curated/he_2EdBiLQzMb0.jpg", "audio": "audio/curated/he_2EdBiLQzMb0.mp3", "category": "Musical Objects", "dataset": "MuImage", "step_count": 5}, {"id": "he_udZCjXbwkzk", "image": "images/curated/he_udZCjXbwkzk.jpg", "audio": "audio/curated/he_udZCjXbwkzk.mp3", "category": "Musical Objects", "dataset": "MelBench", "step_count": 10}, {"id": "he__52Kysrg5uc", "image": "images/curated/he__52Kysrg5uc.jpg", "audio": "audio/curated/he__52Kysrg5uc.mp3", "category": "Musical Objects", "dataset": "MelBench", "step_count": 20}, {"id": "he_35sfG8HnS_Q", "image": "images/curated/he_35sfG8HnS_Q.jpg", "audio": "audio/curated/he_35sfG8HnS_Q.mp3", "category": "Musical Objects", "dataset": "MuImage", "step_count": 10}, {"id": "he_Xk0wdDTTPA0", "image": "images/curated/he_Xk0wdDTTPA0.jpg", "audio": "audio/curated/he_Xk0wdDTTPA0.mp3", "category": "Musical Objects", "dataset": "MelBench", "step_count": 20}, {"id": "he_KEI4qSrkPAs", "image": "images/curated/he_KEI4qSrkPAs.jpg", "audio": "audio/curated/he_KEI4qSrkPAs.mp3", "category": "Musical Objects", "dataset": "MelBench", "step_count": 10}, {"id": "he_N_OmR-VqnZM", "image": "images/curated/he_N_OmR-VqnZM.jpg", "audio": "audio/curated/he_N_OmR-VqnZM.mp3", "category": "Musical Objects", "dataset": "MelBench", "step_count": 20}, {"id": "he_34J2gD790xo", "image": "images/curated/he_34J2gD790xo.jpg", "audio": "audio/curated/he_34J2gD790xo.mp3", "category": "Musical Objects", "dataset": "MuImage", "step_count": 10}, {"id": "he_3xIXw9JIqjk", "image": "images/curated/he_3xIXw9JIqjk.jpg", "audio": "audio/curated/he_3xIXw9JIqjk.mp3", "category": "Musical Objects", "dataset": "MuImage", "step_count": 20}, {"id": "he_4hZ85dx185s", "image": "images/curated/he_4hZ85dx185s.jpg", "audio": "audio/curated/he_4hZ85dx185s.mp3", "category": "Musical Objects", "dataset": "MuImage", "step_count": 20}, {"id": "he_4otELLP0hAk", "image": "images/curated/he_4otELLP0hAk.jpg", "audio": "audio/curated/he_4otELLP0hAk.mp3", "category": "Musical Objects", "dataset": "MuImage", "step_count": 2}, {"id": "he_57727f70edc2cb3880ee03e4", "image": "images/curated/he_57727f70edc2cb3880ee03e4.jpg", "audio": "audio/curated/he_57727f70edc2cb3880ee03e4.mp3", "category": "Abstract Art", "dataset": "ARIA", "step_count": 10}, {"id": "star_cb08f923831a", "image": "images/curated/star_cb08f923831a.jpg", "audio": "audio/curated/star_cb08f923831a.mp3", "category": "Abstract Art", "dataset": "ARIA"}, {"id": "star_e64169e3a2ca", "image": "images/curated/star_e64169e3a2ca.jpg", "audio": "audio/curated/star_e64169e3a2ca.mp3", "category": "Abstract Art", "dataset": "ARIA"}, {"id": "star_e1d0bdfa14c6", "image": "images/curated/star_e1d0bdfa14c6.jpg", "audio": "audio/curated/star_e1d0bdfa14c6.mp3", "category": "Abstract Art", "dataset": "ARIA"}, {"id": "star_ab89dcf40df9", "image": "images/curated/star_ab89dcf40df9.jpg", "audio": "audio/curated/star_ab89dcf40df9.mp3", "category": "Abstract Art", "dataset": "ARIA"}, {"id": "he_577286a6edc2cb388004df04", "image": "images/curated/he_577286a6edc2cb388004df04.jpg", "audio": "audio/curated/he_577286a6edc2cb388004df04.mp3", "category": "Abstract Art", "dataset": "ARIA", "step_count": 5}, {"id": "star_1ab9276e5c4f", "image": "images/curated/star_1ab9276e5c4f.jpg", "audio": "audio/curated/star_1ab9276e5c4f.mp3", "category": "Abstract Art", "dataset": "ARIA"}, {"id": "he_577270c2edc2cb3880bf0cfb", "image": "images/curated/he_577270c2edc2cb3880bf0cfb.jpg", "audio": "audio/curated/he_577270c2edc2cb3880bf0cfb.mp3", "category": "Abstract Art", "dataset": "ARIA", "step_count": 20}, {"id": "he_9GxkHE6U0aw", "image": "images/curated/he_9GxkHE6U0aw.jpg", "audio": "audio/curated/he_9GxkHE6U0aw.mp3", "category": "Abstract Art", "dataset": "ARIA", "step_count": 20}, {"id": "star_b339043ac1cf", "image": "images/curated/star_b339043ac1cf.jpg", "audio": "audio/curated/star_b339043ac1cf.mp3", "category": "Abstract Art", "dataset": "ARIA"}, {"id": "star_4abd0803675e", "image": "images/curated/star_4abd0803675e.jpg", "audio": "audio/curated/star_4abd0803675e.mp3", "category": "Abstract Art", "dataset": "ARIA"}, {"id": "star_f0d72cefb894", "image": "images/curated/star_f0d72cefb894.jpg", "audio": "audio/curated/star_f0d72cefb894.mp3", "category": "Abstract Art", "dataset": "AudioSet"}, {"id": "star_3bf48d4ce170", "image": "images/curated/star_3bf48d4ce170.jpg", "audio": "audio/curated/star_3bf48d4ce170.mp3", "category": "Abstract Art", "dataset": "ARIA"}, {"id": "star_c16c6f62356d", "image": "images/curated/star_c16c6f62356d.jpg", "audio": "audio/curated/star_c16c6f62356d.mp3", "category": "Abstract Art", "dataset": "ARIA"}, {"id": "57726e4aedc2cb3880b69f33", "image": "images/curated/57726e4aedc2cb3880b69f33.jpg", "audio": "audio/curated/57726e4aedc2cb3880b69f33.mp3", "category": "Abstract Art", "dataset": "ARIA"}, {"id": "star_7a0905c7da9b", "image": "images/curated/star_7a0905c7da9b.jpg", "audio": "audio/curated/star_7a0905c7da9b.mp3", "category": "Abstract Art", "dataset": "MelBench"}, {"id": "star_413ce7a6552f", "image": "images/curated/star_413ce7a6552f.jpg", "audio": "audio/curated/star_413ce7a6552f.mp3", "category": "Abstract Art", "dataset": "AudioSet"}, {"id": "star_7fbe6ce11d3c", "image": "images/curated/star_7fbe6ce11d3c.jpg", "audio": "audio/curated/star_7fbe6ce11d3c.mp3", "category": "Photography", "dataset": "ARIA"}, {"id": "he_P10_hH4r5SA", "image": "images/curated/he_P10_hH4r5SA.jpg", "audio": "audio/curated/he_P10_hH4r5SA.mp3", "category": "Photography", "dataset": "ARIA", "step_count": 10}, {"id": "star_a70024a6aff5", "image": "images/curated/star_a70024a6aff5.jpg", "audio": "audio/curated/star_a70024a6aff5.mp3", "category": "Photography", "dataset": "ARIA"}, {"id": "star_fb3aeaa78ca6", "image": "images/curated/star_fb3aeaa78ca6.jpg", "audio": "audio/curated/star_fb3aeaa78ca6.mp3", "category": "Photography", "dataset": "ARIA"}, {"id": "star_f1901cda926a", "image": "images/curated/star_f1901cda926a.jpg", "audio": "audio/curated/star_f1901cda926a.mp3", "category": "Photography", "dataset": "ARIA"}, {"id": "star_b0beb976d454", "image": "images/curated/star_b0beb976d454.jpg", "audio": "audio/curated/star_b0beb976d454.mp3", "category": "Photography", "dataset": "ARIA"}, {"id": "star_a1eec7bf3da8", "image": "images/curated/star_a1eec7bf3da8.jpg", "audio": "audio/curated/star_a1eec7bf3da8.mp3", "category": "Photography", "dataset": "ARIA"}, {"id": "star_caa3d5dabae7", "image": "images/curated/star_caa3d5dabae7.jpg", "audio": "audio/curated/star_caa3d5dabae7.mp3", "category": "Photography", "dataset": "ARIA"}, {"id": "he_PF2lGp1keEQ", "image": "images/curated/he_PF2lGp1keEQ.jpg", "audio": "audio/curated/he_PF2lGp1keEQ.mp3", "category": "Photography", "dataset": "ARIA", "step_count": 20}, {"id": "he_y3bgHYbFAJY", "image": "images/curated/he_y3bgHYbFAJY.jpg", "audio": "audio/curated/he_y3bgHYbFAJY.mp3", "category": "Photography", "dataset": "ARIA", "step_count": 20}, {"id": "he_BSQHIhekyaI", "image": "images/curated/he_BSQHIhekyaI.jpg", "audio": "audio/curated/he_BSQHIhekyaI.mp3", "category": "Photography", "dataset": "ARIA", "step_count": 5}, {"id": "he_TjQWRq9rHWs", "image": "images/curated/he_TjQWRq9rHWs.jpg", "audio": "audio/curated/he_TjQWRq9rHWs.mp3", "category": "Photography", "dataset": "ARIA", "step_count": 20}, {"id": "he_b4Bj7Zb-YD4", "image": "images/curated/he_b4Bj7Zb-YD4.jpg", "audio": "audio/curated/he_b4Bj7Zb-YD4.mp3", "category": "Photography", "dataset": "MelBench", "step_count": 20}, {"id": "star_c3257f3a438e", "image": "images/curated/star_c3257f3a438e.jpg", "audio": "audio/curated/star_c3257f3a438e.mp3", "category": "Photography", "dataset": "ARIA"}, {"id": "he_brzlKDaThy4", "image": "images/curated/he_brzlKDaThy4.jpg", "audio": "audio/curated/he_brzlKDaThy4.mp3", "category": "Photography", "dataset": "ARIA", "step_count": 20}, {"id": "star_b0f776a2fc49", "image": "images/curated/star_b0f776a2fc49.jpg", "audio": "audio/curated/star_b0f776a2fc49.mp3", "category": "Photography", "dataset": "ARIA"}, {"id": "star_4d85745a463f", "image": "images/curated/star_4d85745a463f.jpg", "audio": "audio/curated/star_4d85745a463f.mp3", "category": "Photography", "dataset": "ARIA"}, {"id": "star_7d3325b717cb", "image": "images/curated/star_7d3325b717cb.jpg", "audio": "audio/curated/star_7d3325b717cb.mp3", "category": "Photography", "dataset": "EmoMV"}, {"id": "star_af17fbc3445a", "image": "images/curated/star_af17fbc3445a.jpg", "audio": "audio/curated/star_af17fbc3445a.mp3", "category": "Photography", "dataset": "ARIA"}, {"id": "star_ea53e7034233", "image": "images/curated/star_ea53e7034233.jpg", "audio": "audio/curated/star_ea53e7034233.mp3", "category": "Photography", "dataset": "MelBench"}, {"id": "star_86b3651c3d8e", "image": "images/curated/star_86b3651c3d8e.jpg", "audio": "audio/curated/star_86b3651c3d8e.mp3", "category": "Photography", "dataset": "ARIA"}, {"id": "star_cfea0052c151", "image": "images/curated/star_cfea0052c151.jpg", "audio": "audio/curated/star_cfea0052c151.mp3", "category": "Photography", "dataset": "ARIA"}, {"id": "star_62558402141c", "image": "images/curated/star_62558402141c.jpg", "audio": "audio/curated/star_62558402141c.mp3", "category": "Photography", "dataset": "ARIA"}];
 const O2M = [{"id": "f1901cda926a", "image": "images/o2m/f1901cda926a.jpg", "audios": ["audio/o2m/f1901cda926a/v0.mp3", "audio/o2m/f1901cda926a/v1.mp3", "audio/o2m/f1901cda926a/v2.mp3"], "n": 3}, {"id": "b339043ac1cf", "image": "images/o2m/b339043ac1cf.jpg", "audios": ["audio/o2m/b339043ac1cf/v0.mp3", "audio/o2m/b339043ac1cf/v1.mp3", "audio/o2m/b339043ac1cf/v2.mp3"], "n": 3}, {"id": "1ab9276e5c4f", "image": "images/o2m/1ab9276e5c4f.jpg", "audios": ["audio/o2m/1ab9276e5c4f/v0.mp3", "audio/o2m/1ab9276e5c4f/v1.mp3", "audio/o2m/1ab9276e5c4f/v2.mp3"], "n": 3}, {"id": "af17fbc3445a", "image": "images/o2m/af17fbc3445a.jpg", "audios": ["audio/o2m/af17fbc3445a/v0.mp3", "audio/o2m/af17fbc3445a/v1.mp3", "audio/o2m/af17fbc3445a/v2.mp3"], "n": 3}, {"id": "86b3651c3d8e", "image": "images/o2m/86b3651c3d8e.jpg", "audios": ["audio/o2m/86b3651c3d8e/v0.mp3", "audio/o2m/86b3651c3d8e/v1.mp3", "audio/o2m/86b3651c3d8e/v2.mp3"], "n": 3}, {"id": "b0beb976d454", "image": "images/o2m/b0beb976d454.jpg", "audios": ["audio/o2m/b0beb976d454/v0.mp3", "audio/o2m/b0beb976d454/v1.mp3", "audio/o2m/b0beb976d454/v2.mp3"], "n": 3}, {"id": "1538a6ece5ac", "image": "images/o2m/1538a6ece5ac.jpg", "audios": ["audio/o2m/1538a6ece5ac/v0.mp3", "audio/o2m/1538a6ece5ac/v1.mp3", "audio/o2m/1538a6ece5ac/v2.mp3"], "n": 3}, {"id": "4abd0803675e", "image": "images/o2m/4abd0803675e.jpg", "audios": ["audio/o2m/4abd0803675e/v0.mp3", "audio/o2m/4abd0803675e/v1.mp3", "audio/o2m/4abd0803675e/v2.mp3"], "n": 3}, {"id": "7fbe6ce11d3c", "image": "images/o2m/7fbe6ce11d3c.jpg", "audios": ["audio/o2m/7fbe6ce11d3c/v0.mp3", "audio/o2m/7fbe6ce11d3c/v1.mp3", "audio/o2m/7fbe6ce11d3c/v2.mp3"], "n": 3}, {"id": "e64169e3a2ca", "image": "images/o2m/e64169e3a2ca.jpg", "audios": ["audio/o2m/e64169e3a2ca/v0.mp3", "audio/o2m/e64169e3a2ca/v1.mp3", "audio/o2m/e64169e3a2ca/v2.mp3"], "n": 3}, {"id": "e1d0bdfa14c6", "image": "images/o2m/e1d0bdfa14c6.jpg", "audios": ["audio/o2m/e1d0bdfa14c6/v0.mp3", "audio/o2m/e1d0bdfa14c6/v1.mp3", "audio/o2m/e1d0bdfa14c6/v2.mp3"], "n": 3}, {"id": "62558402141c", "image": "images/o2m/62558402141c.jpg", "audios": ["audio/o2m/62558402141c/v0.mp3", "audio/o2m/62558402141c/v1.mp3", "audio/o2m/62558402141c/v2.mp3"], "n": 3}, {"id": "cfea0052c151", "image": "images/o2m/cfea0052c151.jpg", "audios": ["audio/o2m/cfea0052c151/v0.mp3", "audio/o2m/cfea0052c151/v1.mp3", "audio/o2m/cfea0052c151/v2.mp3"], "n": 3}, {"id": "ab89dcf40df9", "image": "images/o2m/ab89dcf40df9.jpg", "audios": ["audio/o2m/ab89dcf40df9/v0.mp3", "audio/o2m/ab89dcf40df9/v1.mp3", "audio/o2m/ab89dcf40df9/v2.mp3"], "n": 3}, {"id": "c3257f3a438e", "image": "images/o2m/c3257f3a438e.jpg", "audios": ["audio/o2m/c3257f3a438e/v0.mp3", "audio/o2m/c3257f3a438e/v1.mp3", "audio/o2m/c3257f3a438e/v2.mp3"], "n": 3}, {"id": "6f8fcb9e8c4d", "image": "images/o2m/6f8fcb9e8c4d.jpg", "audios": ["audio/o2m/6f8fcb9e8c4d/v0.mp3", "audio/o2m/6f8fcb9e8c4d/v1.mp3", "audio/o2m/6f8fcb9e8c4d/v2.mp3"], "n": 3}, {"id": "a70024a6aff5", "image": "images/o2m/a70024a6aff5.jpg", "audios": ["audio/o2m/a70024a6aff5/v0.mp3", "audio/o2m/a70024a6aff5/v1.mp3", "audio/o2m/a70024a6aff5/v2.mp3"], "n": 3}, {"id": "a1eec7bf3da8", "image": "images/o2m/a1eec7bf3da8.jpg", "audios": ["audio/o2m/a1eec7bf3da8/v0.mp3", "audio/o2m/a1eec7bf3da8/v1.mp3", "audio/o2m/a1eec7bf3da8/v2.mp3"], "n": 3}, {"id": "413ce7a6552f", "image": "images/o2m/413ce7a6552f.jpg", "audios": ["audio/o2m/413ce7a6552f/v0.mp3", "audio/o2m/413ce7a6552f/v1.mp3", "audio/o2m/413ce7a6552f/v2.mp3"], "n": 3}, {"id": "e91e85a34cf8", "image": "images/o2m/e91e85a34cf8.jpg", "audios": ["audio/o2m/e91e85a34cf8/v0.mp3", "audio/o2m/e91e85a34cf8/v1.mp3", "audio/o2m/e91e85a34cf8/v2.mp3", "audio/o2m/e91e85a34cf8/v3.mp3", "audio/o2m/e91e85a34cf8/v4.mp3"], "n": 5}, {"id": "612f841c4a63", "image": "images/o2m/612f841c4a63.jpg", "audios": ["audio/o2m/612f841c4a63/v0.mp3", "audio/o2m/612f841c4a63/v1.mp3", "audio/o2m/612f841c4a63/v2.mp3"], "n": 3}, {"id": "3bf48d4ce170", "image": "images/o2m/3bf48d4ce170.jpg", "audios": ["audio/o2m/3bf48d4ce170/v0.mp3", "audio/o2m/3bf48d4ce170/v1.mp3", "audio/o2m/3bf48d4ce170/v2.mp3"], "n": 3}];
-const T2M = [{"id": "t2m_30X3PVJsjdc_c0", "audio": "audio/t2m/t2m_30X3PVJsjdc_c0.mp3", "text": "This is a gentle and pastoral piece, featuring a solo flute melody over a bed of soft acoustic guitar chords. The tempo is slow and relaxed, creating a serene and dreamy atmosphere.", "score": 98, "dataset": "ARIA", "image": "images/t2m/t2m_30X3PVJsjdc_c0.jpg"}, {"id": "t2m_57727637edc2cb3880d0b6b2_c0", "audio": "audio/t2m/t2m_57727637edc2cb3880d0b6b2_c0.mp3", "text": "A lively and colorful piece featuring a playful clarinet melody accompanied by pizzicato strings and a moderate tempo, evoking a sense of whimsy and lightheartedness. The bright and vibrant instrumentation mirrors the painting's use of bold colors and cheerful atmosphere.", "score": 98, "dataset": "ARIA", "image": "images/t2m/t2m_57727637edc2cb3880d0b6b2_c0.jpg"}, {"id": "t2m_57727cd6edc2cb3880e5e48b_c1", "audio": "audio/t2m/t2m_57727cd6edc2cb3880e5e48b_c1.mp3", "text": "Gentle pizzicato strings and a solo oboe melody create a bittersweet, melancholic atmosphere, reflecting the hidden vulnerabilities behind the subject's regal appearance, played at a slow tempo.", "score": 98, "dataset": "ARIA", "image": "images/t2m/t2m_57727cd6edc2cb3880e5e48b_c1.jpg"}, {"id": "t2m_57727e81edc2cb3880eb0b16_c2", "audio": "audio/t2m/t2m_57727e81edc2cb3880eb0b16_c2.mp3", "text": "A somber adagio for solo oboe and muted violins creates a melancholic atmosphere, reflecting the sadness of the kneeling child. A slow, deliberate harp arpeggio occasionally punctuates the melody, suggesting a sense of regret and impending punishment.", "score": 98, "dataset": "ARIA", "image": "images/t2m/t2m_57727e81edc2cb3880eb0b16_c2.jpg"}, {"id": "t2m_577280dbedc2cb3880f28709_c1", "audio": "audio/t2m/t2m_577280dbedc2cb3880f28709_c1.mp3", "text": "A minimalist composition employing muted trumpets and vibraphone to evoke a sense of fragmented urban life. The tempo is moderate and fragmented, mirroring the irregular shapes and colors in the image, with scattered notes of metallic percussion adding a hint of unease.", "score": 98, "dataset": "ARIA", "image": "images/t2m/t2m_577280dbedc2cb3880f28709_c1.jpg"}, {"id": "t2m_60wCqYf7Fg8_c0", "audio": "audio/t2m/t2m_60wCqYf7Fg8_c0.mp3", "text": "This music evokes the feeling of calm water, featuring a slow tempo with shimmering synth pads and gentle piano melodies. The overall mood is peaceful and serene, like floating on a clear blue pool.", "score": 98, "dataset": "ARIA", "image": "images/t2m/t2m_60wCqYf7Fg8_c0.jpg"}, {"id": "t2m_jlb0nJeVT30_c0", "audio": "audio/t2m/t2m_jlb0nJeVT30_c0.mp3", "text": "A slow, melancholic piano melody drifts through the air, accompanied by a muted trumpet and subtle string swells, creating a nostalgic and dreamy atmosphere reminiscent of twilight in a quiet city street.", "score": 98, "dataset": "ARIA", "image": "images/t2m/t2m_jlb0nJeVT30_c0.jpg"}, {"id": "t2m_76ON0Ixrr9s", "audio": "audio/t2m/t2m_76ON0Ixrr9s.mp3", "text": "The low quality recording features an electric guitar melody playing. The melody fades out in the beginning and it starts playing again in the second part of the loop, where it has an echoing effect on. It gives off psychedelic vibes. The recording is noisy and in mono.", "score": 98, "dataset": "MusicCaps"}, {"id": "t2m_qlWEAm4AUTU", "audio": "audio/t2m/t2m_qlWEAm4AUTU.mp3", "text": "Audio of a percussion instrument playing by itself. Sounds like a tambourine, riq, or pandeiro, playing a steady beat, alternating between a cymbal sound and a bongo drum sound.", "score": 98, "dataset": "MusicCaps"}, {"id": "t2m_navn7jCBp_o", "audio": "audio/t2m/t2m_navn7jCBp_o.mp3", "text": "The low quality recording features a hip hop instrumental that consists of punchy kick, claps, repetitive synth chords, addictive plucked strings melody and tinny wooden percussive elements. It sounds groovy and very addictive, due to that string melody.", "score": 98, "dataset": "MusicCaps"}, {"id": "t2m_06wpjlYVwy4_c2", "audio": "audio/t2m/t2m_06wpjlYVwy4_c2.mp3", "text": "Ambient drones and soft percussive textures create a sense of vastness, like the height of a cathedral ceiling. Muted brass instruments add a feeling of subtle grandeur and awe.", "score": 95, "dataset": "ARIA", "image": "images/t2m/t2m_06wpjlYVwy4_c2.jpg"}, {"id": "t2m_57727594edc2cb3880ceb3d5_c2", "audio": "audio/t2m/t2m_57727594edc2cb3880ceb3d5_c2.mp3", "text": "A short, poignant piece for string quartet paints a picture of faded glamour and underlying sadness. The cello carries a mournful melody, while the other instruments provide a sparse and haunting accompaniment, creating a sense of quiet desperation.", "score": 95, "dataset": "ARIA", "image": "images/t2m/t2m_57727594edc2cb3880ceb3d5_c2.jpg"}, {"id": "t2m_57728952edc2cb38800d46d8_c2", "audio": "audio/t2m/t2m_57728952edc2cb38800d46d8_c2.mp3", "text": "A subdued flute melody, accompanied by gentle acoustic guitar arpeggios, creates a feeling of gentle sadness and vulnerability. The light and airy instrumentation contrasts with the solidity of the sculpture, highlighting the figure's emotional state.", "score": 95, "dataset": "ARIA", "image": "images/t2m/t2m_57728952edc2cb38800d46d8_c2.jpg"}, {"id": "t2m_5pAsLIRA0F0_c2", "audio": "audio/t2m/t2m_5pAsLIRA0F0_c2.mp3", "text": "The image evokes a melancholic and atmospheric piece with a solo cello playing a simple, drawn-out melody over a bed of quiet, reverberant piano chords. The slow tempo and muted dynamics contribute to a feeling of introspection and serene contemplation.", "score": 95, "dataset": "ARIA", "image": "images/t2m/t2m_5pAsLIRA0F0_c2.jpg"}, {"id": "t2m_RatxiOcaMZo_c1", "audio": "audio/t2m/t2m_RatxiOcaMZo_c1.mp3", "text": "Sparse acoustic guitar chords and a distant, echoing flute create a serene and contemplative atmosphere. The music is slow and airy, conjuring a sense of vastness and the quiet intimacy of two figures against a dramatic landscape.", "score": 95, "dataset": "ARIA", "image": "images/t2m/t2m_RatxiOcaMZo_c1.jpg"}, {"id": "t2m_tmiN6tdlw0U_c0", "audio": "audio/t2m/t2m_tmiN6tdlw0U_c0.mp3", "text": "This piece evokes a sense of mystery and tranquility through slow, sustained cello notes and ethereal synth pads, creating a dense, atmospheric soundscape. The tempo is deliberately slow, mirroring the stillness of the foggy forest, with subtle reverb adding to the dreamlike quality.", "score": 95, "dataset": "ARIA", "image": "images/t2m/t2m_tmiN6tdlw0U_c0.jpg"}, {"id": "t2m_pUqTHJ5gq-U_c2", "audio": "audio/t2m/t2m_pUqTHJ5gq-U_c2.mp3", "text": "A pensive and reflective piece features a lone cello playing a somber melody over a bed of atmospheric drones. The slow tempo and melancholic tone create a sense of quiet contemplation and solitude.", "score": 95, "dataset": "ARIA", "image": "images/t2m/t2m_pUqTHJ5gq-U_c2.jpg"}, {"id": "t2m_xvYxGcwFvuE_c1", "audio": "audio/t2m/t2m_xvYxGcwFvuE_c1.mp3", "text": "A lighthearted ukulele melody bounces along at a moderate tempo, supported by a simple bass line and playful percussion. The overall feeling is cheerful and carefree, like a sunny afternoon stroll with a best friend.", "score": 95, "dataset": "ARIA", "image": "images/t2m/t2m_xvYxGcwFvuE_c1.jpg"}, {"id": "t2m_Ts04bBeY1d4", "audio": "audio/t2m/t2m_Ts04bBeY1d4.mp3", "text": "This is an Irish folk music piece. The melody is being played by an acoustic guitar and a mandolin. The atmosphere of the piece is cozy and easygoing. It has a steady tempo. This piece could be used in the soundtrack of a documentary. It could also be playing in the background at an Irish pub or an Irish cuisine restaurant.", "score": 95, "dataset": "MusicCaps"}, {"id": "t2m_sEGxoHiAPiQ", "audio": "audio/t2m/t2m_sEGxoHiAPiQ.mp3", "text": "The low quality recording features a clean electric guitar chord progression that has some effects on it. It sounds slightly detuned and it has a slight wobble effect.", "score": 95, "dataset": "MusicCaps"}, {"id": "t2m_577286d7edc2cb3880057746_c1", "audio": "audio/t2m/t2m_577286d7edc2cb3880057746_c1.mp3", "text": "A jazzy vibraphone solo with a moderate tempo and a hint of dissonance captures the artwork's quirky, offbeat character. A walking bassline provides a subtle, rhythmic grounding for the playful, improvisational melody.", "score": 94, "dataset": "ARIA", "image": "images/t2m/t2m_577286d7edc2cb3880057746_c1.jpg"}, {"id": "t2m_45ANDyTydD4_c2", "audio": "audio/t2m/t2m_45ANDyTydD4_c2.mp3", "text": "A shimmering and ethereal piece with sustained strings and delicate harp arpeggios. The tempo is slow and the mood is dreamy, creating a sense of wonder and fascination with the intricate beauty of nature.", "score": 92, "dataset": "ARIA", "image": "images/t2m/t2m_45ANDyTydD4_c2.jpg"}, {"id": "t2m_5772735bedc2cb3880c88247_c2", "audio": "audio/t2m/t2m_5772735bedc2cb3880c88247_c2.mp3", "text": "A tense and urgent piece featuring a frantic string section and a prominent timpani, capturing the storm's ferocity and the crew's desperate struggle for survival. The rapid tempo and dissonant harmonies convey a feeling of chaos and impending disaster.", "score": 92, "dataset": "ARIA", "image": "images/t2m/t2m_5772735bedc2cb3880c88247_c2.jpg"}, {"id": "t2m_57727781edc2cb3880d4e0d7_c2", "audio": "audio/t2m/t2m_57727781edc2cb3880d4e0d7_c2.mp3", "text": "A subtly unsettling piece with a slow, deliberate tempo, featuring muted trumpets and clarinets weaving around each other in a dissonant harmony. There's a strange, slightly sour quality to the piece, suggesting a hidden emotion beneath the surface.", "score": 92, "dataset": "ARIA", "image": "images/t2m/t2m_57727781edc2cb3880d4e0d7_c2.jpg"}, {"id": "t2m_57727e24edc2cb3880e9d0f3_c0", "audio": "audio/t2m/t2m_57727e24edc2cb3880e9d0f3_c0.mp3", "text": "A stately processional march, featuring a slow tempo and majestic brass fanfares, evokes a sense of royal ceremony. Strings provide a countermelody that hints at the underlying hustle and bustle of a grand city.", "score": 92, "dataset": "ARIA", "image": "images/t2m/t2m_57727e24edc2cb3880e9d0f3_c0.jpg"}, {"id": "t2m_577281c5edc2cb3880f593be_c2", "audio": "audio/t2m/t2m_577281c5edc2cb3880f593be_c2.mp3", "text": "A hopeful, slow-building piece featuring a solo oboe that gradually introduces a string section, evoking the vast landscape and the journey ahead. The tempo is adagio, creating a sense of wonder and anticipation as the travelers make their way through the scenic route.", "score": 92, "dataset": "ARIA", "image": "images/t2m/t2m_577281c5edc2cb3880f593be_c2.jpg"}, {"id": "t2m_57728267edc2cb3880f77e8d_c1", "audio": "audio/t2m/t2m_57728267edc2cb3880f77e8d_c1.mp3", "text": "A lone cello plays a mournful tune, accompanied by sparse, echoing percussion, evoking a sense of quiet contemplation and a hint of mystery under a brooding sky.", "score": 92, "dataset": "ARIA", "image": "images/t2m/t2m_57728267edc2cb3880f77e8d_c1.jpg"}, {"id": "t2m_5772843eedc2cb3880fd391b_c1", "audio": "audio/t2m/t2m_5772843eedc2cb3880fd391b_c1.mp3", "text": "A minimalist electronic piece with a steady, medium tempo, featuring a repeating bass synth line and sharp, angular synth stabs that mirror the geometric shapes of the sculpture. The mood is stark and industrial, with a hint of futuristic optimism.", "score": 92, "dataset": "ARIA", "image": "images/t2m/t2m_5772843eedc2cb3880fd391b_c1.jpg"}, {"id": "t2m_57728789edc2cb3880076bdf_c0", "audio": "audio/t2m/t2m_57728789edc2cb3880076bdf_c0.mp3", "text": "A slow, contemplative piano melody unfolds, punctuated by occasional, hesitant brushstrokes of cello, creating a sense of vastness and artistic exploration. The piece evokes a feeling of quiet introspection, like tracing the history of an abstract masterpiece.", "score": 92, "dataset": "ARIA", "image": "images/t2m/t2m_57728789edc2cb3880076bdf_c0.jpg"}, {"id": "t2m_bB_ndHf9W9s_c2", "audio": "audio/t2m/t2m_bB_ndHf9W9s_c2.mp3", "text": "A dramatic, cinematic score builds with soaring strings and powerful brass, mirroring the intensity of the sun's rays piercing through the clouds. The tempo gradually increases as the piece progresses, creating a feeling of awe and majesty.", "score": 92, "dataset": "ARIA", "image": "images/t2m/t2m_bB_ndHf9W9s_c2.jpg"}, {"id": "t2m_7V0G65FK2VQ", "audio": "audio/t2m/t2m_7V0G65FK2VQ.mp3", "text": "The song is an instrumental guitar solo. The song tempo is medium with a racy electric guitar solo with a show of technique of note bending, tremolo and playing rhythmically. The song is home video and an average quality recording.", "score": 92, "dataset": "MusicCaps"}, {"id": "t2m_57728426edc2cb3880fd12e9_c1", "audio": "audio/t2m/t2m_57728426edc2cb3880fd12e9_c1.mp3", "text": "An ethereal, slightly unsettling ambiance is created with sustained string chords and the distant rumble of timpani, reflecting the looming airship and the overcast sky. A lone clarinet plays a simple, wistful tune, conveying the sense of wonder and anticipation of the onlookers.", "score": 88, "dataset": "ARIA", "image": "images/t2m/t2m_57728426edc2cb3880fd12e9_c1.jpg"}, {"id": "t2m_RatxiOcaMZo_c0", "audio": "audio/t2m/t2m_RatxiOcaMZo_c0.mp3", "text": "A gentle, slow tempo piano melody evokes a sense of longing and peaceful reflection, accompanied by soft cello chords. The overall mood is melancholic and hopeful, like a quiet sunset walk on a distant shore.", "score": 88, "dataset": "ARIA", "image": "images/t2m/t2m_RatxiOcaMZo_c0.jpg"}, {"id": "t2m_RUUZzoeVrK4", "audio": "audio/t2m/t2m_RUUZzoeVrK4.mp3", "text": "This song is an instrumental. The tempo is slow with an amplified organ playing an intense, sinister chord, followed by a cymbal ride and howling wind produced by wind machine and a chime.. The vibe of the music is spooky, dangerous, ghostly, suspenseful, sinister, grim and scary.", "score": 88, "dataset": "MusicCaps"}, {"id": "t2m_gqROBgF7_DU", "audio": "audio/t2m/t2m_gqROBgF7_DU.mp3", "text": "The low quality recording features an aggressive sound of synth feedback. In the second half of the loop, the sound is very noisy. It is loud and it sounds really harsh.", "score": 88, "dataset": "MusicCaps"}, {"id": "t2m_-SD43H5B5hE", "audio": "audio/t2m/t2m_-SD43H5B5hE.mp3", "text": "There is a low sound that reminds of a heartbeat rising in tempo before a splash-like metallic sound with reverb comes in and breaks the atmosphere in half. This audio may be used for a movie scene. This audio is in poor quality.", "score": 98, "dataset": "MusicCaps"}, {"id": "t2m_18mS4cLPOb8", "audio": "audio/t2m/t2m_18mS4cLPOb8.mp3", "text": "This piece is a parody of an ad theme. There are female vocals singing at a high-pitch in the major scale, resulting in an epic atmosphere resembling an anthem. The resolution is interrupted by an implied bear attack, breaking the seriousness of the piece.", "score": 98, "dataset": "MusicCaps"}, {"id": "t2m_9DCJTAzUwNc", "audio": "audio/t2m/t2m_9DCJTAzUwNc.mp3", "text": "The low quality recording features a reverberant, intimate female vocal singing over soft, arpeggiated piano melody. It sounds haunting, hypnotic, heartfelt and muddy, as the frequencies are clashing and creating a mess in the mix. It sounds like a lullaby.", "score": 98, "dataset": "MusicCaps"}, {"id": "t2m_IQbzpgmi4Ec", "audio": "audio/t2m/t2m_IQbzpgmi4Ec.mp3", "text": "EDM music with a four on the floor kick pattern holding down the dance beat. The vocalist is female and there are female fans screaming in the background. Overall, the music is low fidelity, as there is a fast sweeping resonant filter affecting the full mix and muffling it.", "score": 98, "dataset": "MusicCaps"}, {"id": "t2m_RneRJ5ZnHlE", "audio": "audio/t2m/t2m_RneRJ5ZnHlE.mp3", "text": "This is a salsa song with an upbeat and vibrant energy. It contains typical salsa instruments like the conga, the trumpet, and the piano. The percussion is upbeat and involves bongos and congas, and the singer is lively.", "score": 98, "dataset": "MusicCaps"}, {"id": "t2m_SGcjdZ19R1k", "audio": "audio/t2m/t2m_SGcjdZ19R1k.mp3", "text": "This rock and roll song features a male voice singing the main melody. This is accompanied by percussion playing a fast tempo beat. Guitars play chords. The bass plays the root notes of the chords. The vocal melody follows a gospel style call and response theme. The main voice sings one line and the crowd responds by singing another line. The tempo of this song is fast. This is a low quality audio and other instruments cannot be identified.", "score": 98, "dataset": "MusicCaps"}, {"id": "t2m_Vfcfj4OIJXE", "audio": "audio/t2m/t2m_Vfcfj4OIJXE.mp3", "text": "This is an instrumental hip-hop music piece. It is meant to be used as a rap beat. There is a fuzzy synth bass playing a groovy bass line with a mellow sounding keyboard playing alongside it. There is a loud electronic drum beat in the rhythmic background. This piece has a crisp and urban atmosphere. It could either be used as a rap beat or it could take place in the soundtrack of a crime movie/TV show with a modern city setting.", "score": 98, "dataset": "MusicCaps"}, {"id": "t2m_Vbcy6KBJsAA", "audio": "audio/t2m/t2m_Vbcy6KBJsAA.mp3", "text": "The low quality recording features hip hop beatboxing. The recording is noisy and in mono, as it was probably recorded with a phone.", "score": 98, "dataset": "MusicCaps"}, {"id": "t2m_ZgooDijn2as", "audio": "audio/t2m/t2m_ZgooDijn2as.mp3", "text": "A male vocalist sings this energetic song. The tempo is fast with accordion harmony, funky bass lines, vigorous drumming,rhythmic acoustic guitar and keyboard harmony. The audio is muffled making it difficult to hear the other elements in the song. This song is a live performance as there are sounds of clapping, cheering and people murmuring. This song is a vibrant,vivacious,bright, punchy, and energetic Pop.", "score": 98, "dataset": "MusicCaps"}, {"id": "t2m_qrY7PW5guxk", "audio": "audio/t2m/t2m_qrY7PW5guxk.mp3", "text": "This is a Haiti dance music piece. There is a male vocalist singing melodically in the Creole language. The brass, the keyboard and the bass guitar are the melodic elements of this piece. In the rhythmic background, the acoustic drums and percussive elements are playing a latin type beat. The atmosphere of the piece is chill and easygoing. This piece could be played at Caribbean bars and dance clubs. It could also be used as an accompaniment piece for dancing courses.", "score": 98, "dataset": "MusicCaps"}, {"id": "t2m_5772819cedc2cb3880f501b7_c2", "audio": "audio/t2m/t2m_5772819cedc2cb3880f501b7_c2.mp3", "text": "A minimalistic composition using synthesized pads and subtle percussion, creating an ethereal and otherworldly atmosphere. The tempo is slow and steady, representing the stillness and timelessness of the fossilized forms.", "score": 95, "dataset": "ARIA", "image": "images/t2m/t2m_5772819cedc2cb3880f501b7_c2.jpg"}, {"id": "t2m_uWqz5Ekf57o_c1", "audio": "audio/t2m/t2m_uWqz5Ekf57o_c1.mp3", "text": "A minimalist drone track with a gradually shifting soundscape, using bowed cello and shimmering cymbal swells. The tempo is very slow and the mood is introspective, suggesting a feeling of quiet contemplation.", "score": 95, "dataset": "ARIA", "image": "images/t2m/t2m_uWqz5Ekf57o_c1.jpg"}, {"id": "t2m_2GepmcbNlJY", "audio": "audio/t2m/t2m_2GepmcbNlJY.mp3", "text": "The recording is of poor quality. A male voice is singing soulfully along to a backing instrumental sounding like coming out of some speakers. There is a piano playing and you can hear electric drums. This song may be playing at home practicing singing.", "score": 95, "dataset": "MusicCaps"}, {"id": "t2m_Byk9p21g51g", "audio": "audio/t2m/t2m_Byk9p21g51g.mp3", "text": "The low quality recording features an urban latin remix that consists of passionate female vocal singing over groovy piano chords, wooden percussive elements, \"4 on the floor\" kick pattern, syncopated claps, shimmering shakers, smooth bass and exciting male vocals. It sounds energetic, fun and happy.", "score": 95, "dataset": "MusicCaps"}, {"id": "t2m_CBUAy9Zl6ZE", "audio": "audio/t2m/t2m_CBUAy9Zl6ZE.mp3", "text": "This is a melancholic Moroccan music piece. The male vocalist is singing in an agitated, crying-like manner. The only accompaniment being the violin creates a dense atmosphere loaded with emotion. This piece could be used in the soundtrack of a movie or a TV show involving a tragedy which is taking place in North Africa.", "score": 95, "dataset": "MusicCaps"}, {"id": "t2m_lR8am4rK7qQ", "audio": "audio/t2m/t2m_lR8am4rK7qQ.mp3", "text": "Male and female singers sing this vocal harmony. The song is medium tempo with a groovy bass-line, keyboard accompaniment, guitar rhythm and a steady drumming rhythm with clapping percussions. The song is exciting and  groovy. The song is a classic pop hit cover with an average quality sound.", "score": 95, "dataset": "MusicCaps"}, {"id": "t2m_wXmIm6Bq3Tc", "audio": "audio/t2m/t2m_wXmIm6Bq3Tc.mp3", "text": "The music features a mix between jazz and soul music. The instrumental is easygoing and fun. A male singer with a seductive and appealing voice sings a fun melody. A saxophone plays a melody in the background that adds texture to the instrumental. The music is a live recording of a performance.", "score": 95, "dataset": "MusicCaps"}, {"id": "t2m_1MwaXCfUvX8", "audio": "audio/t2m/t2m_1MwaXCfUvX8.mp3", "text": "An acoustic drum and a bass are repeating the same pattern along with two e-guitars playing along with the melody while a male voice sings slightly soulful and loud. In the background a crowd is sheering. The recording is of very poor audio quality. This song may be playing at a live concert.", "score": 94, "dataset": "MusicCaps"}, {"id": "t2m_57728703edc2cb3880060ff9_c1", "audio": "audio/t2m/t2m_57728703edc2cb3880060ff9_c1.mp3", "text": "A minimalist composition for piano and vibraphone. The piece begins with delicate, echoing piano chords, joined by increasingly resonant vibraphone strikes, suggesting a sequence of falling leaves that slowly transition from vibrant colors to somber shadows, all at a moderate tempo.", "score": 92, "dataset": "ARIA", "image": "images/t2m/t2m_57728703edc2cb3880060ff9_c1.jpg"}, {"id": "t2m_7y9RfZXJZsk", "audio": "audio/t2m/t2m_7y9RfZXJZsk.mp3", "text": "The low quality recording features a regional Mexican song that consists of a reverberant male vocal singing over widely spread groovy piano chord progression, brass section, shimmering shakers, groovy percussive elements and smooth bass. It sounds tropical, exotic and fun, like something you would hear at latin weddings.", "score": 92, "dataset": "MusicCaps"}, {"id": "t2m_B1va1NqaA4o", "audio": "audio/t2m/t2m_B1va1NqaA4o.mp3", "text": "This rap song features a male voice rapping in a foreign language. This is accompanied by programmed percussion playing a simple beat. The bass plays the root note of the chord in sets of 3 strokes. The same note is played through the song in sets of three. A repetitive plucked synth sound is played in loop. Quirky sounds are heard in the background. This song has a defiant mood. This song can be played in a gangster movie.", "score": 92, "dataset": "MusicCaps"}, {"id": "t2m_GwTXkfuc5v8", "audio": "audio/t2m/t2m_GwTXkfuc5v8.mp3", "text": "A male vocalist sings this HIp-hop. The tempo is medium with subdued keyboard accompaniment, slick drumming, boomy bass drops, synthesised arrangements and vocal backup. The song is youthful; enthusiastic, passionate, insistent, repetitive,  groovy,rhythmic chanting with a dance groove. This song is Contemporary Hip-Hop/Rap.", "score": 92, "dataset": "MusicCaps"}, {"id": "t2m_ZiHlhUvmgzQ", "audio": "audio/t2m/t2m_ZiHlhUvmgzQ.mp3", "text": "This is a bluegrass music piece. Two male vocals are singing melodically in the lead. The tune is played by a rich chordophone background composed of the fiddle, the mandolin and the acoustic guitar. The atmosphere of the piece is joyful and nostalgic. It has a steady tempo. The piece could be used in the soundtrack of a movie or a TV series taking place in rural USA, especially in the scenes where there is some sense of yearning. It could be playing in the background at an American diner or a bar.", "score": 92, "dataset": "MusicCaps"}, {"id": "t2m_bOOJRGRy0zc", "audio": "audio/t2m/t2m_bOOJRGRy0zc.mp3", "text": "These two rap songs contain acoustic drums/digital drums playing a simple beat and a beat with a 16th hihat. Strings and bells are playing the main melody. On top of that the male voice of each song is rapping over the instrumental. These songs may be played while riding in your car or while playing sports.", "score": 88, "dataset": "MusicCaps"}];
+const T2M = [{"id": "t2m_30X3PVJsjdc_c0", "audio": "audio/t2m/t2m_30X3PVJsjdc_c0.mp3", "text": "This is a gentle and pastoral piece, featuring a solo flute melody over a bed of soft acoustic guitar chords. The tempo is slow and relaxed, creating a serene and dreamy atmosphere.", "score": 98, "dataset": "ARIA"}, {"id": "t2m_57727637edc2cb3880d0b6b2_c0", "audio": "audio/t2m/t2m_57727637edc2cb3880d0b6b2_c0.mp3", "text": "A lively and colorful piece featuring a playful clarinet melody accompanied by pizzicato strings and a moderate tempo, evoking a sense of whimsy and lightheartedness. The bright and vibrant instrumentation mirrors the painting's use of bold colors and cheerful atmosphere.", "score": 98, "dataset": "ARIA"}, {"id": "t2m_57727cd6edc2cb3880e5e48b_c1", "audio": "audio/t2m/t2m_57727cd6edc2cb3880e5e48b_c1.mp3", "text": "Gentle pizzicato strings and a solo oboe melody create a bittersweet, melancholic atmosphere, reflecting the hidden vulnerabilities behind the subject's regal appearance, played at a slow tempo.", "score": 98, "dataset": "ARIA"}, {"id": "t2m_57727e81edc2cb3880eb0b16_c2", "audio": "audio/t2m/t2m_57727e81edc2cb3880eb0b16_c2.mp3", "text": "A somber adagio for solo oboe and muted violins creates a melancholic atmosphere, reflecting the sadness of the kneeling child. A slow, deliberate harp arpeggio occasionally punctuates the melody, suggesting a sense of regret and impending punishment.", "score": 98, "dataset": "ARIA"}, {"id": "t2m_577280dbedc2cb3880f28709_c1", "audio": "audio/t2m/t2m_577280dbedc2cb3880f28709_c1.mp3", "text": "A minimalist composition employing muted trumpets and vibraphone to evoke a sense of fragmented urban life. The tempo is moderate and fragmented, mirroring the irregular shapes and colors in the image, with scattered notes of metallic percussion adding a hint of unease.", "score": 98, "dataset": "ARIA"}, {"id": "t2m_60wCqYf7Fg8_c0", "audio": "audio/t2m/t2m_60wCqYf7Fg8_c0.mp3", "text": "This music evokes the feeling of calm water, featuring a slow tempo with shimmering synth pads and gentle piano melodies. The overall mood is peaceful and serene, like floating on a clear blue pool.", "score": 98, "dataset": "ARIA"}, {"id": "t2m_jlb0nJeVT30_c0", "audio": "audio/t2m/t2m_jlb0nJeVT30_c0.mp3", "text": "A slow, melancholic piano melody drifts through the air, accompanied by a muted trumpet and subtle string swells, creating a nostalgic and dreamy atmosphere reminiscent of twilight in a quiet city street.", "score": 98, "dataset": "ARIA"}, {"id": "t2m_76ON0Ixrr9s", "audio": "audio/t2m/t2m_76ON0Ixrr9s.mp3", "text": "The low quality recording features an electric guitar melody playing. The melody fades out in the beginning and it starts playing again in the second part of the loop, where it has an echoing effect on. It gives off psychedelic vibes. The recording is noisy and in mono.", "score": 98, "dataset": "MusicCaps"}, {"id": "t2m_qlWEAm4AUTU", "audio": "audio/t2m/t2m_qlWEAm4AUTU.mp3", "text": "Audio of a percussion instrument playing by itself. Sounds like a tambourine, riq, or pandeiro, playing a steady beat, alternating between a cymbal sound and a bongo drum sound.", "score": 98, "dataset": "MusicCaps"}, {"id": "t2m_navn7jCBp_o", "audio": "audio/t2m/t2m_navn7jCBp_o.mp3", "text": "The low quality recording features a hip hop instrumental that consists of punchy kick, claps, repetitive synth chords, addictive plucked strings melody and tinny wooden percussive elements. It sounds groovy and very addictive, due to that string melody.", "score": 98, "dataset": "MusicCaps"}, {"id": "t2m_06wpjlYVwy4_c2", "audio": "audio/t2m/t2m_06wpjlYVwy4_c2.mp3", "text": "Ambient drones and soft percussive textures create a sense of vastness, like the height of a cathedral ceiling. Muted brass instruments add a feeling of subtle grandeur and awe.", "score": 95, "dataset": "ARIA"}, {"id": "t2m_57727594edc2cb3880ceb3d5_c2", "audio": "audio/t2m/t2m_57727594edc2cb3880ceb3d5_c2.mp3", "text": "A short, poignant piece for string quartet paints a picture of faded glamour and underlying sadness. The cello carries a mournful melody, while the other instruments provide a sparse and haunting accompaniment, creating a sense of quiet desperation.", "score": 95, "dataset": "ARIA"}, {"id": "t2m_57728952edc2cb38800d46d8_c2", "audio": "audio/t2m/t2m_57728952edc2cb38800d46d8_c2.mp3", "text": "A subdued flute melody, accompanied by gentle acoustic guitar arpeggios, creates a feeling of gentle sadness and vulnerability. The light and airy instrumentation contrasts with the solidity of the sculpture, highlighting the figure's emotional state.", "score": 95, "dataset": "ARIA"}, {"id": "t2m_5pAsLIRA0F0_c2", "audio": "audio/t2m/t2m_5pAsLIRA0F0_c2.mp3", "text": "The image evokes a melancholic and atmospheric piece with a solo cello playing a simple, drawn-out melody over a bed of quiet, reverberant piano chords. The slow tempo and muted dynamics contribute to a feeling of introspection and serene contemplation.", "score": 95, "dataset": "ARIA"}, {"id": "t2m_RatxiOcaMZo_c1", "audio": "audio/t2m/t2m_RatxiOcaMZo_c1.mp3", "text": "Sparse acoustic guitar chords and a distant, echoing flute create a serene and contemplative atmosphere. The music is slow and airy, conjuring a sense of vastness and the quiet intimacy of two figures against a dramatic landscape.", "score": 95, "dataset": "ARIA"}, {"id": "t2m_tmiN6tdlw0U_c0", "audio": "audio/t2m/t2m_tmiN6tdlw0U_c0.mp3", "text": "This piece evokes a sense of mystery and tranquility through slow, sustained cello notes and ethereal synth pads, creating a dense, atmospheric soundscape. The tempo is deliberately slow, mirroring the stillness of the foggy forest, with subtle reverb adding to the dreamlike quality.", "score": 95, "dataset": "ARIA"}, {"id": "t2m_pUqTHJ5gq-U_c2", "audio": "audio/t2m/t2m_pUqTHJ5gq-U_c2.mp3", "text": "A pensive and reflective piece features a lone cello playing a somber melody over a bed of atmospheric drones. The slow tempo and melancholic tone create a sense of quiet contemplation and solitude.", "score": 95, "dataset": "ARIA"}, {"id": "t2m_xvYxGcwFvuE_c1", "audio": "audio/t2m/t2m_xvYxGcwFvuE_c1.mp3", "text": "A lighthearted ukulele melody bounces along at a moderate tempo, supported by a simple bass line and playful percussion. The overall feeling is cheerful and carefree, like a sunny afternoon stroll with a best friend.", "score": 95, "dataset": "ARIA"}, {"id": "t2m_Ts04bBeY1d4", "audio": "audio/t2m/t2m_Ts04bBeY1d4.mp3", "text": "This is an Irish folk music piece. The melody is being played by an acoustic guitar and a mandolin. The atmosphere of the piece is cozy and easygoing. It has a steady tempo. This piece could be used in the soundtrack of a documentary. It could also be playing in the background at an Irish pub or an Irish cuisine restaurant.", "score": 95, "dataset": "MusicCaps"}, {"id": "t2m_sEGxoHiAPiQ", "audio": "audio/t2m/t2m_sEGxoHiAPiQ.mp3", "text": "The low quality recording features a clean electric guitar chord progression that has some effects on it. It sounds slightly detuned and it has a slight wobble effect.", "score": 95, "dataset": "MusicCaps"}, {"id": "t2m_577286d7edc2cb3880057746_c1", "audio": "audio/t2m/t2m_577286d7edc2cb3880057746_c1.mp3", "text": "A jazzy vibraphone solo with a moderate tempo and a hint of dissonance captures the artwork's quirky, offbeat character. A walking bassline provides a subtle, rhythmic grounding for the playful, improvisational melody.", "score": 94, "dataset": "ARIA"}, {"id": "t2m_45ANDyTydD4_c2", "audio": "audio/t2m/t2m_45ANDyTydD4_c2.mp3", "text": "A shimmering and ethereal piece with sustained strings and delicate harp arpeggios. The tempo is slow and the mood is dreamy, creating a sense of wonder and fascination with the intricate beauty of nature.", "score": 92, "dataset": "ARIA"}, {"id": "t2m_5772735bedc2cb3880c88247_c2", "audio": "audio/t2m/t2m_5772735bedc2cb3880c88247_c2.mp3", "text": "A tense and urgent piece featuring a frantic string section and a prominent timpani, capturing the storm's ferocity and the crew's desperate struggle for survival. The rapid tempo and dissonant harmonies convey a feeling of chaos and impending disaster.", "score": 92, "dataset": "ARIA"}, {"id": "t2m_57727781edc2cb3880d4e0d7_c2", "audio": "audio/t2m/t2m_57727781edc2cb3880d4e0d7_c2.mp3", "text": "A subtly unsettling piece with a slow, deliberate tempo, featuring muted trumpets and clarinets weaving around each other in a dissonant harmony. There's a strange, slightly sour quality to the piece, suggesting a hidden emotion beneath the surface.", "score": 92, "dataset": "ARIA"}, {"id": "t2m_57727e24edc2cb3880e9d0f3_c0", "audio": "audio/t2m/t2m_57727e24edc2cb3880e9d0f3_c0.mp3", "text": "A stately processional march, featuring a slow tempo and majestic brass fanfares, evokes a sense of royal ceremony. Strings provide a countermelody that hints at the underlying hustle and bustle of a grand city.", "score": 92, "dataset": "ARIA"}, {"id": "t2m_577281c5edc2cb3880f593be_c2", "audio": "audio/t2m/t2m_577281c5edc2cb3880f593be_c2.mp3", "text": "A hopeful, slow-building piece featuring a solo oboe that gradually introduces a string section, evoking the vast landscape and the journey ahead. The tempo is adagio, creating a sense of wonder and anticipation as the travelers make their way through the scenic route.", "score": 92, "dataset": "ARIA"}, {"id": "t2m_57728267edc2cb3880f77e8d_c1", "audio": "audio/t2m/t2m_57728267edc2cb3880f77e8d_c1.mp3", "text": "A lone cello plays a mournful tune, accompanied by sparse, echoing percussion, evoking a sense of quiet contemplation and a hint of mystery under a brooding sky.", "score": 92, "dataset": "ARIA"}, {"id": "t2m_5772843eedc2cb3880fd391b_c1", "audio": "audio/t2m/t2m_5772843eedc2cb3880fd391b_c1.mp3", "text": "A minimalist electronic piece with a steady, medium tempo, featuring a repeating bass synth line and sharp, angular synth stabs that mirror the geometric shapes of the sculpture. The mood is stark and industrial, with a hint of futuristic optimism.", "score": 92, "dataset": "ARIA"}, {"id": "t2m_57728789edc2cb3880076bdf_c0", "audio": "audio/t2m/t2m_57728789edc2cb3880076bdf_c0.mp3", "text": "A slow, contemplative piano melody unfolds, punctuated by occasional, hesitant brushstrokes of cello, creating a sense of vastness and artistic exploration. The piece evokes a feeling of quiet introspection, like tracing the history of an abstract masterpiece.", "score": 92, "dataset": "ARIA"}, {"id": "t2m_bB_ndHf9W9s_c2", "audio": "audio/t2m/t2m_bB_ndHf9W9s_c2.mp3", "text": "A dramatic, cinematic score builds with soaring strings and powerful brass, mirroring the intensity of the sun's rays piercing through the clouds. The tempo gradually increases as the piece progresses, creating a feeling of awe and majesty.", "score": 92, "dataset": "ARIA"}, {"id": "t2m_7V0G65FK2VQ", "audio": "audio/t2m/t2m_7V0G65FK2VQ.mp3", "text": "The song is an instrumental guitar solo. The song tempo is medium with a racy electric guitar solo with a show of technique of note bending, tremolo and playing rhythmically. The song is home video and an average quality recording.", "score": 92, "dataset": "MusicCaps"}, {"id": "t2m_57728426edc2cb3880fd12e9_c1", "audio": "audio/t2m/t2m_57728426edc2cb3880fd12e9_c1.mp3", "text": "An ethereal, slightly unsettling ambiance is created with sustained string chords and the distant rumble of timpani, reflecting the looming airship and the overcast sky. A lone clarinet plays a simple, wistful tune, conveying the sense of wonder and anticipation of the onlookers.", "score": 88, "dataset": "ARIA"}, {"id": "t2m_RatxiOcaMZo_c0", "audio": "audio/t2m/t2m_RatxiOcaMZo_c0.mp3", "text": "A gentle, slow tempo piano melody evokes a sense of longing and peaceful reflection, accompanied by soft cello chords. The overall mood is melancholic and hopeful, like a quiet sunset walk on a distant shore.", "score": 88, "dataset": "ARIA"}, {"id": "t2m_RUUZzoeVrK4", "audio": "audio/t2m/t2m_RUUZzoeVrK4.mp3", "text": "This song is an instrumental. The tempo is slow with an amplified organ playing an intense, sinister chord, followed by a cymbal ride and howling wind produced by wind machine and a chime.. The vibe of the music is spooky, dangerous, ghostly, suspenseful, sinister, grim and scary.", "score": 88, "dataset": "MusicCaps"}, {"id": "t2m_gqROBgF7_DU", "audio": "audio/t2m/t2m_gqROBgF7_DU.mp3", "text": "The low quality recording features an aggressive sound of synth feedback. In the second half of the loop, the sound is very noisy. It is loud and it sounds really harsh.", "score": 88, "dataset": "MusicCaps"}, {"id": "t2m_-SD43H5B5hE", "audio": "audio/t2m/t2m_-SD43H5B5hE.mp3", "text": "There is a low sound that reminds of a heartbeat rising in tempo before a splash-like metallic sound with reverb comes in and breaks the atmosphere in half. This audio may be used for a movie scene. This audio is in poor quality.", "score": 98, "dataset": "MusicCaps"}, {"id": "t2m_18mS4cLPOb8", "audio": "audio/t2m/t2m_18mS4cLPOb8.mp3", "text": "This piece is a parody of an ad theme. There are female vocals singing at a high-pitch in the major scale, resulting in an epic atmosphere resembling an anthem. The resolution is interrupted by an implied bear attack, breaking the seriousness of the piece.", "score": 98, "dataset": "MusicCaps"}, {"id": "t2m_9DCJTAzUwNc", "audio": "audio/t2m/t2m_9DCJTAzUwNc.mp3", "text": "The low quality recording features a reverberant, intimate female vocal singing over soft, arpeggiated piano melody. It sounds haunting, hypnotic, heartfelt and muddy, as the frequencies are clashing and creating a mess in the mix. It sounds like a lullaby.", "score": 98, "dataset": "MusicCaps"}, {"id": "t2m_IQbzpgmi4Ec", "audio": "audio/t2m/t2m_IQbzpgmi4Ec.mp3", "text": "EDM music with a four on the floor kick pattern holding down the dance beat. The vocalist is female and there are female fans screaming in the background. Overall, the music is low fidelity, as there is a fast sweeping resonant filter affecting the full mix and muffling it.", "score": 98, "dataset": "MusicCaps"}, {"id": "t2m_RneRJ5ZnHlE", "audio": "audio/t2m/t2m_RneRJ5ZnHlE.mp3", "text": "This is a salsa song with an upbeat and vibrant energy. It contains typical salsa instruments like the conga, the trumpet, and the piano. The percussion is upbeat and involves bongos and congas, and the singer is lively.", "score": 98, "dataset": "MusicCaps"}, {"id": "t2m_SGcjdZ19R1k", "audio": "audio/t2m/t2m_SGcjdZ19R1k.mp3", "text": "This rock and roll song features a male voice singing the main melody. This is accompanied by percussion playing a fast tempo beat. Guitars play chords. The bass plays the root notes of the chords. The vocal melody follows a gospel style call and response theme. The main voice sings one line and the crowd responds by singing another line. The tempo of this song is fast. This is a low quality audio and other instruments cannot be identified.", "score": 98, "dataset": "MusicCaps"}, {"id": "t2m_Vfcfj4OIJXE", "audio": "audio/t2m/t2m_Vfcfj4OIJXE.mp3", "text": "This is an instrumental hip-hop music piece. It is meant to be used as a rap beat. There is a fuzzy synth bass playing a groovy bass line with a mellow sounding keyboard playing alongside it. There is a loud electronic drum beat in the rhythmic background. This piece has a crisp and urban atmosphere. It could either be used as a rap beat or it could take place in the soundtrack of a crime movie/TV show with a modern city setting.", "score": 98, "dataset": "MusicCaps"}, {"id": "t2m_Vbcy6KBJsAA", "audio": "audio/t2m/t2m_Vbcy6KBJsAA.mp3", "text": "The low quality recording features hip hop beatboxing. The recording is noisy and in mono, as it was probably recorded with a phone.", "score": 98, "dataset": "MusicCaps"}, {"id": "t2m_ZgooDijn2as", "audio": "audio/t2m/t2m_ZgooDijn2as.mp3", "text": "A male vocalist sings this energetic song. The tempo is fast with accordion harmony, funky bass lines, vigorous drumming,rhythmic acoustic guitar and keyboard harmony. The audio is muffled making it difficult to hear the other elements in the song. This song is a live performance as there are sounds of clapping, cheering and people murmuring. This song is a vibrant,vivacious,bright, punchy, and energetic Pop.", "score": 98, "dataset": "MusicCaps"}, {"id": "t2m_qrY7PW5guxk", "audio": "audio/t2m/t2m_qrY7PW5guxk.mp3", "text": "This is a Haiti dance music piece. There is a male vocalist singing melodically in the Creole language. The brass, the keyboard and the bass guitar are the melodic elements of this piece. In the rhythmic background, the acoustic drums and percussive elements are playing a latin type beat. The atmosphere of the piece is chill and easygoing. This piece could be played at Caribbean bars and dance clubs. It could also be used as an accompaniment piece for dancing courses.", "score": 98, "dataset": "MusicCaps"}, {"id": "t2m_5772819cedc2cb3880f501b7_c2", "audio": "audio/t2m/t2m_5772819cedc2cb3880f501b7_c2.mp3", "text": "A minimalistic composition using synthesized pads and subtle percussion, creating an ethereal and otherworldly atmosphere. The tempo is slow and steady, representing the stillness and timelessness of the fossilized forms.", "score": 95, "dataset": "ARIA"}, {"id": "t2m_uWqz5Ekf57o_c1", "audio": "audio/t2m/t2m_uWqz5Ekf57o_c1.mp3", "text": "A minimalist drone track with a gradually shifting soundscape, using bowed cello and shimmering cymbal swells. The tempo is very slow and the mood is introspective, suggesting a feeling of quiet contemplation.", "score": 95, "dataset": "ARIA"}, {"id": "t2m_2GepmcbNlJY", "audio": "audio/t2m/t2m_2GepmcbNlJY.mp3", "text": "The recording is of poor quality. A male voice is singing soulfully along to a backing instrumental sounding like coming out of some speakers. There is a piano playing and you can hear electric drums. This song may be playing at home practicing singing.", "score": 95, "dataset": "MusicCaps"}, {"id": "t2m_Byk9p21g51g", "audio": "audio/t2m/t2m_Byk9p21g51g.mp3", "text": "The low quality recording features an urban latin remix that consists of passionate female vocal singing over groovy piano chords, wooden percussive elements, \"4 on the floor\" kick pattern, syncopated claps, shimmering shakers, smooth bass and exciting male vocals. It sounds energetic, fun and happy.", "score": 95, "dataset": "MusicCaps"}, {"id": "t2m_CBUAy9Zl6ZE", "audio": "audio/t2m/t2m_CBUAy9Zl6ZE.mp3", "text": "This is a melancholic Moroccan music piece. The male vocalist is singing in an agitated, crying-like manner. The only accompaniment being the violin creates a dense atmosphere loaded with emotion. This piece could be used in the soundtrack of a movie or a TV show involving a tragedy which is taking place in North Africa.", "score": 95, "dataset": "MusicCaps"}, {"id": "t2m_lR8am4rK7qQ", "audio": "audio/t2m/t2m_lR8am4rK7qQ.mp3", "text": "Male and female singers sing this vocal harmony. The song is medium tempo with a groovy bass-line, keyboard accompaniment, guitar rhythm and a steady drumming rhythm with clapping percussions. The song is exciting and  groovy. The song is a classic pop hit cover with an average quality sound.", "score": 95, "dataset": "MusicCaps"}, {"id": "t2m_wXmIm6Bq3Tc", "audio": "audio/t2m/t2m_wXmIm6Bq3Tc.mp3", "text": "The music features a mix between jazz and soul music. The instrumental is easygoing and fun. A male singer with a seductive and appealing voice sings a fun melody. A saxophone plays a melody in the background that adds texture to the instrumental. The music is a live recording of a performance.", "score": 95, "dataset": "MusicCaps"}, {"id": "t2m_1MwaXCfUvX8", "audio": "audio/t2m/t2m_1MwaXCfUvX8.mp3", "text": "An acoustic drum and a bass are repeating the same pattern along with two e-guitars playing along with the melody while a male voice sings slightly soulful and loud. In the background a crowd is sheering. The recording is of very poor audio quality. This song may be playing at a live concert.", "score": 94, "dataset": "MusicCaps"}, {"id": "t2m_57728703edc2cb3880060ff9_c1", "audio": "audio/t2m/t2m_57728703edc2cb3880060ff9_c1.mp3", "text": "A minimalist composition for piano and vibraphone. The piece begins with delicate, echoing piano chords, joined by increasingly resonant vibraphone strikes, suggesting a sequence of falling leaves that slowly transition from vibrant colors to somber shadows, all at a moderate tempo.", "score": 92, "dataset": "ARIA"}, {"id": "t2m_7y9RfZXJZsk", "audio": "audio/t2m/t2m_7y9RfZXJZsk.mp3", "text": "The low quality recording features a regional Mexican song that consists of a reverberant male vocal singing over widely spread groovy piano chord progression, brass section, shimmering shakers, groovy percussive elements and smooth bass. It sounds tropical, exotic and fun, like something you would hear at latin weddings.", "score": 92, "dataset": "MusicCaps"}, {"id": "t2m_B1va1NqaA4o", "audio": "audio/t2m/t2m_B1va1NqaA4o.mp3", "text": "This rap song features a male voice rapping in a foreign language. This is accompanied by programmed percussion playing a simple beat. The bass plays the root note of the chord in sets of 3 strokes. The same note is played through the song in sets of three. A repetitive plucked synth sound is played in loop. Quirky sounds are heard in the background. This song has a defiant mood. This song can be played in a gangster movie.", "score": 92, "dataset": "MusicCaps"}, {"id": "t2m_GwTXkfuc5v8", "audio": "audio/t2m/t2m_GwTXkfuc5v8.mp3", "text": "A male vocalist sings this HIp-hop. The tempo is medium with subdued keyboard accompaniment, slick drumming, boomy bass drops, synthesised arrangements and vocal backup. The song is youthful; enthusiastic, passionate, insistent, repetitive,  groovy,rhythmic chanting with a dance groove. This song is Contemporary Hip-Hop/Rap.", "score": 92, "dataset": "MusicCaps"}, {"id": "t2m_ZiHlhUvmgzQ", "audio": "audio/t2m/t2m_ZiHlhUvmgzQ.mp3", "text": "This is a bluegrass music piece. Two male vocals are singing melodically in the lead. The tune is played by a rich chordophone background composed of the fiddle, the mandolin and the acoustic guitar. The atmosphere of the piece is joyful and nostalgic. It has a steady tempo. The piece could be used in the soundtrack of a movie or a TV series taking place in rural USA, especially in the scenes where there is some sense of yearning. It could be playing in the background at an American diner or a bar.", "score": 92, "dataset": "MusicCaps"}, {"id": "t2m_bOOJRGRy0zc", "audio": "audio/t2m/t2m_bOOJRGRy0zc.mp3", "text": "These two rap songs contain acoustic drums/digital drums playing a simple beat and a beat with a 16th hihat. Strings and bells are playing the main melody. On top of that the male voice of each song is rapping over the instrumental. These songs may be played while riding in your car or while playing sports.", "score": 88, "dataset": "MusicCaps"}];
 const T2M_COMP = {"musiccaps": [{"id": "76ON0Ixrr9s", "text": "The low quality recording features an electric guitar melody playing. The melody fades out in the beginning and it starts playing again in the second part of the loop, where it has an echoing effect on. It gives off psychedelic vibes. The recording is noisy and in mono.", "methods": {"gt": {"name": "Ground Truth", "src": "audio/t2m_comp/musiccaps/76ON0Ixrr9s/gt.mp3"}, "ours": {"name": "Ours", "src": "audio/t2m_comp/musiccaps/76ON0Ixrr9s/ours.mp3"}, "musicgen_medium": {"name": "MusicGen-Medium", "src": "audio/t2m_comp/musiccaps/76ON0Ixrr9s/musicgen_medium.mp3"}, "musicgen_large": {"name": "MusicGen-Large", "src": "audio/t2m_comp/musiccaps/76ON0Ixrr9s/musicgen_large.mp3"}, "audioldm2_music": {"name": "AudioLDM2-Music", "src": "audio/t2m_comp/musiccaps/76ON0Ixrr9s/audioldm2_music.mp3"}, "audioldm2_large": {"name": "AudioLDM2-Large", "src": "audio/t2m_comp/musiccaps/76ON0Ixrr9s/audioldm2_large.mp3"}, "stable_audio": {"name": "Stable-Audio-Open", "src": "audio/t2m_comp/musiccaps/76ON0Ixrr9s/stable_audio.mp3"}}}, {"id": "Vfcfj4OIJXE", "text": "This is an instrumental hip-hop music piece. It is meant to be used as a rap beat. There is a fuzzy synth bass playing a groovy bass line with a mellow sounding keyboard playing alongside it. There is a loud electronic drum beat in the rhythmic background. This piece has a crisp and urban atmosphere. It could either be used as a rap beat or it could take place in the soundtrack of a crime movie/TV show with a modern city setting.", "methods": {"gt": {"name": "Ground Truth", "src": "audio/t2m_comp/musiccaps/Vfcfj4OIJXE/gt.mp3"}, "ours": {"name": "Ours", "src": "audio/t2m_comp/musiccaps/Vfcfj4OIJXE/ours.mp3"}, "musicgen_medium": {"name": "MusicGen-Medium", "src": "audio/t2m_comp/musiccaps/Vfcfj4OIJXE/musicgen_medium.mp3"}, "musicgen_large": {"name": "MusicGen-Large", "src": "audio/t2m_comp/musiccaps/Vfcfj4OIJXE/musicgen_large.mp3"}, "audioldm2_music": {"name": "AudioLDM2-Music", "src": "audio/t2m_comp/musiccaps/Vfcfj4OIJXE/audioldm2_music.mp3"}, "audioldm2_large": {"name": "AudioLDM2-Large", "src": "audio/t2m_comp/musiccaps/Vfcfj4OIJXE/audioldm2_large.mp3"}, "stable_audio": {"name": "Stable-Audio-Open", "src": "audio/t2m_comp/musiccaps/Vfcfj4OIJXE/stable_audio.mp3"}}}, {"id": "Ts04bBeY1d4", "text": "This is an Irish folk music piece. The melody is being played by an acoustic guitar and a mandolin. The atmosphere of the piece is cozy and easygoing. It has a steady tempo. This piece could be used in the soundtrack of a documentary. It could also be playing in the background at an Irish pub or an Irish cuisine restaurant.", "methods": {"gt": {"name": "Ground Truth", "src": "audio/t2m_comp/musiccaps/Ts04bBeY1d4/gt.mp3"}, "ours": {"name": "Ours", "src": "audio/t2m_comp/musiccaps/Ts04bBeY1d4/ours.mp3"}, "musicgen_medium": {"name": "MusicGen-Medium", "src": "audio/t2m_comp/musiccaps/Ts04bBeY1d4/musicgen_medium.mp3"}, "musicgen_large": {"name": "MusicGen-Large", "src": "audio/t2m_comp/musiccaps/Ts04bBeY1d4/musicgen_large.mp3"}, "audioldm2_music": {"name": "AudioLDM2-Music", "src": "audio/t2m_comp/musiccaps/Ts04bBeY1d4/audioldm2_music.mp3"}, "audioldm2_large": {"name": "AudioLDM2-Large", "src": "audio/t2m_comp/musiccaps/Ts04bBeY1d4/audioldm2_large.mp3"}, "stable_audio": {"name": "Stable-Audio-Open", "src": "audio/t2m_comp/musiccaps/Ts04bBeY1d4/stable_audio.mp3"}}}, {"id": "Vbcy6KBJsAA", "text": "The low quality recording features hip hop beatboxing. The recording is noisy and in mono, as it was probably recorded with a phone.", "methods": {"gt": {"name": "Ground Truth", "src": "audio/t2m_comp/musiccaps/Vbcy6KBJsAA/gt.mp3"}, "ours": {"name": "Ours", "src": "audio/t2m_comp/musiccaps/Vbcy6KBJsAA/ours.mp3"}, "musicgen_medium": {"name": "MusicGen-Medium", "src": "audio/t2m_comp/musiccaps/Vbcy6KBJsAA/musicgen_medium.mp3"}, "musicgen_large": {"name": "MusicGen-Large", "src": "audio/t2m_comp/musiccaps/Vbcy6KBJsAA/musicgen_large.mp3"}, "audioldm2_music": {"name": "AudioLDM2-Music", "src": "audio/t2m_comp/musiccaps/Vbcy6KBJsAA/audioldm2_music.mp3"}, "audioldm2_large": {"name": "AudioLDM2-Large", "src": "audio/t2m_comp/musiccaps/Vbcy6KBJsAA/audioldm2_large.mp3"}, "stable_audio": {"name": "Stable-Audio-Open", "src": "audio/t2m_comp/musiccaps/Vbcy6KBJsAA/stable_audio.mp3"}}}, {"id": "navn7jCBp_o", "text": "The low quality recording features a hip hop instrumental that consists of punchy kick, claps, repetitive synth chords, addictive plucked strings melody and tinny wooden percussive elements. It sounds groovy and very addictive, due to that string melody.", "methods": {"gt": {"name": "Ground Truth", "src": "audio/t2m_comp/musiccaps/navn7jCBp_o/gt.mp3"}, "ours": {"name": "Ours", "src": "audio/t2m_comp/musiccaps/navn7jCBp_o/ours.mp3"}, "musicgen_medium": {"name": "MusicGen-Medium", "src": "audio/t2m_comp/musiccaps/navn7jCBp_o/musicgen_medium.mp3"}, "musicgen_large": {"name": "MusicGen-Large", "src": "audio/t2m_comp/musiccaps/navn7jCBp_o/musicgen_large.mp3"}, "audioldm2_music": {"name": "AudioLDM2-Music", "src": "audio/t2m_comp/musiccaps/navn7jCBp_o/audioldm2_music.mp3"}, "audioldm2_large": {"name": "AudioLDM2-Large", "src": "audio/t2m_comp/musiccaps/navn7jCBp_o/audioldm2_large.mp3"}, "stable_audio": {"name": "Stable-Audio-Open", "src": "audio/t2m_comp/musiccaps/navn7jCBp_o/stable_audio.mp3"}}}, {"id": "qlWEAm4AUTU", "text": "Audio of a percussion instrument playing by itself. Sounds like a tambourine, riq, or pandeiro, playing a steady beat, alternating between a cymbal sound and a bongo drum sound.", "methods": {"gt": {"name": "Ground Truth", "src": "audio/t2m_comp/musiccaps/qlWEAm4AUTU/gt.mp3"}, "ours": {"name": "Ours", "src": "audio/t2m_comp/musiccaps/qlWEAm4AUTU/ours.mp3"}, "musicgen_medium": {"name": "MusicGen-Medium", "src": "audio/t2m_comp/musiccaps/qlWEAm4AUTU/musicgen_medium.mp3"}, "musicgen_large": {"name": "MusicGen-Large", "src": "audio/t2m_comp/musiccaps/qlWEAm4AUTU/musicgen_large.mp3"}, "audioldm2_music": {"name": "AudioLDM2-Music", "src": "audio/t2m_comp/musiccaps/qlWEAm4AUTU/audioldm2_music.mp3"}, "audioldm2_large": {"name": "AudioLDM2-Large", "src": "audio/t2m_comp/musiccaps/qlWEAm4AUTU/audioldm2_large.mp3"}, "stable_audio": {"name": "Stable-Audio-Open", "src": "audio/t2m_comp/musiccaps/qlWEAm4AUTU/stable_audio.mp3"}}}, {"id": "ZgooDijn2as", "text": "A male vocalist sings this energetic song. The tempo is fast with accordion harmony, funky bass lines, vigorous drumming,rhythmic acoustic guitar and keyboard harmony. The audio is muffled making it difficult to hear the other elements in the song. This song is a live performance as there are sounds of clapping, cheering and people murmuring. This song is a vibrant,vivacious,bright, punchy, and energetic Pop.", "methods": {"gt": {"name": "Ground Truth", "src": "audio/t2m_comp/musiccaps/ZgooDijn2as/gt.mp3"}, "ours": {"name": "Ours", "src": "audio/t2m_comp/musiccaps/ZgooDijn2as/ours.mp3"}, "musicgen_medium": {"name": "MusicGen-Medium", "src": "audio/t2m_comp/musiccaps/ZgooDijn2as/musicgen_medium.mp3"}, "musicgen_large": {"name": "MusicGen-Large", "src": "audio/t2m_comp/musiccaps/ZgooDijn2as/musicgen_large.mp3"}, "audioldm2_music": {"name": "AudioLDM2-Music", "src": "audio/t2m_comp/musiccaps/ZgooDijn2as/audioldm2_music.mp3"}, "audioldm2_large": {"name": "AudioLDM2-Large", "src": "audio/t2m_comp/musiccaps/ZgooDijn2as/audioldm2_large.mp3"}, "stable_audio": {"name": "Stable-Audio-Open", "src": "audio/t2m_comp/musiccaps/ZgooDijn2as/stable_audio.mp3"}}}, {"id": "lR8am4rK7qQ", "text": "Male and female singers sing this vocal harmony. The song is medium tempo with a groovy bass-line, keyboard accompaniment, guitar rhythm and a steady drumming rhythm with clapping percussions. The song is exciting and  groovy. The song is a classic pop hit cover with an average quality sound.", "methods": {"gt": {"name": "Ground Truth", "src": "audio/t2m_comp/musiccaps/lR8am4rK7qQ/gt.mp3"}, "ours": {"name": "Ours", "src": "audio/t2m_comp/musiccaps/lR8am4rK7qQ/ours.mp3"}, "musicgen_medium": {"name": "MusicGen-Medium", "src": "audio/t2m_comp/musiccaps/lR8am4rK7qQ/musicgen_medium.mp3"}, "musicgen_large": {"name": "MusicGen-Large", "src": "audio/t2m_comp/musiccaps/lR8am4rK7qQ/musicgen_large.mp3"}, "audioldm2_music": {"name": "AudioLDM2-Music", "src": "audio/t2m_comp/musiccaps/lR8am4rK7qQ/audioldm2_music.mp3"}, "audioldm2_large": {"name": "AudioLDM2-Large", "src": "audio/t2m_comp/musiccaps/lR8am4rK7qQ/audioldm2_large.mp3"}, "stable_audio": {"name": "Stable-Audio-Open", "src": "audio/t2m_comp/musiccaps/lR8am4rK7qQ/stable_audio.mp3"}}}, {"id": "sEGxoHiAPiQ", "text": "The low quality recording features a clean electric guitar chord progression that has some effects on it. It sounds slightly detuned and it has a slight wobble effect.", "methods": {"gt": {"name": "Ground Truth", "src": "audio/t2m_comp/musiccaps/sEGxoHiAPiQ/gt.mp3"}, "ours": {"name": "Ours", "src": "audio/t2m_comp/musiccaps/sEGxoHiAPiQ/ours.mp3"}, "musicgen_medium": {"name": "MusicGen-Medium", "src": "audio/t2m_comp/musiccaps/sEGxoHiAPiQ/musicgen_medium.mp3"}, "musicgen_large": {"name": "MusicGen-Large", "src": "audio/t2m_comp/musiccaps/sEGxoHiAPiQ/musicgen_large.mp3"}, "audioldm2_music": {"name": "AudioLDM2-Music", "src": "audio/t2m_comp/musiccaps/sEGxoHiAPiQ/audioldm2_music.mp3"}, "audioldm2_large": {"name": "AudioLDM2-Large", "src": "audio/t2m_comp/musiccaps/sEGxoHiAPiQ/audioldm2_large.mp3"}, "stable_audio": {"name": "Stable-Audio-Open", "src": "audio/t2m_comp/musiccaps/sEGxoHiAPiQ/stable_audio.mp3"}}}, {"id": "wXmIm6Bq3Tc", "text": "The music features a mix between jazz and soul music. The instrumental is easygoing and fun. A male singer with a seductive and appealing voice sings a fun melody. A saxophone plays a melody in the background that adds texture to the instrumental. The music is a live recording of a performance.", "methods": {"gt": {"name": "Ground Truth", "src": "audio/t2m_comp/musiccaps/wXmIm6Bq3Tc/gt.mp3"}, "ours": {"name": "Ours", "src": "audio/t2m_comp/musiccaps/wXmIm6Bq3Tc/ours.mp3"}, "musicgen_medium": {"name": "MusicGen-Medium", "src": "audio/t2m_comp/musiccaps/wXmIm6Bq3Tc/musicgen_medium.mp3"}, "musicgen_large": {"name": "MusicGen-Large", "src": "audio/t2m_comp/musiccaps/wXmIm6Bq3Tc/musicgen_large.mp3"}, "audioldm2_music": {"name": "AudioLDM2-Music", "src": "audio/t2m_comp/musiccaps/wXmIm6Bq3Tc/audioldm2_music.mp3"}, "audioldm2_large": {"name": "AudioLDM2-Large", "src": "audio/t2m_comp/musiccaps/wXmIm6Bq3Tc/audioldm2_large.mp3"}, "stable_audio": {"name": "Stable-Audio-Open", "src": "audio/t2m_comp/musiccaps/wXmIm6Bq3Tc/stable_audio.mp3"}}}, {"id": "7V0G65FK2VQ", "text": "The song is an instrumental guitar solo. The song tempo is medium with a racy electric guitar solo with a show of technique of note bending, tremolo and playing rhythmically. The song is home video and an average quality recording.", "methods": {"gt": {"name": "Ground Truth", "src": "audio/t2m_comp/musiccaps/7V0G65FK2VQ/gt.mp3"}, "ours": {"name": "Ours", "src": "audio/t2m_comp/musiccaps/7V0G65FK2VQ/ours.mp3"}, "musicgen_medium": {"name": "MusicGen-Medium", "src": "audio/t2m_comp/musiccaps/7V0G65FK2VQ/musicgen_medium.mp3"}, "musicgen_large": {"name": "MusicGen-Large", "src": "audio/t2m_comp/musiccaps/7V0G65FK2VQ/musicgen_large.mp3"}, "audioldm2_music": {"name": "AudioLDM2-Music", "src": "audio/t2m_comp/musiccaps/7V0G65FK2VQ/audioldm2_music.mp3"}, "audioldm2_large": {"name": "AudioLDM2-Large", "src": "audio/t2m_comp/musiccaps/7V0G65FK2VQ/audioldm2_large.mp3"}, "stable_audio": {"name": "Stable-Audio-Open", "src": "audio/t2m_comp/musiccaps/7V0G65FK2VQ/stable_audio.mp3"}}}, {"id": "ZiHlhUvmgzQ", "text": "This is a bluegrass music piece. Two male vocals are singing melodically in the lead. The tune is played by a rich chordophone background composed of the fiddle, the mandolin and the acoustic guitar. The atmosphere of the piece is joyful and nostalgic. It has a steady tempo. The piece could be used in the soundtrack of a movie or a TV series taking place in rural USA, especially in the scenes where there is some sense of yearning. It could be playing in the background at an American diner or a bar.", "methods": {"gt": {"name": "Ground Truth", "src": "audio/t2m_comp/musiccaps/ZiHlhUvmgzQ/gt.mp3"}, "ours": {"name": "Ours", "src": "audio/t2m_comp/musiccaps/ZiHlhUvmgzQ/ours.mp3"}, "musicgen_medium": {"name": "MusicGen-Medium", "src": "audio/t2m_comp/musiccaps/ZiHlhUvmgzQ/musicgen_medium.mp3"}, "musicgen_large": {"name": "MusicGen-Large", "src": "audio/t2m_comp/musiccaps/ZiHlhUvmgzQ/musicgen_large.mp3"}, "audioldm2_music": {"name": "AudioLDM2-Music", "src": "audio/t2m_comp/musiccaps/ZiHlhUvmgzQ/audioldm2_music.mp3"}, "audioldm2_large": {"name": "AudioLDM2-Large", "src": "audio/t2m_comp/musiccaps/ZiHlhUvmgzQ/audioldm2_large.mp3"}, "stable_audio": {"name": "Stable-Audio-Open", "src": "audio/t2m_comp/musiccaps/ZiHlhUvmgzQ/stable_audio.mp3"}}}, {"id": "RUUZzoeVrK4", "text": "This song is an instrumental. The tempo is slow with an amplified organ playing an intense, sinister chord, followed by a cymbal ride and howling wind produced by wind machine and a chime.. The vibe of the music is spooky, dangerous, ghostly, suspenseful, sinister, grim and scary.", "methods": {"gt": {"name": "Ground Truth", "src": "audio/t2m_comp/musiccaps/RUUZzoeVrK4/gt.mp3"}, "ours": {"name": "Ours", "src": "audio/t2m_comp/musiccaps/RUUZzoeVrK4/ours.mp3"}, "musicgen_medium": {"name": "MusicGen-Medium", "src": "audio/t2m_comp/musiccaps/RUUZzoeVrK4/musicgen_medium.mp3"}, "musicgen_large": {"name": "MusicGen-Large", "src": "audio/t2m_comp/musiccaps/RUUZzoeVrK4/musicgen_large.mp3"}, "audioldm2_music": {"name": "AudioLDM2-Music", "src": "audio/t2m_comp/musiccaps/RUUZzoeVrK4/audioldm2_music.mp3"}, "audioldm2_large": {"name": "AudioLDM2-Large", "src": "audio/t2m_comp/musiccaps/RUUZzoeVrK4/audioldm2_large.mp3"}, "stable_audio": {"name": "Stable-Audio-Open", "src": "audio/t2m_comp/musiccaps/RUUZzoeVrK4/stable_audio.mp3"}}}, {"id": "bOOJRGRy0zc", "text": "These two rap songs contain acoustic drums/digital drums playing a simple beat and a beat with a 16th hihat. Strings and bells are playing the main melody. On top of that the male voice of each song is rapping over the instrumental. These songs may be played while riding in your car or while playing sports.", "methods": {"gt": {"name": "Ground Truth", "src": "audio/t2m_comp/musiccaps/bOOJRGRy0zc/gt.mp3"}, "ours": {"name": "Ours", "src": "audio/t2m_comp/musiccaps/bOOJRGRy0zc/ours.mp3"}, "musicgen_medium": {"name": "MusicGen-Medium", "src": "audio/t2m_comp/musiccaps/bOOJRGRy0zc/musicgen_medium.mp3"}, "musicgen_large": {"name": "MusicGen-Large", "src": "audio/t2m_comp/musiccaps/bOOJRGRy0zc/musicgen_large.mp3"}, "audioldm2_music": {"name": "AudioLDM2-Music", "src": "audio/t2m_comp/musiccaps/bOOJRGRy0zc/audioldm2_music.mp3"}, "audioldm2_large": {"name": "AudioLDM2-Large", "src": "audio/t2m_comp/musiccaps/bOOJRGRy0zc/audioldm2_large.mp3"}, "stable_audio": {"name": "Stable-Audio-Open", "src": "audio/t2m_comp/musiccaps/bOOJRGRy0zc/stable_audio.mp3"}}}, {"id": "gqROBgF7_DU", "text": "The low quality recording features an aggressive sound of synth feedback. In the second half of the loop, the sound is very noisy. It is loud and it sounds really harsh.", "methods": {"gt": {"name": "Ground Truth", "src": "audio/t2m_comp/musiccaps/gqROBgF7_DU/gt.mp3"}, "ours": {"name": "Ours", "src": "audio/t2m_comp/musiccaps/gqROBgF7_DU/ours.mp3"}, "musicgen_medium": {"name": "MusicGen-Medium", "src": "audio/t2m_comp/musiccaps/gqROBgF7_DU/musicgen_medium.mp3"}, "musicgen_large": {"name": "MusicGen-Large", "src": "audio/t2m_comp/musiccaps/gqROBgF7_DU/musicgen_large.mp3"}, "audioldm2_music": {"name": "AudioLDM2-Music", "src": "audio/t2m_comp/musiccaps/gqROBgF7_DU/audioldm2_music.mp3"}, "audioldm2_large": {"name": "AudioLDM2-Large", "src": "audio/t2m_comp/musiccaps/gqROBgF7_DU/audioldm2_large.mp3"}, "stable_audio": {"name": "Stable-Audio-Open", "src": "audio/t2m_comp/musiccaps/gqROBgF7_DU/stable_audio.mp3"}}}]};
 const T2M_METHODS_ORDER = ["gt", "ours", "musicgen_medium", "musicgen_large", "audioldm2_music", "audioldm2_large", "stable_audio"];
 const T2M_METHODS_NAMES = {"gt": "Ground Truth", "ours": "Ours", "musicgen_medium": "MusicGen-Medium", "musicgen_large": "MusicGen-Large", "audioldm2_music": "AudioLDM2-Music", "audioldm2_large": "AudioLDM2-Large", "stable_audio": "Stable-Audio-Open"};
 const DATASET_METHODS = {"melbench": ["gt", "ours", "art2mus", "gvmgen", "audiox", "mumu_llama", "cascade", "cascade_audioldm2"], "muimage": ["gt", "ours", "art2mus", "gvmgen", "audiox", "mumu_llama", "cascade", "cascade_audioldm2"], "emomv": ["gt", "ours", "art2mus", "gvmgen", "audiox", "mumu_llama", "cascade", "cascade_audioldm2"], "sft": ["gt", "ours", "art2mus", "gvmgen", "audiox", "mumu_llama", "cascade", "cascade_audioldm2"], "audioset_music": ["gt", "ours", "art2mus", "gvmgen", "audiox", "mumu_llama"], "muvideo": ["gt", "ours", "art2mus", "gvmgen", "audiox", "mumu_llama"]};
+const DATASET_NAMES = {"melbench": "MelBench", "muimage": "MuImage", "emomv": "EmoMV", "sft": "ARIA", "audioset_music": "AudioSet-Music", "muvideo": "MuVideo"};
 
 // State
 let currentIdx = 0;
@@ -1746,7 +2105,7 @@ function stopAllAudio(except) {
 
 // --- Sticky nav scroll highlight ---
 const navLinks = document.querySelectorAll('.nav-link');
-const sections = ['overview', 'i2m-gallery', 'one-to-many', 't2m-gallery', 'comparison', 't2m-comparison', 'ablations'];
+const sections = ['overview', 'results', 'retrieval', 'i2m-gallery', 'one-to-many', 't2m-gallery', 'comparison', 't2m-comparison', 'ablations', 'citation'];
 function updateNav() {
   let current = sections[0];
   for (const id of sections) {
@@ -1754,7 +2113,10 @@ function updateNav() {
     if (el && el.getBoundingClientRect().top <= 80) current = id;
   }
   navLinks.forEach(link => {
-    link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+    const isCurrent = link.getAttribute('href') === '#' + current;
+    link.classList.toggle('active', isCurrent);
+    if (isCurrent) link.setAttribute('aria-current', 'true');
+    else link.removeAttribute('aria-current');
   });
 }
 window.addEventListener('scroll', updateNav, { passive: true });
@@ -1800,7 +2162,7 @@ function renderSample() {
   imgDiv.className = 'sample-image';
   const img = document.createElement('img');
   img.src = sample.image;
-  img.alt = 'Input image';
+  img.alt = 'Input image from ' + (DATASET_NAMES[sample.dataset] || sample.dataset) + ' for MERIC vision-to-music comparison';
   imgDiv.appendChild(img);
 
   const info = document.createElement('div');
@@ -1812,6 +2174,7 @@ function renderSample() {
   info.appendChild(title);
 
   const playAllBtn = document.createElement('button');
+  playAllBtn.type = 'button';
   playAllBtn.className = 'play-all-btn';
   playAllBtn.innerHTML = '&#9654; Play All Methods';
   playAllBtn.addEventListener('click', () => togglePlayAll(sample));
@@ -1846,6 +2209,7 @@ function renderSample() {
     audio.controls = true;
     audio.preload = 'none';
     audio.src = methodInfo.src;
+    audio.setAttribute('aria-label', 'Play ' + methodInfo.name + ' audio for MERIC vision-to-music comparison');
     audio.addEventListener('play', function() {
       stopCurrent(audio);
       currentAudio = audio;
@@ -1859,6 +2223,7 @@ function renderSample() {
     row.appendChild(audio);
 
     const btn = document.createElement('button');
+    btn.type = 'button';
     btn.className = 'play-btn';
     btn.innerHTML = '&#9654;';
     btn.title = 'Play ' + methodInfo.name;
@@ -1998,7 +2363,7 @@ function renderO2MSample() {
   imgDiv.className = 'sample-image';
   const img = document.createElement('img');
   img.src = item.image;
-  img.alt = 'Input image';
+  img.alt = 'Input image for MERIC one-to-many generation sample ' + item.id;
   imgDiv.appendChild(img);
 
   const info = document.createElement('div');
@@ -2009,6 +2374,7 @@ function renderO2MSample() {
   info.appendChild(title);
 
   const playAllBtn = document.createElement('button');
+  playAllBtn.type = 'button';
   playAllBtn.className = 'play-all-btn';
   playAllBtn.innerHTML = '&#9654; Play All Variations';
   playAllBtn.id = 'o2m-play-all-btn';
@@ -2037,6 +2403,7 @@ function renderO2MSample() {
     audio.controls = true;
     audio.preload = 'none';
     audio.src = src;
+    audio.setAttribute('aria-label', 'Play variation ' + (i + 1) + ' for MERIC one-to-many sample');
     audio.addEventListener('play', function() {
       stopAllAudio(audio);
       updateO2MPlaying();
@@ -2046,6 +2413,7 @@ function renderO2MSample() {
     row.appendChild(audio);
 
     const btn = document.createElement('button');
+    btn.type = 'button';
     btn.className = 'play-btn';
     btn.innerHTML = '&#9654;';
     btn.title = 'Play Variation ' + (i + 1);
@@ -2083,7 +2451,7 @@ function updateO2MPlaying() {
 
 function toggleO2MPlayAll() {
   const btn = document.getElementById('o2m-play-all-btn');
-  const playing = document.querySelector('#o2m-viewer audio:not([paused])');
+  const playing = Array.from(document.querySelectorAll('#o2m-viewer audio')).some(a => !a.paused);
   if (o2mPlayAllTimer !== null || playing) {
     cancelO2MPlayAll();
     stopAllAudio(null);
@@ -2163,6 +2531,7 @@ function renderT2MCSample() {
   info.className = 'sample-info';
 
   const playAllBtn = document.createElement('button');
+  playAllBtn.type = 'button';
   playAllBtn.className = 'play-all-btn';
   playAllBtn.innerHTML = '&#9654; Play All Methods';
   playAllBtn.addEventListener('click', () => toggleT2MCPlayAll(sample));
@@ -2196,6 +2565,7 @@ function renderT2MCSample() {
     audio.controls = true;
     audio.preload = 'none';
     audio.src = methodInfo.src;
+    audio.setAttribute('aria-label', 'Play ' + methodInfo.name + ' audio for text-to-music comparison');
     audio.addEventListener('play', function() {
       stopAllAudio(audio);
       currentAudio = audio;
@@ -2211,6 +2581,7 @@ function renderT2MCSample() {
     row.appendChild(audio);
 
     const btn = document.createElement('button');
+    btn.type = 'button';
     btn.className = 'play-btn';
     btn.innerHTML = '&#9654;';
     btn.title = 'Play ' + methodInfo.name;
@@ -2317,8 +2688,10 @@ function renderGalleryPager() {
 
   pager.innerHTML = '';
   const prev = document.createElement('button');
+  prev.type = 'button';
   prev.className = 'pager-btn';
   prev.innerHTML = '&larr;';
+  prev.setAttribute('aria-label', 'Previous image-to-music gallery page');
   prev.disabled = galleryPage === 0;
   prev.addEventListener('click', () => { galleryPage--; renderGalleryPage(); });
   pager.appendChild(prev);
@@ -2329,8 +2702,10 @@ function renderGalleryPager() {
   pager.appendChild(info);
 
   const next = document.createElement('button');
+  next.type = 'button';
   next.className = 'pager-btn';
   next.innerHTML = '&rarr;';
+  next.setAttribute('aria-label', 'Next image-to-music gallery page');
   next.disabled = galleryPage >= totalPages - 1;
   next.addEventListener('click', () => { galleryPage++; renderGalleryPage(); });
   pager.appendChild(next);
@@ -2350,7 +2725,7 @@ function renderGalleryPage() {
     const img = document.createElement('img');
     img.className = 'gallery-card-img';
     img.src = item.image;
-    img.alt = 'Input image';
+    img.alt = 'Input image for MERIC image-to-music gallery sample ' + item.id;
     img.loading = 'lazy';
     img.addEventListener('click', () => {
       const audio = card.querySelector('audio');
@@ -2376,6 +2751,7 @@ function renderGalleryPage() {
     audio.controls = true;
     audio.preload = 'none';
     audio.src = item.audio;
+    audio.setAttribute('aria-label', 'Play MERIC generated music for gallery sample ' + item.id);
     audio.addEventListener('play', function() {
       stopGalleryAudio(this);
       galleryAudio = this;
@@ -2413,8 +2789,10 @@ function renderGallery() {
   filtersDiv.innerHTML = '';
   filterDefs.forEach(([key, label]) => {
     const btn = document.createElement('button');
+    btn.type = 'button';
     btn.className = 'gallery-filter' + (galleryFilter === key ? ' active' : '');
     btn.textContent = label;
+    btn.setAttribute('aria-pressed', galleryFilter === key ? 'true' : 'false');
     btn.addEventListener('click', () => { galleryFilter = key; galleryPage = 0; renderGallery(); });
     filtersDiv.appendChild(btn);
   });
@@ -2451,8 +2829,10 @@ function renderT2MPager() {
 
   pager.innerHTML = '';
   const prev = document.createElement('button');
+  prev.type = 'button';
   prev.className = 'pager-btn';
   prev.innerHTML = '&larr;';
+  prev.setAttribute('aria-label', 'Previous text-to-music gallery page');
   prev.disabled = t2mPage === 0;
   prev.addEventListener('click', () => { t2mPage--; renderT2MPage(); });
   pager.appendChild(prev);
@@ -2463,8 +2843,10 @@ function renderT2MPager() {
   pager.appendChild(info);
 
   const next = document.createElement('button');
+  next.type = 'button';
   next.className = 'pager-btn';
   next.innerHTML = '&rarr;';
+  next.setAttribute('aria-label', 'Next text-to-music gallery page');
   next.disabled = t2mPage >= totalPages - 1;
   next.addEventListener('click', () => { t2mPage++; renderT2MPage(); });
   pager.appendChild(next);
@@ -2496,6 +2878,7 @@ function renderT2MPage() {
     audio.controls = true;
     audio.preload = 'none';
     audio.src = item.audio;
+    audio.setAttribute('aria-label', 'Play MERIC generated music for text prompt: ' + item.text);
     audio.addEventListener('play', function() {
       stopT2MAudio(this);
       t2mAudio = this;
