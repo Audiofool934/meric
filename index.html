@@ -44,6 +44,14 @@ html { scroll-padding-top: 56px; scroll-behavior: smooth; }
   margin-bottom: 28px;
 }
 
+.header-meta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
 .eyebrow {
   font-family: -apple-system, 'Segoe UI', sans-serif;
   display: inline-block;
@@ -54,7 +62,36 @@ html { scroll-padding-top: 56px; scroll-behavior: smooth; }
   border: 1px solid #86efac;
   border-radius: 999px;
   padding: 4px 10px;
-  margin-bottom: 12px;
+}
+
+.brand-icon-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.brand-icon-links a {
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: transparent;
+  transition: background 0.15s, border-color 0.15s, transform 0.15s;
+}
+
+.brand-icon-links a:hover {
+  background: var(--card);
+  border-color: var(--border);
+  transform: translateY(-1px);
+}
+
+.brand-icon-links img {
+  width: 17px;
+  height: 17px;
+  display: block;
 }
 
 h1 {
@@ -1096,7 +1133,17 @@ footer p {
 
 
 <header class="site-header">
-  <p class="eyebrow">Accepted to ECCV 2026</p>
+  <div class="header-meta">
+    <p class="eyebrow">Accepted to ECCV 2026</p>
+    <div class="brand-icon-links" aria-label="External project links">
+      <a href="https://github.com/Audiofool934/meric" aria-label="Open MERIC on GitHub" title="GitHub">
+        <img src="https://cdn.simpleicons.org/github" alt="GitHub">
+      </a>
+      <a href="https://huggingface.co/Audiofool/meric" aria-label="Open MERIC model weights on Hugging Face" title="Hugging Face">
+        <img src="https://cdn.simpleicons.org/huggingface" alt="Hugging Face">
+      </a>
+    </div>
+  </div>
   <h1>MERIC: Unified Multimodal Music Generation and Retrieval via a Music Semantic Anchor</h1>
   <p class="subtitle">
     MERIC maps images, text, and video into a MuQ music semantic anchor, then uses that same anchor
