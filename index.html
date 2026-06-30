@@ -1142,7 +1142,7 @@ footer p {
 <header class="site-header">
   <h1>MERIC: Unified Multimodal Music Generation and Retrieval via a Music Semantic Anchor</h1>
   <p class="subtitle">
-    MERIC maps images, text, and video into a MuQ music semantic anchor, then uses that same anchor
+    MERIC maps images, text, and video into a music semantic anchor (the MuQ embedding space), then uses that same anchor
     for both music generation and music retrieval.
   </p>
   <div class="header-meta">
@@ -1159,7 +1159,7 @@ footer p {
   <div class="hero-claims" aria-label="Paper contributions">
     <div class="hero-claim">
       <span class="claim-label">Anchor</span>
-      <strong>MuQ as the shared music semantic space</strong>
+      <strong>MuQ embedding space as the shared music semantic space</strong>
     </div>
     <div class="hero-claim">
       <span class="claim-label">Training</span>
@@ -1199,12 +1199,12 @@ footer p {
   </p>
   <p>
     MERIC proposes a unified framework for multimodal music generation and retrieval.
-    Its core idea is a <strong>music semantic anchor</strong>&mdash;the MuQ embedding space&mdash;that decouples
+    Its core idea is a <strong>music semantic anchor</strong> (the MuQ semantic embedding space), which decouples
     multimodal understanding from acoustic synthesis. The paper uses a two-stage training pipeline:
   </p>
   <ol class="pipeline-steps">
-    <li><strong>Stage 1:</strong> Qwen3-VL embeddings are mapped into MuQ space by the diffusion-based Music Head.</li>
-    <li><strong>Stage 2:</strong> a Flow-DiT decoder synthesizes audio from MuQ anchors using large unpaired music corpora.</li>
+    <li><strong>Stage 1:</strong> Qwen3-VL embeddings are mapped into the MuQ semantic embedding space by the diffusion-based Music Head.</li>
+    <li><strong>Stage 2:</strong> a Flow-DiT decoder synthesizes audio from anchors in that space using large unpaired music corpora.</li>
   </ol>
   <p>
     At inference time, the predicted anchor embedding is both a condition for acoustic synthesis and a query
@@ -1238,7 +1238,7 @@ footer p {
     <div class="result-highlight">
       <span>Retrieval</span>
       <strong>One anchor, two tasks</strong>
-      <p>The predicted MuQ embedding is both a synthesis condition and a retrieval query.</p>
+      <p>The predicted MuQ semantic embedding is both a synthesis condition and a retrieval query.</p>
     </div>
   </div>
   
@@ -1278,7 +1278,7 @@ footer p {
 <section class="retrieval" id="retrieval">
   <h2>Unified Retrieval</h2>
   <p class="section-desc">
-    MERIC does not add a separate retrieval model. The Music Head predicts a MuQ-space anchor from
+    MERIC does not add a separate retrieval model. The Music Head predicts an anchor in the MuQ embedding space from
     a visual or text query; generation conditions the Flow-DiT decoder on that anchor, while retrieval
     ranks pre-indexed music embeddings by cosine similarity to the same anchor.
   </p>
@@ -1287,7 +1287,7 @@ footer p {
     <div class="flow-arrow" aria-hidden="true">→</div>
     <div class="flow-step">Qwen3-VL Embedding</div>
     <div class="flow-arrow" aria-hidden="true">→</div>
-    <div class="flow-step flow-anchor">MuQ Anchor</div>
+    <div class="flow-step flow-anchor">MuQ Embedding Space</div>
     <div class="flow-arrow" aria-hidden="true">→</div>
     <div class="flow-step">Generate or Retrieve</div>
   </div>
@@ -1304,7 +1304,7 @@ footer p {
     <article class="retrieval-panel">
       <h3>Text-to-Music Retrieval</h3>
       <p>
-        Text follows the same route: text → Qwen3-VL → Music Head → MuQ anchor. The paper result is
+        Text follows the same route: text → Qwen3-VL → Music Head → MuQ semantic anchor. The paper result is
         notable because MERIC does this without direct text-audio training, unlike CLAP.
       </p>
       <p class="metric-line">ARIA T→M R@10: <strong>5.47</strong> vs CLAP <strong>2.30</strong>.</p>
@@ -1351,7 +1351,7 @@ footer p {
 <section class="t2m-gallery" id="t2m-gallery">
   <h2>Text-to-Music Gallery</h2>
   <p class="section-desc">
-    Text prompts are routed through the same Qwen3-VL → Music Head → MuQ anchor path used by visual inputs.
+    Text prompts are routed through the same Qwen3-VL → Music Head → MuQ semantic anchor path used by visual inputs.
     MERIC is not trained as a separate direct text-audio model.
   </p>
 
@@ -2097,10 +2097,9 @@ footer p {
   </p>
   <pre class="bibtex"><code>@inproceedings{meric2026,
   title     = {MERIC: Unified Multimodal Music Generation and Retrieval via a Music Semantic Anchor},
-  author    = {MERIC authors},
+  author    = {Xihua Wang and Yinbo Wang and Jingchao Zhang and Ruihua Song},
   booktitle = {European Conference on Computer Vision (ECCV)},
-  year      = {2026},
-  note      = {Accepted to ECCV 2026; final author list, pages, and DOI to be added}
+  year      = {2026}
 }</code></pre>
   <div class="resource-links" aria-label="Project resources">
     <span>Resources</span>
