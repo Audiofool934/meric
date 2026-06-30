@@ -45,11 +45,12 @@ html { scroll-padding-top: 56px; scroll-behavior: smooth; }
 }
 
 .header-meta {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  margin-bottom: 12px;
+  width: fit-content;
+  margin: 14px auto 0;
 }
 
 .eyebrow {
@@ -89,9 +90,15 @@ html { scroll-padding-top: 56px; scroll-behavior: smooth; }
 }
 
 .brand-icon-links img {
-  width: 17px;
-  height: 17px;
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
   display: block;
+}
+
+.brand-icon-links img.brand-icon-huggingface {
+  width: 20px;
+  height: 20px;
 }
 
 h1 {
@@ -1133,22 +1140,22 @@ footer p {
 
 
 <header class="site-header">
-  <div class="header-meta">
-    <p class="eyebrow">Accepted to ECCV 2026</p>
-    <div class="brand-icon-links" aria-label="External project links">
-      <a href="https://github.com/Audiofool934/meric" aria-label="Open MERIC on GitHub" title="GitHub">
-        <img src="https://cdn.simpleicons.org/github" alt="GitHub">
-      </a>
-      <a href="https://huggingface.co/Audiofool/meric" aria-label="Open MERIC model weights on Hugging Face" title="Hugging Face">
-        <img src="https://cdn.simpleicons.org/huggingface" alt="Hugging Face">
-      </a>
-    </div>
-  </div>
   <h1>MERIC: Unified Multimodal Music Generation and Retrieval via a Music Semantic Anchor</h1>
   <p class="subtitle">
     MERIC maps images, text, and video into a MuQ music semantic anchor, then uses that same anchor
     for both music generation and music retrieval.
   </p>
+  <div class="header-meta">
+    <p class="eyebrow">Accepted to ECCV 2026</p>
+    <div class="brand-icon-links" aria-label="External project links">
+      <a href="https://github.com/Audiofool934/meric" aria-label="Open MERIC on GitHub" title="GitHub" target="_blank" rel="noopener noreferrer">
+        <img class="brand-icon-github" src="https://cdn.simpleicons.org/github" alt="GitHub">
+      </a>
+      <a href="https://huggingface.co/Audiofool/meric" aria-label="Open MERIC model weights on Hugging Face" title="Hugging Face" target="_blank" rel="noopener noreferrer">
+        <img class="brand-icon-huggingface" src="https://huggingface.co/datasets/huggingface/brand-assets/resolve/main/hf-logo.svg" alt="Hugging Face">
+      </a>
+    </div>
+  </div>
   <div class="hero-claims" aria-label="Paper contributions">
     <div class="hero-claim">
       <span class="claim-label">Anchor</span>
