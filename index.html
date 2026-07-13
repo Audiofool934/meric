@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MERIC: Unified Multimodal Music Generation and Retrieval via a Music Semantic Anchor</title>
+<title>Meric: A Unified Framework for Multimodal Music Generation and Retrieval via Representation Space Anchoring</title>
 <style>
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -1140,7 +1140,7 @@ footer p {
 
 
 <header class="site-header">
-  <h1>MERIC: Unified Multimodal Music Generation and Retrieval via a Music Semantic Anchor</h1>
+  <h1>Meric: A Unified Framework for Multimodal Music Generation and Retrieval via Representation Space Anchoring</h1>
   <p class="subtitle">
     MERIC maps images, text, and video into a shared semantic embedding space, then uses that same space
     for both music generation and music retrieval.
@@ -1247,6 +1247,17 @@ footer p {
   <table class="results-table">
     <thead><tr><th rowspan="2" class="th-method">Method</th><th colspan="5">MelBench</th><th colspan="5">MuImage</th><th colspan="5">EmoMV</th><th colspan="5">ARIA</th></tr><tr><th>FAD<sub>M</sub></th><th>FAD<sub>C</sub></th><th>FAD<sub>V</sub></th><th>KL</th><th>Sem</th><th>FAD<sub>M</sub></th><th>FAD<sub>C</sub></th><th>FAD<sub>V</sub></th><th>KL</th><th>Sem</th><th>FAD<sub>M</sub></th><th>FAD<sub>C</sub></th><th>FAD<sub>V</sub></th><th>KL</th><th>Sem</th><th>FAD<sub>M</sub></th><th>FAD<sub>C</sub></th><th>FAD<sub>V</sub></th><th>KL</th><th>Sem</th></tr></thead>
     <tbody><tr><td class="td-method">Art2Mus</td><td>31.6</td><td>0.945</td><td>13.7</td><td>0.0145</td><td>39.1</td><td>30.8</td><td>0.902</td><td>15.3</td><td>0.0151</td><td>45.3</td><td>33.9</td><td>1.109</td><td>14.6</td><td>0.0147</td><td>44.3</td><td>15.1</td><td>0.560</td><td>7.02</td><td>0.0077</td><td>45.3</td></tr><tr><td class="td-method">GVMGen</td><td>3.55</td><td>0.483</td><td>5.78</td><td>0.0072</td><td>52.9</td><td>3.78</td><td>0.549</td><td>8.73</td><td>0.0086</td><td>49.6</td><td>3.96</td><td>0.617</td><td>7.20</td><td><strong>0.0057</strong></td><td>63.6</td><td>4.18</td><td>0.337</td><td>5.83</td><td><strong>0.0052</strong></td><td>60.0</td></tr><tr><td class="td-method">AudioX</td><td>16.5</td><td>0.723</td><td>13.7</td><td>0.0127</td><td>53.8</td><td>13.9</td><td>0.623</td><td>14.4</td><td>0.0130</td><td>51.8</td><td>4.75</td><td>0.487</td><td>5.45</td><td>0.0071</td><td>79.0</td><td>20.1</td><td>0.766</td><td>11.7</td><td>0.0120</td><td>38.5</td></tr><tr><td class="td-method">M2UGen</td><td>7.53</td><td>0.558</td><td>7.14</td><td>0.0090</td><td>55.3</td><td>5.19</td><td>0.421</td><td>8.66</td><td>0.0098</td><td>57.8</td><td>9.51</td><td>0.794</td><td>10.1</td><td>0.0087</td><td>54.6</td><td>24.0</td><td>0.744</td><td>4.89</td><td>0.0070</td><td>57.1</td></tr><tr><td class="td-method">Qwen3VL + MusicGen</td><td>4.42</td><td>0.497</td><td>6.56</td><td>0.0076</td><td><strong>80.6</strong></td><td>2.99</td><td>0.418</td><td>8.93</td><td>0.0079</td><td>85.6</td><td>7.08</td><td>0.736</td><td>7.65</td><td>0.0083</td><td>80.3</td><td>5.09</td><td>0.283</td><td><strong>2.04</strong></td><td>0.0059</td><td>76.6</td></tr><tr><td class="td-method">Qwen3VL + AudioLDM2-L</td><td>6.57</td><td>0.408</td><td>5.92</td><td>0.0078</td><td>77.6</td><td>4.59</td><td>0.274</td><td>6.08</td><td>0.0079</td><td><strong>87.2</strong></td><td>8.61</td><td>0.609</td><td>7.41</td><td>0.0086</td><td>78.7</td><td>9.95</td><td>0.262</td><td>3.66</td><td>0.0069</td><td>77.6</td></tr><tr class="row-ours"><td class="td-method"><strong>Ours</strong></td><td><strong>1.55</strong></td><td><strong>0.127</strong></td><td><strong>1.27</strong></td><td><strong>0.0059</strong></td><td>74.7</td><td><strong>1.79</strong></td><td><strong>0.169</strong></td><td><strong>3.20</strong></td><td><strong>0.0078</strong></td><td>87.1</td><td><strong>3.06</strong></td><td><strong>0.253</strong></td><td><strong>2.45</strong></td><td>0.0060</td><td><strong>81.0</strong></td><td><strong>3.30</strong></td><td><strong>0.247</strong></td><td>2.08</td><td>0.0055</td><td><strong>79.6</strong></td></tr></tbody>
+  </table>
+  </div>
+  <h3 class="table-subtitle">Comparison with 2026 Song-Foundation Baselines</h3>
+  <p class="table-note">
+    Fixed N=500 subsets. YuE-7B and HeartMuLa-3B are used as Qwen3VL-to-tags cascades.
+    MERIC wins every FAD and semantic cell despite being orders of magnitude smaller.
+  </p>
+  <div class="table-wrapper">
+  <table class="results-table">
+    <thead><tr><th rowspan="2" class="th-method">Dataset</th><th colspan="2">FAD<sub>C</sub></th><th colspan="2">FAD<sub>M</sub></th><th colspan="3">Gemini Sem</th></tr><tr><th>MERIC</th><th>YuE-7B</th><th>MERIC</th><th>YuE-7B</th><th>MERIC</th><th>YuE-7B</th><th>Heart-3B</th></tr></thead>
+    <tbody><tr><td class="td-method">MelBench</td><td><strong>0.156</strong></td><td>0.518</td><td><strong>1.96</strong></td><td>12.83</td><td colspan="3"><strong>80.2</strong> / 61.5 / 51.2</td></tr><tr><td class="td-method">MuImage</td><td><strong>0.183</strong></td><td>0.384</td><td><strong>2.24</strong></td><td>8.93</td><td colspan="3"><strong>88.1</strong> / 69.8 / 48.2</td></tr><tr><td class="td-method">ARIA</td><td><strong>0.496</strong></td><td>0.657</td><td><strong>9.23</strong></td><td>19.25</td><td colspan="3"><strong>65.2</strong> / 64.4 / 60.2</td></tr><tr><td class="td-method">EmoMV</td><td><strong>0.272</strong></td><td>0.710</td><td><strong>3.32</strong></td><td>15.21</td><td colspan="3"><strong>73.7</strong> / 68.6 / 53.0</td></tr></tbody>
   </table>
   </div>
   <h3 class="table-subtitle">Text-to-Music Generation</h3>
@@ -2085,20 +2096,59 @@ footer p {
       </div>
     </div>
   </div>
+
+  <h3 class="abl-subtitle">Direct Conditioning</h3>
+  <p class="abl-desc">
+    A direct Stage-2 baseline that conditions the decoder on Qwen3VL features without the MuQ anchor
+    trails MERIC on both FAD-MERT and semantic alignment. More importantly, it is an audio-only generator:
+    it cannot produce a retrieval query in the music-anchor space, so it does not unify generation and retrieval.
+  </p>
+  <div class="table-wrapper">
+  <table class="results-table">
+    <thead><tr><th class="th-method">Subset</th><th>Anchored FAD<sub>M</sub></th><th>Direct FAD<sub>M</sub></th><th>Anchored Sem</th><th>Direct Sem</th></tr></thead>
+    <tbody><tr><td class="td-method">ARIA</td><td><strong>9.14</strong></td><td>11.40</td><td><strong>70.5</strong></td><td>69.4</td></tr><tr><td class="td-method">MuImage</td><td>2.23</td><td>2.23</td><td><strong>87.7</strong></td><td>83.6</td></tr><tr><td class="td-method">MelBench</td><td><strong>1.97</strong></td><td>3.04</td><td><strong>80.0</strong></td><td>69.4</td></tr></tbody>
+  </table>
+  </div>
+
+  <h3 class="abl-subtitle">Noise Objective in Music Head</h3>
+  <p class="abl-desc">
+    Diffusion and rectified flow are statistically indistinguishable when the anchor-space mapping is held fixed.
+    This suggests the gains come from the anchor design rather than the specific generative formulation.
+  </p>
+  <div class="table-wrapper">
+  <table class="results-table">
+    <thead><tr><th class="th-method">Subset</th><th>RDM FAD<sub>C</sub></th><th>FM FAD<sub>C</sub></th><th>RDM FAD<sub>M</sub></th><th>FM FAD<sub>M</sub></th></tr></thead>
+    <tbody><tr><td class="td-method">ARIA</td><td>0.496</td><td><strong>0.494</strong></td><td>9.23</td><td><strong>9.14</strong></td></tr><tr><td class="td-method">MuImage</td><td><strong>0.184</strong></td><td>0.184</td><td>2.24</td><td><strong>2.23</strong></td></tr><tr><td class="td-method">MelBench</td><td>0.156</td><td><strong>0.155</strong></td><td><strong>1.96</strong></td><td>1.97</td></tr></tbody>
+  </table>
+  </div>
+
+  <h3 class="abl-subtitle">Music-Anchor Encoder</h3>
+  <p class="abl-desc">
+    Replacing the frozen music-semantic encoder shows that music-semantic pretraining is essential.
+    CLAP, a general contrastive audio-text model, is an outlier even on its own aligned FAD-CLAP metric;
+    MuQ and MERT perform similarly, confirming that the anchor design matters more than the specific encoder.
+  </p>
+  <div class="table-wrapper">
+  <table class="results-table">
+    <thead><tr><th class="th-method">Metric</th><th>MuQ (default)</th><th>CLAP</th><th>MERT</th></tr></thead>
+    <tbody><tr><td class="td-method">FAD<sub>CLAP</sub> (unbiased)</td><td>0.178</td><td>0.286</td><td><strong>0.172</strong></td></tr><tr><td class="td-method">FAD<sub>MERT</sub> (aligned)</td><td>1.31</td><td>2.35</td><td><strong>1.01</strong></td></tr><tr><td class="td-method">Human Sem (N=50)</td><td>62.84</td><td>37.52</td><td><strong>68.20</strong></td></tr></tbody>
+  </table>
+  </div>
 </section>
 
 
 <section class="citation" id="citation">
   <h2>Citation</h2>
   <p class="section-desc">
-    MERIC is accepted to ECCV 2026. Final proceedings metadata will be added when available.
-    Source code is Apache-2.0; checkpoints, pretrained components, and datasets follow their
-    own upstream terms.
+    MERIC is accepted to ECCV 2026. The public arXiv release contains the main paper,
+    supplementary material, and extended robustness analyses. Final proceedings metadata
+    will be added when available. Source code is Apache-2.0; checkpoints, pretrained
+    components, and datasets follow their own upstream terms.
   </p>
-  <pre class="bibtex"><code>@inproceedings{meric2026,
-  title     = {MERIC: Unified Multimodal Music Generation and Retrieval via a Music Semantic Anchor},
+  <pre class="bibtex"><code>@article{meric2026arxiv,
+  title     = {Meric: A Unified Framework for Multimodal Music Generation and Retrieval via Representation Space Anchoring},
   author    = {Xihua Wang and Yinbo Wang and Jingchao Zhang and Ruihua Song},
-  booktitle = {European Conference on Computer Vision (ECCV)},
+  journal   = {arXiv preprint},
   year      = {2026}
 }</code></pre>
   <div class="resource-links" aria-label="Project resources">
@@ -2112,7 +2162,7 @@ footer p {
 </section>
 
 <footer>
-  <p>MERIC project page for ECCV 2026. Source code is Apache-2.0; model weights and datasets follow their upstream terms.</p>
+  <p>MERIC project page. Paper accepted to ECCV 2026; public arXiv release available. Source code is Apache-2.0; model weights and datasets follow their upstream terms.</p>
 </footer>
 
 <script>
