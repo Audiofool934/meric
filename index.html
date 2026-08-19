@@ -110,6 +110,43 @@ h1 {
   letter-spacing: 0;
 }
 
+.paper-authorship {
+  max-width: 900px;
+  margin: 0 auto 12px;
+}
+
+.paper-authors {
+  color: var(--text);
+  font-size: 1.08em;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.paper-affiliation,
+.paper-author-notes {
+  font-family: -apple-system, "Segoe UI", sans-serif;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.paper-affiliation {
+  font-size: 0.88em;
+  margin: 2px 0 0;
+}
+
+.paper-author-notes {
+  color: var(--text-muted);
+  font-size: 0.7em;
+  margin: 3px 0 0;
+}
+
+.paper-authorship sup {
+  font-family: -apple-system, "Segoe UI", sans-serif;
+  font-size: 0.68em;
+  position: relative;
+  top: -0.32em;
+}
+
 .subtitle {
   font-family: -apple-system, 'Segoe UI', sans-serif;
   color: var(--text-secondary);
@@ -1121,6 +1158,8 @@ footer p {
 @media (max-width: 768px) {
   body { padding: 12px; }
   h1 { font-size: 1.4em; }
+  .paper-authors { font-size: 0.98em; }
+  .paper-affiliation { font-size: 0.82em; }
   .site-header { padding-top: 28px; }
   .hero-claims,
   .result-highlights,
@@ -1157,6 +1196,11 @@ footer p {
 
 <header class="site-header">
   <h1>Meric: A Unified Framework for Multimodal Music Generation and Retrieval via Representation Space Anchoring</h1>
+  <div class="paper-authorship" aria-label="Paper authors and affiliation">
+    <p class="paper-authors">Xihua Wang<sup>*</sup>, Yinbo Wang<sup>*</sup>, Jingchao Zhang<sup>*</sup>, and Ruihua Song<sup>&dagger;</sup></p>
+    <p class="paper-affiliation">Gaoling School of Artificial Intelligence, Renmin University of China</p>
+    <p class="paper-author-notes"><sup>*</sup> Equal contribution &nbsp;&nbsp; <sup>&dagger;</sup> Corresponding author</p>
+  </div>
   <p class="subtitle">
     MERIC maps images, text, and video into a shared semantic embedding space, then uses that same space
     for both music generation and music retrieval.
