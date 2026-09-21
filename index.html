@@ -46,11 +46,37 @@ html { scroll-padding-top: 56px; scroll-behavior: smooth; }
 
 .header-meta {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 8px;
   width: fit-content;
   margin: 14px auto 0;
+}
+
+.paper-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 4px 12px;
+  border: 1px solid var(--ours-border);
+  border-radius: 999px;
+  background: var(--accent-light);
+  color: var(--accent-dark);
+  font-family: -apple-system, 'Segoe UI', sans-serif;
+  font-size: 0.78em;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.paper-link:hover {
+  border-color: var(--accent);
+  background: var(--card);
+}
+
+.paper-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
 .eyebrow {
@@ -1206,7 +1232,8 @@ footer p {
     for both music generation and music retrieval.
   </p>
   <div class="header-meta">
-    <p class="eyebrow">Accepted to ECCV 2026</p>
+    <p class="eyebrow">ECCV 2026</p>
+    <a class="paper-link" href="https://media.eventhosts.cc/Conferences/ECCV2026/pdfs/2169.pdf" target="_blank" rel="noopener noreferrer">Paper (Camera Ready)</a>
     <div class="brand-icon-links" aria-label="External project links">
       <a href="https://github.com/Audiofool934/meric" aria-label="Open MERIC on GitHub" title="GitHub" target="_blank" rel="noopener noreferrer">
         <img class="brand-icon-github" src="https://cdn.simpleicons.org/github" alt="GitHub">
@@ -1223,7 +1250,7 @@ footer p {
     </div>
     <div class="hero-claim">
       <span class="claim-label">Training</span>
-      <strong>Stage 2 learns from 630K unpaired music tracks</strong>
+      <strong>Stage 1 learns from 630K unpaired music tracks</strong>
     </div>
     <div class="hero-claim">
       <span class="claim-label">Sampling</span>
@@ -1263,8 +1290,8 @@ footer p {
     multimodal understanding from acoustic synthesis. The paper uses a two-stage training pipeline:
   </p>
   <ol class="pipeline-steps">
-    <li><strong>Stage 1:</strong> Qwen3-VL embeddings are mapped into this semantic embedding space by the diffusion-based Music Head.</li>
-    <li><strong>Stage 2:</strong> a Flow-DiT decoder synthesizes audio from anchors in that space using large unpaired music corpora.</li>
+    <li><strong>Stage 1:</strong> a Flow-DiT decoder learns to synthesize audio from music semantic embeddings using large unpaired music corpora.</li>
+    <li><strong>Stage 2:</strong> the diffusion-based Music Head learns to map frozen Qwen3-VL embeddings into the music semantic space using paired multimodal-music data.</li>
   </ol>
   <p>
     At inference time, the predicted anchor embedding is both a condition for acoustic synthesis and a query
@@ -2192,19 +2219,20 @@ footer p {
 <section class="citation" id="citation">
   <h2>Citation</h2>
   <p class="section-desc">
-    MERIC is accepted to ECCV 2026. The public arXiv release contains the main paper,
-    supplementary material, and extended robustness analyses. Final proceedings metadata
-    will be added when available. Source code is Apache-2.0; checkpoints, pretrained
+    The official ECCV 2026 camera-ready paper is available below.
+    Source code is Apache-2.0; checkpoints, pretrained
     components, and datasets follow their own upstream terms.
   </p>
-  <pre class="bibtex"><code>@article{meric2026arxiv,
+  <pre class="bibtex"><code>@inproceedings{wang2026meric,
   title     = {Meric: A Unified Framework for Multimodal Music Generation and Retrieval via Representation Space Anchoring},
   author    = {Xihua Wang and Yinbo Wang and Jingchao Zhang and Ruihua Song},
-  journal   = {arXiv preprint},
-  year      = {2026}
+  booktitle = {European Conference on Computer Vision (ECCV)},
+  year      = {2026},
+  url       = {https://media.eventhosts.cc/Conferences/ECCV2026/pdfs/2169.pdf}
 }</code></pre>
   <div class="resource-links" aria-label="Project resources">
     <span>Resources</span>
+    <a href="https://media.eventhosts.cc/Conferences/ECCV2026/pdfs/2169.pdf" target="_blank" rel="noopener noreferrer">Paper (Camera Ready)</a>
     <a href="https://github.com/Audiofool934/meric">GitHub</a>
     <a href="https://github.com/Audiofool934/meric/tree/main/docs">Docs</a>
     <a href="https://huggingface.co/Audiofool/meric">Model Weights</a>
@@ -2214,7 +2242,7 @@ footer p {
 </section>
 
 <footer>
-  <p>MERIC project page. Paper accepted to ECCV 2026; public arXiv release available. Source code is Apache-2.0; model weights and datasets follow their upstream terms.</p>
+  <p>MERIC project page. ECCV 2026 camera-ready paper available. Source code is Apache-2.0; model weights and datasets follow their upstream terms.</p>
 </footer>
 
 <script>
