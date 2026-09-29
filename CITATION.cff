@@ -1,0 +1,32 @@
+cff-version: "1.2.0"
+message: "If you use Meric in your research, please cite the accompanying paper."
+type: software
+title: "Meric"
+version: "0.1.0"
+license: Apache-2.0
+repository-code: "https://github.com/Audiofool934/meric"
+url: "https://audiofool.blog/meric/"
+authors:
+  - given-names: "Xihua"
+    family-names: "Wang"
+  - given-names: "Yinbo"
+    family-names: "Wang"
+  - given-names: "Jingchao"
+    family-names: "Zhang"
+  - given-names: "Ruihua"
+    family-names: "Song"
+preferred-citation:
+  type: conference-paper
+  title: "Meric: A Unified Framework for Multimodal Music Generation and Retrieval via Representation Space Anchoring"
+  authors:
+    - given-names: "Xihua"
+      family-names: "Wang"
+    - given-names: "Yinbo"
+      family-names: "Wang"
+    - given-names: "Jingchao"
+      family-names: "Zhang"
+    - given-names: "Ruihua"
+      family-names: "Song"
+  collection-title: "European Conference on Computer Vision (ECCV)"
+  year: 2026
+  notes: "Proceedings pages and DOI will be added when the official metadata is available."

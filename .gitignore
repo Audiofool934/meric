@@ -1,0 +1,59 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.cache/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Environments
+.env
+.venv
+venv/
+ENV/
+.external/
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Model weights / checkpoints (distributed via HF Hub, never committed)
+*.ckpt
+*.pt
+*.pth
+*.bin
+*.safetensors
+
+# Generated audio / video / outputs
+outputs/
+output/
+meric_out/
+*.wav
+*.mp3
+*.mp4
+*.flac
+wandb/
+log/
+logs/
+
+# Secrets / credentials (never commit)
+*.env
+*.pem
+*.key
+secrets/
+*credentials*
+
+# Build staging metadata (manifest and build scripts) - internal, not part of the release
+.build/
+
+# Internal research belongs in the private research repository.
+research/

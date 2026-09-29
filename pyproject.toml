@@ -1,0 +1,87 @@
+# pyproject.toml - Meric, an importable package.
+#
+# Install (editable, for development):  pip install -e .
+# Install development tools:           pip install -e ".[dev]"
+#
+# NOTE: install a CUDA build of PyTorch first, matching your platform, from
+# https://pytorch.org/get-started/locally/ (the pins below reflect the tested
+# torch 2.5.1 + CUDA 12.1 environment). See README / docs/SETUP.md.
+
+[build-system]
+requires = ["setuptools==80.9.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "meric"
+version = "0.1.0"
+description = "Meric: multimodal music generation and retrieval via representation space anchoring."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+authors = [
+    { name = "Xihua Wang" },
+    { name = "Yinbo Wang" },
+    { name = "Jingchao Zhang" },
+    { name = "Ruihua Song" },
+]
+keywords = ["music-generation", "multimodal", "diffusion", "flow-matching", "cross-modal-retrieval"]
+
+dependencies = [
+    "torch==2.5.1",
+    "torchvision==0.20.1",
+    "torchaudio==2.5.1",
+    "pytorch-lightning==1.9.3",
+    "torchmetrics==1.6.1",
+    "diffusers==0.32.1",
+    "transformers==4.47.1",
+    "accelerate==1.2.1",
+    "safetensors==0.4.5",
+    "huggingface-hub==0.27.0",
+    "torchdiffeq==0.2.5",
+    "torchsde==0.2.6",
+    "muq==0.1.0",
+    "librosa==0.10.2.post1",
+    "soundfile==0.12.1",
+    "numpy==1.26.4",
+    "scipy==1.13.1",
+    "omegaconf==2.3.0",
+    "PyYAML==6.0.3",
+    "pillow==12.0.0",
+    "tqdm==4.67.1",
+    "flow_matching==1.0.10",
+    "packaging==25.0",
+    "setuptools==80.9.0",
+]
+
+[project.optional-dependencies]
+clip = ["ftfy==6.3.1", "open_clip_torch==2.32.0"]
+dev = ["build==1.2.2.post1", "pytest==8.3.5", "ruff==0.11.13", "twine==6.1.0"]
+
+[project.scripts]
+meric = "meric.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/Audiofool934/meric"
+Documentation = "https://github.com/Audiofool934/meric/tree/main/docs"
+"Project page" = "https://audiofool.blog/meric/"
+"Model weights" = "https://huggingface.co/Audiofool/meric"
+
+[tool.setuptools.packages.find]
+include = ["meric*"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "UP", "B"]
+ignore = ["E501", "E741", "B008"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.black]
+line-length = 120
+target-version = ["py310"]

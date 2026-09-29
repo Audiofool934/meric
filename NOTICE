@@ -1,0 +1,129 @@
+Meric: A Unified Framework for Multimodal Music Generation and Retrieval via
+Representation Space Anchoring
+
+Copyright 2026 Xihua Wang, Yinbo Wang, Jingchao Zhang, and Ruihua Song
+
+The Meric source code in this repository is licensed under the Apache License,
+Version 2.0.
+That license does not relicense model weights, datasets, or third-party
+components.
+Review every upstream license before redistribution, deployment, or commercial
+use.
+
+Embedded and adapted source
+===========================
+
+Music Head diffusion utilities
+------------------------------
+
+Portions of `meric/models/rdm/latentmlp.py` and
+`meric/models/rdm/util.py` are adapted from OpenAI improved-diffusion and
+guided-diffusion, and from CompVis latent-diffusion.
+Those upstream projects are distributed under the MIT License.
+
+Copyright (c) 2021 OpenAI
+Copyright (c) 2022 Machine Vision and Learning Group, LMU Munich
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+Repositories:
+https://github.com/openai/improved-diffusion
+https://github.com/openai/guided-diffusion
+https://github.com/CompVis/latent-diffusion
+
+Stable Audio transformer implementation
+---------------------------------------
+
+`meric/models/stable_audio/stable_audio_transformer.py` is adapted from the
+Stable Audio transformer implementation in Hugging Face Diffusers.
+The file retains the upstream copyright and Apache-2.0 license header.
+
+Repository:
+https://github.com/huggingface/diffusers
+
+Third-party models and components
+=================================
+
+Stable Audio Open 1.0
+---------------------
+
+Meric's Stage 2 decoder is initialized from and derives from Stable Audio Open
+1.0.
+Stable Audio Open model materials and derivative works are governed by the
+Stability AI Community License, not Apache-2.0.
+The license includes commercial-use conditions and an acceptable-use policy.
+
+Model and license:
+https://huggingface.co/stabilityai/stable-audio-open-1.0
+https://huggingface.co/stabilityai/stable-audio-open-1.0/blob/main/LICENSE.md
+
+MuQ and MuQ-MuLan
+-----------------
+
+Meric uses MuQ-MuLan as its 512-dimensional music semantic anchor.
+The upstream MuQ source code is MIT licensed, while the published MuQ and
+MuQ-MuLan model weights are licensed under CC BY-NC 4.0.
+The released mericldm.ckpt currently serializes the frozen MuQ-MuLan
+parameters under the historical clap.* checkpoint namespace, in addition to
+initializing the same model from the pinned upstream snapshot at runtime.
+Those serialized parameters retain the CC BY-NC 4.0 terms.
+
+The current Stage 2 checkpoint therefore contains materials governed by both
+the Stability AI Community License and CC BY-NC 4.0.
+Review both licenses before redistributing the checkpoint or using it
+commercially.
+
+Repository and weight license:
+https://github.com/tencent-ailab/MuQ
+https://github.com/tencent-ailab/MuQ/blob/main/LICENSE_weights
+
+Qwen3-VL-Embedding
+------------------
+
+Meric uses Qwen3-VL-Embedding-2B to encode image, video, and text inputs.
+The upstream code and model are published under Apache-2.0.
+
+Repository and model:
+https://github.com/QwenLM/Qwen3-VL-Embedding
+https://huggingface.co/Qwen/Qwen3-VL-Embedding-2B
+
+OpenCLIP
+--------
+
+The optional bring-your-own CLIP Stage 1 path uses the open_clip_torch package,
+published under the MIT License.
+
+Repository:
+https://github.com/mlfoundations/open_clip
+
+ARIA dataset
+============
+
+ARIA is distributed separately from this source repository.
+Its source images, captions, and generated audio retain their respective
+upstream terms.
+The public dataset release must include a dataset card with provenance,
+redistribution permissions, and licenses before the paper results can be
+reproduced from public artifacts alone.
+
+Sample inputs
+=============
+
+The synthetic images under `examples/images/` are released under CC0 1.0.
+See `examples/images/README.md`.

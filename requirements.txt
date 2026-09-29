@@ -1,0 +1,27 @@
+# Pinned runtime mirror of pyproject.toml.
+# Install the platform-appropriate PyTorch build first when the default wheel is unsuitable.
+
+torch==2.5.1
+torchvision==0.20.1
+torchaudio==2.5.1
+pytorch-lightning==1.9.3
+torchmetrics==1.6.1
+diffusers==0.32.1
+transformers==4.47.1
+accelerate==1.2.1
+safetensors==0.4.5
+huggingface-hub==0.27.0
+torchdiffeq==0.2.5
+torchsde==0.2.6
+muq==0.1.0
+librosa==0.10.2.post1
+soundfile==0.12.1
+numpy==1.26.4
+scipy==1.13.1
+omegaconf==2.3.0
+PyYAML==6.0.3
+pillow==12.0.0
+tqdm==4.67.1
+flow_matching==1.0.10
+packaging==25.0
+setuptools==80.9.0
