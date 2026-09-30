@@ -33,9 +33,6 @@ The same anchor supports cross-modal retrieval.
 
 The arXiv URL, proceedings pages, and DOI will be added when available.
 
-The code repository is currently private while release preparation is completed.
-The model weights are available now; the installation commands below require repository access until the code release.
-
 ## Files
 
 | File | Registered name | Bytes | SHA-256 | Purpose |
